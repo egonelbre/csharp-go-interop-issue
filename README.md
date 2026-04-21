@@ -70,7 +70,7 @@ fixed in 1.26.
 1. Drives the Go `ping()` function (from the co-located `libgolib.so`)
    on 32 concurrent `Task.Run` workers, 1 000 000 calls each. Every call
    causes Go to `needm`/`dropm` an M thread on the .NET TP Worker, which
-   re-registers Go's 16 KB sigaltstack on the thread.
+   re-registers Go's 32 KB sigaltstack on the thread.
 2. Starts a dedicated .NET `Thread` that enumerates every TID via
    `Process.GetCurrentProcess().Threads` and sends `SIGRTMIN+2` via
    `tgkill(2)` every 50 µs. Mirrors the strace evidence from the real
@@ -158,24 +158,31 @@ OS thread:
   down thousands of bytes before the handler can decide whether to
   ignore / translate / forward the signal.
 - **Go** owns `sigaltstack` on any thread that has entered cgo. The
-  per-M signal stack is 16 KB — sized for Go's own handler, not
-  CoreCLR's. Go also re-registers/disables that alt stack on every
-  `needm`/`dropm`, i.e. on every single cgo call on a non-Go thread.
+  per-M signal stack is **32 KB on Linux** (`malg(32 * 1024)` in
+  `runtime/os_linux.go:mpreinit`) — sized for Go's own handler, not
+  CoreCLR's. Go also re-registers / disables that alt stack on every
+  `needm` / `dropm`, i.e. on every single cgo call on a non-Go thread.
+
+(Strace captures from CI additionally show a 16 KB sigaltstack at
+libc-heap addresses on .NET-owned threads — that's CoreCLR's own alt
+stack, separate from Go's. The reproducer's core dump shows an 8-page
+unmapped gap, which exactly matches Go's 32 KB gsignal region; the
+16 KB one in the CI logs is CoreCLR-side.)
 
 The race:
 
 1. A .NET TP Worker enters Go via P/Invoke; `needm` installs Go's
-   16 KB sigaltstack on the thread.
+   32 KB sigaltstack on the thread.
 2. A sibling thread fires `SIGRTMIN+2` at it with `tgkill`.
 3. Kernel delivers on whatever sigaltstack the thread has registered
-   — Go's 16 KB one.
+   — Go's 32 KB one.
 4. The signal isn't Go's to own, so Go's handler chains to CoreCLR's.
 5. CoreCLR's handler prologue does a multi-page stack probe that
-   needs more than 16 KB.
+   needs more than 32 KB.
 6. The probe walks off the end of the alt stack. Either it hits the
    guard page (SEGV_ACCERR — the CI strace signature) or an unmapped
    gap whose memory Go has already released in a concurrent
-   `dropm`/`needm` cycle (SI_KERNEL, nested fault — the core dump
+   `dropm` / `needm` cycle (SI_KERNEL, nested fault — the core dump
    signature shown above, with `rsp` 8 pages deep into unmapped VA
    right next to a freshly released `memfd:doublemapper`).
 7. The kernel can't deliver a second signal while the first handler
@@ -184,7 +191,7 @@ The race:
 
 Two things have to be wrong simultaneously to crash:
 
-- **Size mismatch.** Go's 16 KB sigaltstack is too small for CoreCLR's
+- **Size mismatch.** Go's 32 KB sigaltstack is too small for CoreCLR's
   handler.
 - **Lifecycle race.** Go enables / disables / recycles that alt stack
   around every cgo call, so even when the size is borderline OK there
@@ -200,7 +207,129 @@ only one half:
   (`SigStackFix.EnsureOnCurrentThread`) — clobbered by Go's next
   `needm` on the same thread.
 
-A proper fix has to come from the Go side (bigger gsignal stack, or
-don't reinstall it on every `needm`/`dropm`), from CoreCLR (don't run
-chkstk-heavy paths on whatever alt stack happens to be installed), or
-from keeping the two runtimes' threads strictly disjoint.
+## Proposed fixes (Go side)
+
+All paths below are in a local checkout of the Go source tree.
+
+### 1. Enlarge the gsignal stack on Linux
+
+`src/runtime/os_linux.go:387-390`:
+
+```go
+func mpreinit(mp *m) {
+    mp.gsignal = malg(32 * 1024) // Linux wants >= 2K
+    mp.gsignal.m = mp
+}
+```
+
+Bump to `malg(128 * 1024)` or `malg(256 * 1024)`. Addresses the
+overflow half of the race and is cheap — one allocation per M, amortised
+across the process lifetime. Other Unix platforms (`os_aix.go`,
+`os3_solaris.go`, `os_netbsd.go`) already allocate 32 KB; giving Linux
+headroom for chained C-runtime handlers is defensible because Go is
+far more commonly shipped as `c-shared` on Linux than on those
+platforms.
+
+### 2. Block signals around `sigaltstack(SS_DISABLE)` in `unminitSignals`
+
+`src/runtime/signal_unix.go:1370-1383`:
+
+```go
+func unminitSignals() {
+    if getg().m.newSigstack {
+        st := stackt{ss_flags: _SS_DISABLE}
+        sigaltstack(&st, nil)
+    } else {
+        restoreGsignalStack(&getg().m.goSigStack)
+    }
+}
+```
+
+Wrap the `sigaltstack(SS_DISABLE)` call in a full `sigprocmask` block /
+unblock so no signal can be delivered between the state flip and the
+memory becoming reusable. `dropm` already `sigblock(false)`s before
+calling `unminit`, but `false` leaves `_SigUnblock` signals (SIGSEGV /
+SIGBUS / SIGFPE, and SIGURG when used for async preemption) free to
+arrive anyway. Using `sigblock(true)` here — or an explicit full
+sigset — closes that.
+
+This narrows the race but doesn't fully close it: signal delivery is a
+multi-step kernel operation and a signal "in flight" before the block
+can still land. It's a meaningful improvement, not a fix.
+
+### 3. Keep Go's sigaltstack installed for the whole OS thread lifetime
+
+The root cause of the lifecycle race is that `needm` / `dropm` re-toggle
+the sigaltstack state on every cgo round trip. Stop toggling it:
+
+- `minitSignalStack` already has a branch for the common case where
+  the thread already had an alt stack (e.g. CoreCLR's) — it just
+  records it without reinstalling.
+- Add a symmetric branch for the case where Go did install its own:
+  install it **once** the first time the OS thread enters Go, and
+  leave it registered until the OS thread terminates. Change
+  `unminitSignals` to not `SS_DISABLE` when `newSigstack == true`;
+  move that disable into `mexit` (or the pthread-key destructor path)
+  instead.
+
+Trade-off: ~32–256 KB of permanently pinned per-thread memory, for
+ever-cgo'd threads. Eliminates the use-after-free half of the race
+entirely, because the memory can't be returned to the allocator
+while the kernel still thinks it's an alt stack for some thread.
+
+### 4. Harden `mexit` — only free gsignal after confirming it's disabled
+
+`src/runtime/proc.go:2017-2029` unconditionally `stackfree(mp.gsignal.stack)`
+on `mexit`. A robust version:
+
+1. Block all signals on the current thread.
+2. `sigaltstack(&disable, &oldss)` — assert `oldss` matches
+   `mp.gsignal.stack`.
+3. Read back with `sigaltstack(nil, &check)` — assert
+   `check.ss_flags & SS_DISABLE != 0`.
+4. Only then `stackfree(mp.gsignal.stack)`.
+
+This turns a silent UAF into a clean `throw` if the kernel ever
+reports a pending alt-stack reference we didn't expect.
+
+### 5. Place a guard page below every gsignal stack
+
+Today Go's gsignal stack comes from `stackalloc`, which is Go's
+internal stack-pool allocator — adjacent pages may be other live
+allocations. An overflow corrupts them silently. Allocating gsignal
+stacks with an explicit `PROT_NONE` page below via `mmap` converts
+overflow into a clean `SEGV_ACCERR` at a known boundary and makes
+the class of bug diagnosable from a core dump alone.
+
+### What's the minimum viable upstream change
+
+Fix **#1** (size bump) by itself defangs the CI crash for the .NET +
+uplink-c case: CoreCLR's handler has enough room, so the probe never
+reaches the region where the lifecycle race could cause a UAF. It's a
+one-line patch and doesn't change any semantics.
+
+The lifecycle race (#2, #3, #4) is the real underlying bug but needs
+design discussion on golang-dev before a patch is worth writing.
+Upstream-issue context that applies:
+
+- [go#43853](https://github.com/golang/go/issues/43853) — handler
+  overflows gsignal under cgo.
+- [go#60007](https://github.com/golang/go/issues/60007) — signal
+  delivered on wrong stack → overflow.
+- [go#7227](https://github.com/golang/go/issues/7227),
+  [go#14899](https://github.com/golang/go/issues/14899),
+  [go#16468](https://github.com/golang/go/issues/16468) — other
+  runtimes fighting Go over sigaltstack.
+
+## Alternative fix sites
+
+Fixing this purely in Go isn't the only option:
+
+- **CoreCLR** could avoid chkstk-heavy paths when running on an
+  externally-provided sigaltstack (detect via `sigaltstack(nil, &st)`
+  at handler entry, switch to a CoreCLR-owned emergency stack before
+  diving into managed signal dispatch).
+- **Application code** (uplink.NET here) could keep the two runtimes'
+  threads strictly disjoint — never P/Invoke from a .NET TP Worker,
+  always hop to a dedicated pool of threads whose sigaltstack state
+  is under application control. Expensive and fragile.
