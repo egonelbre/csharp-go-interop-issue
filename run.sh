@@ -5,6 +5,8 @@
 #   ./run.sh                  Build once, run until it crashes (max 10 attempts).
 #   ./run.sh build            Build only.
 #   ./run.sh run              Run once (assumes already built).
+#   ./run.sh gc               Run in GC-pressure mode (no synthetic signals —
+#                             let CoreCLR's own GC fire the activation signal).
 #   ./run.sh gdb              Build, then run under gdb and dump a core at crash.
 #   ./run.sh loop [N]         Run N times in a row (default 10) and report rc.
 #
@@ -72,8 +74,9 @@ cmd=${1:-default}
 case "$cmd" in
     build)   build ;;
     run)     run_once ;;
+    gc)      build; REPRO_MODE=gc run_loop "${2:-10}" ;;
     loop)    run_loop "${2:-10}" ;;
     gdb)     build; run_gdb ;;
     default) build; run_loop 10 ;;
-    *)       echo "usage: $0 [build|run|loop [N]|gdb]" >&2; exit 2 ;;
+    *)       echo "usage: $0 [build|run|gc [N]|loop [N]|gdb]" >&2; exit 2 ;;
 esac

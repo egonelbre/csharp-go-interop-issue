@@ -7,5 +7,10 @@
     <RootNamespace>repro_dotnet</RootNamespace>
     <AssemblyName>repro-dotnet</AssemblyName>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <!-- Server GC so GC suspension uses more threads and fires
+         INJECT_ACTIVATION_SIGNAL more aggressively; relevant for
+         REPRO_MODE=gc. -->
+    <ServerGarbageCollection>true</ServerGarbageCollection>
+    <ConcurrentGarbageCollection>false</ConcurrentGarbageCollection>
   </PropertyGroup>
 </Project>

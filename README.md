@@ -17,12 +17,24 @@ RT signal is delivered to it.
 ## Quick start
 
 ```bash
-./run.sh            # build + run up to 10 times, stops on first crash
+./run.sh            # build + run in signal mode (synthetic tgkill) until crash
+./run.sh gc [N]     # build + run in GC mode (no tgkill — pure GC pressure)
 ./run.sh build      # build only
 ./run.sh run        # run once
 ./run.sh loop 50    # run up to 50 times in a row
 ./run.sh gdb        # run under gdb and dump a core at crash → ./crash/core
 ```
+
+Two reproduction modes, both reach the same crash:
+
+- **`signal`** — a dedicated thread fires kernel signal 34 (CoreCLR's
+  `INJECT_ACTIVATION_SIGNAL`) at every thread via `tgkill`. Synthetic
+  but very fast: 3/3 SIGSEGV in plain runs on the dev box.
+- **`gc`** — no `tgkill` from us. Each worker allocates ~16 KB of
+  short-lived garbage between Ping() calls, and a helper thread calls
+  `GC.Collect(2, Forced, blocking: true)` at the configured interval.
+  Lets CoreCLR's own GC fire the activation signal naturally. Also
+  3/3–5/5 SIGSEGV on the dev box.
 
 ## Prerequisites
 
@@ -110,18 +122,38 @@ LD_LIBRARY_PATH=. ./bin/Release/net10.0/repro-dotnet
 
 Tuning env vars (all optional):
 
-| Var                 | Default   | Effect                            |
-| ------------------- | --------- | --------------------------------- |
-| `REPRO_WORKERS`     | 32        | Parallel .NET worker tasks        |
-| `REPRO_ITERATIONS`  | 1 000 000 | `ping()` calls per worker         |
-| `REPRO_INTERVAL_US` | 50        | activation-signal send interval   |
+| Var                  | Default    | Effect                                           |
+| -------------------- | ---------- | ------------------------------------------------ |
+| `REPRO_MODE`         | `signal`   | `signal` = synthetic tgkill, `gc` = GC pressure  |
+| `REPRO_WORKERS`      | 32         | Parallel .NET worker tasks                       |
+| `REPRO_ITERATIONS`   | 1 000 000  | `ping()` calls per worker                        |
+| `REPRO_INTERVAL_US`  | 50         | Signal send / `GC.Collect()` interval            |
+| `REPRO_ALLOC_BYTES`  | 16 384     | Garbage allocated per ping in `gc` mode          |
+
+Additional runtime knobs (not specific to this repro):
+
+| Var                  | Effect                                                          |
+| -------------------- | --------------------------------------------------------------- |
+| `DOTNET_gcServer=0`  | Force Workstation GC (default is set to Server in `.csproj`)    |
 
 ## Observed behaviour on the dev box
 
-| Mode                                        | Outcome                |
-| ------------------------------------------- | ---------------------- |
-| Plain run                                   | SIGSEGV, 3/3 attempts  |
-| `strace -f -e trace=signal`                 | PASS, 5/5 attempts     |
+| Scenario                                                         | Outcome                |
+| ---------------------------------------------------------------- | ---------------------- |
+| `signal` mode, plain run                                         | SIGSEGV, 3/3 attempts  |
+| `signal` mode under `strace -f -e trace=signal`                  | PASS, 5/5 attempts     |
+| `gc` mode (forced GC.Collect every 50 µs) — Server GC            | SIGSEGV, 5/5 attempts  |
+| `gc` mode (no GC.Collect — ambient allocation only) — Server GC  | SIGSEGV, 3/3 attempts  |
+| `gc` mode (no GC.Collect — ambient allocation only) — Workstation GC | SIGSEGV, 3/3 attempts  |
+
+**Bottom line**: synthetic `tgkill` is not required. Under normal
+.NET GC operation, CoreCLR fires its own `INJECT_ACTIVATION_SIGNAL`
+often enough at threads currently inside cgo that the race hits
+naturally. This happens with both Server GC and the default
+Workstation GC. Pure ambient allocation from the workers (no explicit
+`GC.Collect()`) is enough — meaning a real .NET app using a Go
+c-shared library can hit this in production whenever GC runs at a
+bad moment relative to a cgo call.
 
 The crash is timing-sensitive enough that `strace`'s per-syscall
 stop-and-log serialises the race away. Use `gdb --args` (or attach with
