@@ -63,6 +63,9 @@ internal static class Native
 
     [DllImport("libc", EntryPoint = "syscall")]
     public static extern long Syscall(long number);
+
+    [DllImport("sigstack_helper", EntryPoint = "ensure_large_sigaltstack")]
+    public static extern void EnsureLargeSigaltstack();
 }
 
 internal static class Program
@@ -84,11 +87,14 @@ internal static class Program
         var intervalUs = GetIntEnv("REPRO_INTERVAL_US", 50);
         var allocBytes = GetIntEnv("REPRO_ALLOC_BYTES", 16 * 1024);
 
+        var useFix = Environment.GetEnvironmentVariable("REPRO_FIX") == "1";
+
         Console.Error.WriteLine(
             $"[dotnet-repro] mode={mode} workers={workers} iters={iters} "
           + $"interval={intervalUs}µs gc={GCSettings.IsServerGC} "
-          + $"pid={Environment.ProcessId}");
+          + $"fix={useFix} pid={Environment.ProcessId}");
 
+        if (useFix) Native.EnsureLargeSigaltstack(); // main thread
         Native.Ping(); // warm cgo
 
         Thread? driver = mode switch
@@ -103,6 +109,10 @@ internal static class Program
         {
             tasks[i] = Task.Run(() =>
             {
+                // Install the large sigaltstack BEFORE the first Ping() on
+                // this threadpool thread. Go's minitSignalStack will see it
+                // on needm and not install its own 32 KB stack.
+                if (useFix) Native.EnsureLargeSigaltstack();
                 for (int k = 0; k < iters; k++)
                 {
                     if (Native.Ping() != 42)

@@ -20,6 +20,8 @@ DOTNET_BIN="./bin/Release/net10.0/repro-dotnet"
 build() {
     echo "=== building libgolib.so (Go c-shared) ==="
     CGO_ENABLED=1 go build -buildmode=c-shared -o libgolib.so golib.go
+    echo "=== building libsigstack_helper.so (C#-side fix shim) ==="
+    cc -O2 -fPIC -shared -o libsigstack_helper.so sigstack_helper.c -lpthread
     echo "=== building .NET host ==="
     DOTNET_CLI_HOME=/tmp DOTNET_SKIP_FIRST_TIME_EXPERIENCE=1 \
         dotnet build -c Release --nologo -v quiet
@@ -75,8 +77,9 @@ case "$cmd" in
     build)   build ;;
     run)     run_once ;;
     gc)      build; REPRO_MODE=gc run_loop "${2:-10}" ;;
+    fix)     build; REPRO_FIX=1 REPRO_MODE="${2:-signal}" run_loop "${3:-10}" ;;
     loop)    run_loop "${2:-10}" ;;
     gdb)     build; run_gdb ;;
     default) build; run_loop 10 ;;
-    *)       echo "usage: $0 [build|run|gc [N]|loop [N]|gdb]" >&2; exit 2 ;;
+    *)       echo "usage: $0 [build|run|gc [N]|fix [signal|gc] [N]|loop [N]|gdb]" >&2; exit 2 ;;
 esac
