@@ -1,5 +1,15 @@
 # .NET + Go cgo sigaltstack-race reproducer
 
+> **AI-assisted content.** This reproducer, the analysis below, and the
+> proposed-fix section were produced in collaboration with an AI coding
+> assistant (Claude). The reproducer reliably crashes on the developer
+> box it was authored on (3/3 SIGSEGV) and the core-dump evidence is
+> reproducible, but the prose interpretation — register-state
+> explanations, Go-runtime code references, fix proposals — is
+> AI-generated and not independently reviewed by a Go runtime or
+> CoreCLR maintainer. Verify claims against the code before acting on
+> them.
+
 Self-contained reproducer for a SIGSEGV in CoreCLR's signal-dispatch
 chain when a .NET threadpool thread calls into Go via cgo while an
 RT signal is delivered to it.
