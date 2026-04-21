@@ -4,6 +4,17 @@
 // c-shared library is a closer match to the real crash environment
 // (xunit test host with cgo P/Invokes).
 //
+// The signal we fire is kernel signal 34 — which on Linux/glibc is
+// the same number as glibc's `SIGRTMIN`, and is also the number
+// CoreCLR's PAL uses for `INJECT_ACTIVATION_SIGNAL` (GC thread
+// suspension, JIT patching, debugger activation). strace labels it
+// "SIGRT_2" because strace numbers RT signals from the kernel's
+// SIGRTMIN (= 32); glibc reserves 32/33 for pthread cancel & setxid.
+// In the real CI crashes, the SIGRT_2 in the strace is CoreCLR
+// sending its own activation signal — NOT Go preempting, as the
+// original investigation doc assumed. Go's async preemption uses
+// SIGURG (signal 23).
+//
 // Build + run:
 //   cd scripts/repro-dotnet
 //   CGO_ENABLED=1 go build -buildmode=c-shared -o libgolib.so golib.go
@@ -11,9 +22,9 @@
 //   LD_LIBRARY_PATH=. ./bin/Release/net10.0/repro-dotnet
 //
 // Tunables via env vars:
-//   REPRO_WORKERS    — concurrent worker tasks (default: 32)
-//   REPRO_ITERATIONS — ping calls per worker  (default: 1000000)
-//   REPRO_INTERVAL_US — SIGRT_2 send interval (default: 50)
+//   REPRO_WORKERS     — concurrent worker tasks (default: 32)
+//   REPRO_ITERATIONS  — ping calls per worker  (default: 1000000)
+//   REPRO_INTERVAL_US — activation-signal send interval (default: 50)
 
 using System;
 using System.Diagnostics;
@@ -40,7 +51,13 @@ internal static class Native
 internal static class Program
 {
     private const int SYS_GETTID = 186;  // x86_64
-    private const int SIGRTMIN_PLUS_2 = 34;
+
+    // Kernel signal 34 = glibc SIGRTMIN = CoreCLR PAL's
+    // INJECT_ACTIVATION_SIGNAL (used for GC thread suspension, JIT
+    // patching, debugger activation). strace labels it SIGRT_2.
+    // Firing it ourselves reproduces what CoreCLR's own GC would
+    // fire during normal operation.
+    private const int CoreClrActivationSignal = 34;
 
     private static volatile bool s_running = true;
 
@@ -52,18 +69,19 @@ internal static class Program
 
         Console.Error.WriteLine(
             $"[dotnet-repro] {workers} workers × {iters} calls, "
-          + $"SIGRT_2 every {intervalUs} µs, pid={Environment.ProcessId}");
+          + $"signal 34 (SIGRTMIN / CoreCLR activation) every "
+          + $"{intervalUs} µs, pid={Environment.ProcessId}");
 
-        // Warm cgo: first Ping() initialises the Go runtime and lets it
-        // install its own handler for SIGRT_2 (which is what we want to
-        // stress — we *don't* install our own handler first, letting Go
-        // own it the same way it would in the actual xunit host).
+        // Warm cgo: first Ping() initialises the Go runtime, which
+        // takes over sigaltstack on the calling thread via needm.
         Native.Ping();
 
-        // Signal-sender thread: fires SIGRT_2 at every other thread in the
-        // process. Mirrors the strace evidence from the real crashes, where
-        // a sibling thread sends SIGRT_2 via tgkill to a cgo thread just
-        // after it installed its sigaltstack.
+        // Signal-sender thread: fires the CoreCLR activation signal at
+        // every other thread in the process. In a real .NET process
+        // this would be CoreCLR's own GC / tiered JIT machinery doing
+        // the same thing; we fire it explicitly so the race happens
+        // under a light synthetic load rather than requiring a full
+        // xunit test host.
         var sender = new Thread(() =>
         {
             int myTid = (int)Native.Syscall(SYS_GETTID);
@@ -75,13 +93,13 @@ internal static class Program
                     foreach (var t in Process.GetCurrentProcess().Threads.Cast<ProcessThread>())
                     {
                         if (t.Id == myTid) continue;
-                        Native.Tgkill(pid, t.Id, SIGRTMIN_PLUS_2);
+                        Native.Tgkill(pid, t.Id, CoreClrActivationSignal);
                     }
                 }
                 catch { /* thread list churns under contention */ }
                 Thread.Sleep(TimeSpan.FromMicroseconds(intervalUs));
             }
-        }) { IsBackground = true, Name = "sigrt2-sender" };
+        }) { IsBackground = true, Name = "activation-sender" };
         sender.Start();
 
         var tasks = new Task[workers];

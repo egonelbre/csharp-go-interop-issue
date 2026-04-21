@@ -71,7 +71,7 @@ fixed in 1.26.
 | --------------------- | ------------------------------------------------------- |
 | `golib.go`            | Trivial cgo export: `ping() int { return 42 }`.         |
 | `go.mod`              | Go module declaration for `golib.go`.                   |
-| `Program.cs`          | .NET host — P/Invokes `ping`, fires SIGRT_2 in a loop.  |
+| `Program.cs`          | .NET host — P/Invokes `ping`, fires signal 34 in loop.  |
 | `repro-dotnet.csproj` | .NET 10 console app project.                            |
 | `run.sh`              | Build + run helper.                                     |
 
@@ -82,10 +82,11 @@ fixed in 1.26.
    causes Go to `needm`/`dropm` an M thread on the .NET TP Worker, which
    re-registers Go's 32 KB sigaltstack on the thread.
 2. Starts a dedicated .NET `Thread` that enumerates every TID via
-   `Process.GetCurrentProcess().Threads` and sends `SIGRTMIN+2` via
-   `tgkill(2)` every 50 µs. Mirrors the strace evidence from the real
-   crashes where a sibling thread fires an RT signal at a thread that
-   had just installed its sigaltstack.
+   `Process.GetCurrentProcess().Threads` and sends **kernel signal 34**
+   via `tgkill(2)` every 50 µs. Signal 34 is what the real CI crashes
+   show a sibling thread sending, and it's what CoreCLR's own GC/JIT
+   coordination fires at managed threads under normal operation (see
+   "Which signal, and who sends it?" below).
 
 Both ingredients are required — removing either makes the crash
 disappear on this hardware:
@@ -113,7 +114,7 @@ Tuning env vars (all optional):
 | ------------------- | --------- | --------------------------------- |
 | `REPRO_WORKERS`     | 32        | Parallel .NET worker tasks        |
 | `REPRO_ITERATIONS`  | 1 000 000 | `ping()` calls per worker         |
-| `REPRO_INTERVAL_US` | 50        | SIGRT_2 send interval             |
+| `REPRO_INTERVAL_US` | 50        | activation-signal send interval   |
 
 ## Observed behaviour on the dev box
 
@@ -157,6 +158,53 @@ gdb -batch -nx \
   (`0x7ffff7731000 – 0x7ffff7739000`) that is **unmapped** per
   `info proc mappings`. Adjacent low side is a recently-released
   `/memfd:doublemapper (deleted)` region.
+
+## Which signal, and who sends it?
+
+The strace output in the CI crash investigation labelled the
+triggering signal `SIGRT_2`. That label is strace's convention —
+strace numbers RT signals from the **kernel** `SIGRTMIN` (= 32), and
+glibc reserves two of those (`SIGCANCEL` for pthread cancellation on
+32, `SIGSETXID` for cross-thread setuid/setgid synchronisation on 33).
+So:
+
+| Label      | Kernel # | Who owns it                                  |
+| ---------- | -------- | -------------------------------------------- |
+| `SIGRT_0`  | 32       | glibc pthread (`SIGCANCEL`)                  |
+| `SIGRT_1`  | 33       | glibc (`SIGSETXID`)                          |
+| `SIGRT_2`  | **34**   | glibc's public `SIGRTMIN`                    |
+
+Kernel signal 34 is the first RT signal userspace can freely use —
+which is why glibc exposes it as its public `SIGRTMIN`.
+
+**CoreCLR's PAL on Linux claims signal 34 for `INJECT_ACTIVATION_SIGNAL`.**
+It's used for:
+
+- **GC thread suspension.** Before a GC can scan managed stacks it
+  needs every managed thread parked at a safe point. It sends
+  `SIGRTMIN` to each target; the handler parks the thread immediately
+  (if at a safe point) or flags it to park at the next safe point.
+- **Tiered-JIT re-dispatch.** When a hot method is recompiled, other
+  threads are activated via the same signal to pick up the new code
+  address.
+- **Debugger break / `Thread.Interrupt`-style cooperative interrupts.**
+
+See `src/coreclr/pal/src/exception/signal.cpp` → `SEHInitializeSignals`
+in the dotnet/runtime source (the activation handler) and
+`InjectActivationInternal` (the `pthread_kill(thread, SIGRTMIN)` call
+site).
+
+So in the **real CI crash**, the `SIGRT_2` in strace is CoreCLR
+sending its own activation signal at a .NET TP Worker that happened
+to be inside a cgo call to uplink-c at that moment. The investigation
+doc's earlier attribution — "Go uses SIGRT_2 for cooperative
+preemption scheduling" — was wrong. Go uses `SIGURG` (signal 23) for
+async preemption, not any RT signal.
+
+The reproducer in this gist fires signal 34 explicitly from a
+dedicated thread so the race happens under a light synthetic load
+rather than needing a full GC-heavy xunit run to reach the same code
+path naturally.
 
 ## Underlying cause
 
@@ -208,14 +256,18 @@ Two things have to be wrong simultaneously to crash:
   are windows where the kernel's view of the alt stack and the memory
   it actually points at disagree.
 
-Previous mitigation attempts did not work because each one addressed
-only one half:
+Previous mitigation attempts did not work because they were aimed
+at the wrong signal / layer:
 
-- `GODEBUG=asyncpreemptoff=1` — silences SIGURG preemption but leaves
-  every other signal free to land on Go's alt stack.
+- `GODEBUG=asyncpreemptoff=1` — turns off Go's SIGURG-based async
+  preemption. But Go isn't sending the triggering signal in the first
+  place; CoreCLR is, via its own `INJECT_ACTIVATION_SIGNAL` (signal
+  34). Silencing Go-side preemption leaves CoreCLR's activation path
+  completely untouched.
 - Installing a 1 MB sigaltstack from managed code
   (`SigStackFix.EnsureOnCurrentThread`) — clobbered by Go's next
-  `needm` on the same thread.
+  `needm` on the same thread, which installs its own 32 KB alt stack
+  via `minitSignalStack`.
 
 ## Proposed fixes (Go side)
 
