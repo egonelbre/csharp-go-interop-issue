@@ -14,7 +14,46 @@ RT signal is delivered to it.
 ./run.sh gdb        # run under gdb and dump a core at crash → ./crash/core
 ```
 
-Requires Go (tested 1.25.3 and 1.26.2), .NET SDK (10.0+), gcc, gdb.
+## Prerequisites
+
+| Tool            | Tested version | Required for                    |
+| --------------- | -------------- | ------------------------------- |
+| Go              | 1.25.3, 1.26.2 | `go build -buildmode=c-shared`  |
+| .NET SDK        | 10.0.106       | `dotnet build` / run            |
+| gcc / glibc dev | any recent     | cgo (`CGO_ENABLED=1`) linking   |
+| gdb             | 15.x           | only for `./run.sh gdb`         |
+
+### Install on Ubuntu 24.04
+
+```bash
+# gcc + headers + gdb
+sudo apt update
+sudo apt install -y build-essential gdb
+
+# Go (snap channel tracks latest; use --channel=1.25/stable if you want
+# to match CI exactly, or grab a tarball from https://go.dev/dl/)
+sudo snap install go --classic
+
+# .NET SDK 10 — Ubuntu 24.04 has it in the default archive
+sudo apt install -y dotnet-sdk-10.0
+# If your release doesn't have dotnet-sdk-10.0 yet, use Microsoft's feed:
+#   https://learn.microsoft.com/dotnet/core/install/linux-ubuntu
+
+# Sanity check
+go version && dotnet --version && gcc --version | head -1 && gdb --version | head -1
+```
+
+To match CI exactly (Go 1.25), install alongside the snap:
+
+```bash
+mkdir -p ~/sdk
+curl -sSL https://go.dev/dl/go1.25.3.linux-amd64.tar.gz \
+    | tar -C ~/sdk -xz && mv ~/sdk/go ~/sdk/go1.25
+# then invoke as ~/sdk/go1.25/bin/go (or export PATH=$HOME/sdk/go1.25/bin:$PATH)
+```
+
+Go 1.25 and 1.26 both reproduce the crash identically; the race is not
+fixed in 1.26.
 
 ## Files
 
@@ -57,9 +96,6 @@ dotnet build -c Release
 # 3. Run.
 LD_LIBRARY_PATH=. ./bin/Release/net10.0/repro-dotnet
 ```
-
-Both Go 1.25.3 and Go 1.26.2 crash identically — the race is not fixed
-in Go 1.26.
 
 Tuning env vars (all optional):
 
