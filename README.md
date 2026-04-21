@@ -451,6 +451,122 @@ race are closed:
 - **Lifecycle race** — we never free the memory (held until OS
   thread exit), so the kernel's sigaltstack pointer stays valid.
 
+### How to apply the shim in your own .NET project
+
+The shim is two pieces: a tiny C file that builds to a shared
+library, and a P/Invoke declaration plus a `Call()` site in every
+managed→Go entry point.
+
+**1. Build the shim as a shared library.**
+
+Copy `sigstack_helper.c` into your project (or reference it from
+wherever you keep native tooling) and build it with:
+
+```bash
+cc -O2 -fPIC -shared -o libsigstack_helper.so sigstack_helper.c -lpthread
+```
+
+Ship the resulting `libsigstack_helper.so` next to your Go
+c-shared library (e.g. under
+`src/uplink.NET/runtimes/linux-x64/native/` in the uplink.NET
+layout) so it's on `LD_LIBRARY_PATH` at runtime.
+
+For other OSes / architectures, build with the matching compiler.
+The shim is Linux-only (it uses `sigaltstack`, `__thread`, `mmap`,
+`MAP_STACK`, `mprotect`); on Windows and macOS, skip it and
+conditionally do nothing in `EnsureLargeSigaltstack`.
+
+**2. Declare the P/Invoke in C#.**
+
+```csharp
+using System.Runtime.InteropServices;
+
+internal static class SigStackFix
+{
+    [DllImport("sigstack_helper", EntryPoint = "ensure_large_sigaltstack")]
+    public static extern void EnsureOnCurrentThread();
+}
+```
+
+**3. Call it on every code path that can reach Go, BEFORE the first
+Go call on that thread.**
+
+The previous `SigStackFix.EnsureOnCurrentThread` lived only in
+`Access.AcquireProjectLease` and the `Access` constructor — that's
+not enough. The shim is idempotent per thread (one `__thread` flag
+check after the first install), so it's cheap to sprinkle.
+
+Recommended insertion points in a uplink.NET-shaped codebase:
+
+- **Assembly module initializer** (runs once per load, on whatever
+  thread happens to load the assembly — covers the main thread):
+
+  ```csharp
+  [System.Runtime.CompilerServices.ModuleInitializer]
+  internal static void Init() => SigStackFix.EnsureOnCurrentThread();
+  ```
+
+- **Every public method of every P/Invoke-facing class** — `Access`,
+  `BucketService`, `ObjectService`, `UploadOperation`,
+  `DownloadOperation`, etc. First line of each public method:
+
+  ```csharp
+  public async Task UploadAsync(...) {
+      SigStackFix.EnsureOnCurrentThread();
+      // ... existing body ...
+  }
+  ```
+
+- **Every `Task.Run` / `Task.Factory.StartNew` lambda that enters
+  uplink**, because those can hop to a fresh TP Worker that no
+  earlier call has shim'd:
+
+  ```csharp
+  Task.Run(() => {
+      SigStackFix.EnsureOnCurrentThread();
+      // ... cgo-reaching body ...
+  });
+  ```
+
+- **`IAsyncDisposable.DisposeAsync` / `IDisposable.Dispose` on any
+  type that owns a native handle**, because the finalizer thread is
+  a separate CoreCLR-created thread that the initializer never ran
+  on.
+
+**4. Verify coverage with strace** (one-time sanity check):
+
+```bash
+strace -f -e trace=sigaltstack ./your_app 2>&1 | grep "ss_size="
+```
+
+Every thread that ever enters Go should show exactly one
+`sigaltstack({ss_sp=0x..., ss_size=1048576}, ...)` install and
+nothing else. If you see `ss_size=32768` — that's Go's 32 KB
+stack — you missed a P/Invoke entry point; add `EnsureOnCurrentThread()`
+there.
+
+**5. (Optional) Tune the stack size.**
+
+Override the default 1 MiB at compile time:
+
+```bash
+cc -O2 -fPIC -shared -DLARGE_SIGSTACK_SIZE=$((256*1024)) \
+   -o libsigstack_helper.so sigstack_helper.c -lpthread
+```
+
+1 MiB is comfortably above anything CoreCLR's handler is likely
+to need; 256 KiB is a reasonable lower bound if you're tight on VM
+and will never use the debugger-attach or large-object paths.
+
+**What this doesn't fix.**
+
+Only the sigaltstack-overflow / UAF crash class. The shim cannot
+address a different CoreCLR-internal bug we occasionally see under
+extreme synthetic load (the `mov (%rax), %ecx` libcoreclr crash
+described below). If that one shows up in your production
+workload you'll need a CoreCLR-side or Go-side fix — see the
+"Proposed fixes" section above.
+
 ### Measured effectiveness (dev box, 20 runs each)
 
 | Scenario                                                        | No fix  | With fix |
