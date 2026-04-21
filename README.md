@@ -17,12 +17,13 @@ RT signal is delivered to it.
 ## Quick start
 
 ```bash
-./run.sh            # build + run in signal mode (synthetic tgkill) until crash
-./run.sh gc [N]     # build + run in GC mode (no tgkill — pure GC pressure)
-./run.sh build      # build only
-./run.sh run        # run once
-./run.sh loop 50    # run up to 50 times in a row
-./run.sh gdb        # run under gdb and dump a core at crash → ./crash/core
+./run.sh                       # build + run in signal mode (synthetic tgkill) until crash
+./run.sh gc [N]                # build + run in GC mode (no tgkill — pure GC pressure)
+./run.sh fix [signal|gc] [N]   # run with the C#-side sigaltstack shim (REPRO_FIX=1)
+./run.sh build                 # build only
+./run.sh run                   # run once
+./run.sh loop 50               # run up to 50 times in a row
+./run.sh gdb                   # run under gdb and dump a core at crash → ./crash/core
 ```
 
 Two reproduction modes, both reach the same crash:
@@ -86,6 +87,7 @@ fixed in 1.26.
 | `Program.cs`          | .NET host — P/Invokes `ping`, fires signal 34 in loop.  |
 | `repro-dotnet.csproj` | .NET 10 console app project.                            |
 | `run.sh`              | Build + run helper.                                     |
+| `sigstack_helper.c`   | C#-side mitigation shim (`REPRO_FIX=1`).                |
 
 ## What it does
 
@@ -129,6 +131,7 @@ Tuning env vars (all optional):
 | `REPRO_ITERATIONS`   | 1 000 000  | `ping()` calls per worker                        |
 | `REPRO_INTERVAL_US`  | 50         | Signal send / `GC.Collect()` interval            |
 | `REPRO_ALLOC_BYTES`  | 16 384     | Garbage allocated per ping in `gc` mode          |
+| `REPRO_FIX`          | unset      | `1` = pre-install 1 MiB sigaltstack per thread   |
 
 Additional runtime knobs (not specific to this repro):
 
@@ -427,3 +430,74 @@ Fixing this purely in Go isn't the only option:
   threads strictly disjoint — never P/Invoke from a .NET TP Worker,
   always hop to a dedicated pool of threads whose sigaltstack state
   is under application control. Expensive and fragile.
+
+## C#-side mitigation (shim, `REPRO_FIX=1`)
+
+`sigstack_helper.c` ships a small shim:
+`ensure_large_sigaltstack()` — a `__thread`-idempotent function that
+installs a 1 MiB sigaltstack (with a `PROT_NONE` guard page below) on
+the current thread the first time it's called. Enable it in the
+reproducer with `REPRO_FIX=1` (or `./run.sh fix [signal|gc] [N]`).
+
+The mechanism: Go's `minitSignalStack` only installs its own alt
+stack when the current one is SS_DISABLE'd. By pre-installing a
+large stack on every .NET thread before it enters Go for the first
+time, Go takes the "use existing" branch, records our stack, and
+never touches sigaltstack again on that thread. Both halves of the
+race are closed:
+
+- **Size mismatch** — 1 MiB is vastly more than CoreCLR's handler
+  needs.
+- **Lifecycle race** — we never free the memory (held until OS
+  thread exit), so the kernel's sigaltstack pointer stays valid.
+
+### Measured effectiveness (dev box, 20 runs each)
+
+| Scenario                                                        | No fix  | With fix |
+| --------------------------------------------------------------- | ------- | -------- |
+| `signal` mode (tgkill every 50 µs, 32 workers, 500 k iters)     | 0/20    | 16/20    |
+| `gc` mode, ambient allocation only (32 workers, 64 KB/call)     | 0/20    | 0/20     |
+
+The shim **completely eliminates the original sigaltstack-overflow
+crash** — caught in gdb, the faulting thread always has `rsp` inside
+an unmapped gap adjacent to Go's 32 KB gsignal region, and the
+backtrace shows `<signal handler called>` just above CoreCLR's
+chkstk prologue. With the shim enabled, that specific signature
+never appears in the gdb output.
+
+Under extreme synthetic load (32 workers at 1 M pings/s, or 20 kHz
+`tgkill` flooding), a **different** crash fires: a CoreCLR-internal
+`mov (%rax), %ecx` pointer dereference on a non-worker CoreCLR
+thread, no `<signal handler called>` frame, backtrace is pure
+libcoreclr from `clone3`. This is a separate CoreCLR issue
+unrelated to sigaltstack — our sigstack shim can't prevent it
+because it isn't a signal-handler overflow. It looks like an
+allocation/thread-state race inside CoreCLR that only surfaces when
+the managed heap is churning hard while many threads are bouncing
+in and out of cgo.
+
+Whether real-world uplink.NET workloads ever reach the second
+threshold is open. Our practical expectation is that the shim
+**fully closes the "test host process crashed" case reported in
+the CI investigation** — its crash signature (SEGV_ACCERR at a
+sigaltstack guard page, or SI_KERNEL nested fault on an unmapped
+gap) matches the overflow case the shim addresses, not the second
+CoreCLR-internal crash we only see under synthetic stress.
+
+### Why the earlier `SigStackFix.EnsureOnCurrentThread` didn't work
+
+Per the investigation doc the shim was only called from
+`Access.AcquireProjectLease` and the `Access` constructor. Any cgo
+entry point on a thread that hadn't yet gone through those call
+sites — e.g. a .NET TP Worker picking up a new task before the
+application has ever constructed an `Access` on it — would see a
+fresh thread. `needm` would then install Go's 32 KB alt stack and
+the race could trigger.
+
+For the shim to be fully effective every P/Invoke entry point that
+reaches Go must run `ensure_large_sigaltstack()` first. In this
+reproducer that means both `Main()` and the first line of every
+worker lambda. In a real codebase the same principle applies:
+wrap every managed→Go call site, or LD_PRELOAD a `pthread_create`
+interceptor that installs the alt stack on every new thread before
+user code runs.
