@@ -1,0 +1,45 @@
+# Build system for simplified .NET → C P/Invoke reproducer
+# Tests minimal atypical calling conventions
+
+CC = gcc
+CFLAGS = -O2 -g -Wall -Wextra -std=gnu99 -fPIC
+LDFLAGS = -shared -lpthread
+
+# Simplified library using only essential atypical patterns
+# Uses same name as original so Program.cs works unchanged
+SIMPLIFIED_LIB = libcomplex_c_lib.so
+SIMPLIFIED_SOURCES = simplified_c_lib.c simplified_atypical.c
+DOTNET_EXE = bin/Release/net10.0/repro-dotnet-c
+
+.PHONY: all build-simplified build-dotnet clean test
+
+all: build-simplified build-dotnet
+
+# Build simplified C library
+build-simplified: $(SIMPLIFIED_LIB)
+
+$(SIMPLIFIED_LIB): $(SIMPLIFIED_SOURCES)
+	$(CC) $(CFLAGS) $(SIMPLIFIED_SOURCES) $(LDFLAGS) -o $(SIMPLIFIED_LIB)
+
+# Build .NET program (same as before)
+build-dotnet: $(SIMPLIFIED_LIB)
+	DOTNET_CLI_HOME=/tmp DOTNET_SKIP_FIRST_TIME_EXPERIENCE=1 \
+		dotnet build -c Release --nologo -v quiet
+
+# Test simplified version
+test: all
+	LD_LIBRARY_PATH=. DOTNET_CLI_HOME=/tmp ./$(DOTNET_EXE)
+
+# Quick test with reduced complexity
+test-quick: all
+	REPRO_WORKERS=8 REPRO_ITERATIONS=1000 \
+	LD_LIBRARY_PATH=. DOTNET_CLI_HOME=/tmp ./$(DOTNET_EXE)
+
+# Clean
+clean:
+	rm -f $(SIMPLIFIED_LIB)
+	rm -rf bin obj
+
+# Debug
+debug: all
+	LD_LIBRARY_PATH=. gdb --args ./$(DOTNET_EXE)
