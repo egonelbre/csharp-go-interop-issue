@@ -12,7 +12,23 @@ coreclr-pal-bug/bin/
 coreclr-pal-bug/obj/
 coreclr-pal-bug/libstack_probe.so
 
+dotnet-c-reproducer/bin/
+dotnet-c-reproducer/obj/
+dotnet-c-reproducer/libcomplex_c_lib.so
+
+minimal-c-reproducer/bin/
+minimal-c-reproducer/obj/
+minimal-c-reproducer/libminimal_c_lib.so
+
 investigation-tools/ld-preload-tracer/trace_sigaltstack.so
+
+# General patterns for future reproducers
+**/bin/
+**/obj/
+**/*.so
+**/*.dll
+**/*.pdb
+**/*.exe
 
 # Large crash artifacts — keep only summaries (gdb.log), never binary cores or handler logs
 **/crash/core
