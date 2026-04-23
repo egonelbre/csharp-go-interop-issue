@@ -53,7 +53,7 @@ __asm__(
 "   \n"
 "   # Call C function with complex parameters\n"
 "   movq  -8(%rbp), %rdi     # context\n"
-"   movq  $10, %rsi          # controlled depth\n"
+"   movq  $6, %rsi           # reduced controlled depth\n"
 "   movq  %r12, %rdx         # param1 as data\n"
 "   callq simple_register_chain\n"
 "   \n"
@@ -89,7 +89,7 @@ __asm__(
 "   \n"
 "   # Call C function with modified convention\n"
 "   movq  %r12, %rdi      # context\n"
-"   movq  $15, %rsi       # controlled depth\n"
+"   movq  $8, %rsi        # reduced controlled depth\n"
 "   movq  -8(%rbp), %rdx  # param1 as data\n"
 "   callq simple_register_chain\n"
 "   \n"
@@ -160,7 +160,7 @@ int simple_register_chain_c(void* ctx, int depth, uintptr_t data) {
         computation = (computation << 1) ^ reg_state[work % 8];
 
         // Controlled recursive call
-        if (work % 50 == 0 && depth > 1 && depth <= 8) { // Limited depth
+        if (work % 50 == 0 && depth > 1 && depth <= 5) { // Reduced depth limit
             int sub_result = simple_register_chain_c(ctx, depth - 1, computation ^ data);
             computation += sub_result;
         }
@@ -187,7 +187,7 @@ int create_simplified_atypical_stress(int base_complexity) {
         // Additional controlled complexity
         int chain_result = simple_register_chain_c(
             (void*)&context_base,
-            round % 6 + 3,  // Controlled depth: 3-8
+            round % 3 + 3,  // Controlled depth: 3-5
             context_base + round * 5
         );
 
