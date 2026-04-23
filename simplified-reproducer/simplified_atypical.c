@@ -129,9 +129,7 @@ __asm__(
 "   ret\n"
 );
 
-// External function declarations
-extern void mark_thread_vulnerable(void* ctx);
-extern void clear_thread_vulnerable(void* ctx);
+// External function declarations removed - vulnerability tracking not essential
 
 // Simplified C function with controlled complexity
 int simple_register_chain_c(void* ctx, int depth, uintptr_t data) {
@@ -141,7 +139,7 @@ int simple_register_chain_c(void* ctx, int depth, uintptr_t data) {
 
     if (depth <= 0) return (int)(data & 0xFFFF);
 
-    mark_thread_vulnerable(ctx);
+    // Vulnerability tracking removed
 
     // Controlled state setup
     for (int i = 0; i < 6; i++) {
@@ -166,7 +164,7 @@ int simple_register_chain_c(void* ctx, int depth, uintptr_t data) {
         }
     }
 
-    clear_thread_vulnerable(ctx);
+    // Vulnerability tracking removed
     return (int)(computation % 1000000);
 }
 

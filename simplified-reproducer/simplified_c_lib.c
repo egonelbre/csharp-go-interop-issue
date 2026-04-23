@@ -15,18 +15,7 @@
 extern int create_simplified_atypical_stress(int base_complexity);
 extern void simple_atypical_function_1(void* context, uintptr_t param1, uintptr_t param2);
 
-// Thread-local vulnerability tracking (simplified)
-static __thread int t_is_vulnerable = 0;
-
-void mark_thread_vulnerable(void* ctx) {
-    (void)ctx; // unused
-    t_is_vulnerable = 1;
-}
-
-void clear_thread_vulnerable(void* ctx) {
-    (void)ctx; // unused
-    t_is_vulnerable = 0;
-}
+// Thread vulnerability tracking removed - was not essential
 
 // Simplified implementations of the complex library interface
 
