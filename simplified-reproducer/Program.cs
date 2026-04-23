@@ -29,8 +29,7 @@ internal static class Native
     [DllImport("complex_c_lib", EntryPoint = "create_atypical_calling_convention_stress")]
     public static extern int CreateAtypicalCallingConventionStress(int baseComplexity);
 
-    [DllImport("complex_c_lib", EntryPoint = "cleanup_thread_context")]
-    public static extern void CleanupThreadContext();
+    // CleanupThreadContext removed - was just a wrapper
 
     // Signal sending functions (same as other reproducers)
     [DllImport("libc", EntryPoint = "tgkill")]
@@ -122,8 +121,7 @@ internal static class Program
         }
         finally
         {
-            // Cleanup C library resources
-            Native.CleanupThreadContext();
+            // No cleanup needed - thread-local state clears automatically
         }
 
         Console.Error.WriteLine($"[worker-{workerId}] Completed successfully");

@@ -32,7 +32,7 @@ void clear_thread_vulnerable(void* ctx) {
 
 __attribute__((visibility("default")))
 int create_go_like_complexity() {
-    // Basic atypical calling convention complexity
+    // Consolidated basic atypical calling convention complexity
     return create_simplified_atypical_stress(8);
 }
 
@@ -81,12 +81,8 @@ int create_extreme_signal_analysis_stress(int base_iterations) {
 
 __attribute__((visibility("default")))
 int create_atypical_calling_convention_stress(int base_complexity) {
-    // This is the key function - uses our simplified atypical patterns
+    // Use the consolidated function - same as create_go_like_complexity but parameterized
     return create_simplified_atypical_stress(base_complexity);
 }
 
-__attribute__((visibility("default")))
-void cleanup_thread_context() {
-    // Simple cleanup
-    clear_thread_vulnerable(NULL);
-}
+// cleanup_thread_context removed - was just a wrapper for clear_thread_vulnerable
