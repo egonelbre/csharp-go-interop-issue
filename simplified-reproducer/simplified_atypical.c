@@ -137,27 +137,27 @@ extern void clear_thread_vulnerable(void* ctx);
 int simple_register_chain_c(void* ctx, int depth, uintptr_t data) {
     // Controlled local state
     volatile char controlled_frame[512];
-    volatile uintptr_t reg_state[8];  // Reduced from 16
+    volatile uintptr_t reg_state[6];  // Further reduced from 8
 
     if (depth <= 0) return (int)(data & 0xFFFF);
 
     mark_thread_vulnerable(ctx);
 
     // Controlled state setup
-    for (int i = 0; i < 8; i++) {
+    for (int i = 0; i < 6; i++) {
         reg_state[i] = data + (uintptr_t)ctx + i * depth;
     }
 
     // Controlled complexity loop
     for (int i = 0; i < 512; i++) {
-        controlled_frame[i] = (char)(reg_state[i % 8] & 0xFF);
+        controlled_frame[i] = (char)(reg_state[i % 6] & 0xFF);
     }
 
     // Controlled computation
     volatile uintptr_t computation = 0;
     for (int work = 0; work < depth * 5; work++) { // Reduced multiplier
         computation ^= (uintptr_t)&controlled_frame[work % 512];
-        computation = (computation << 1) ^ reg_state[work % 8];
+        computation = (computation << 1) ^ reg_state[work % 6];
 
         // Controlled recursive call
         if (work % 50 == 0 && depth > 1 && depth <= 5) { // Reduced depth limit
