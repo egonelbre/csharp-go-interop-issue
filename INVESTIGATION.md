@@ -504,14 +504,171 @@ any OS where Go is hosted by a chkstk-heavy C runtime.
 
 ### 2. CoreCLR PAL — for the .NET class
 
-CoreCLR's `sigaltstack({size=16384})` install (visible at caller
-PCs `<libcoreclr base>+offset` and `+0x9f` — same routine, the
-PAL's per-thread signal-handling init) should allocate substantially
-more. The same 64 KB / 128 KB / 1 MiB tradeoffs apply; CoreCLR's
-own chained handler chkstk is what's overflowing it, so CoreCLR
-owns the size choice.
+After reading `dotnet/runtime` PAL source
+(`src/coreclr/pal/src/thread/thread.cpp` and
+`src/coreclr/pal/src/exception/signal.cpp`), we now have a clear
+picture of where the install lives, why it's 16 KB, and what the
+clean fix looks like.
 
-This is a Microsoft change. The Go side cannot fix it.
+#### Why it's 16 KB today (`thread.cpp:2164` `EnsureSignalAlternateStack`)
+
+```cpp
+// src/coreclr/pal/src/thread/thread.cpp:2184
+int altStackSize = SIGSTKSZ
+                 + ALIGN_UP(sizeof(SignalHandlerWorkerReturnPoint), 16)
+                 + GetVirtualPageSize();
+#ifdef HAS_ADDRESS_SANITIZER
+// Asan also uses alternate stack so we increase its size on the SIGSTKSZ * 4
+// that enough for asan
+altStackSize += SIGSTKSZ * 4;
+#endif
+altStackSize = ALIGN_UP(altStackSize, GetVirtualPageSize());
+```
+
+With glibc `SIGSTKSZ = 8192`, `SignalHandlerWorkerReturnPoint`
+including a `CONTEXT` (~2.7 KB on AMD64 with AVX-512 register
+state), and a 4 KB page guard, the page-aligned total is
+**16 384 bytes** — exactly what we observe via E1.
+
+The existing comment at `thread.cpp:2182` is the precedent: *"We
+include the size of the SignalHandlerWorkerReturnPoint in the
+alternate stack size since the context contained in it is large
+and the SIGSTKSZ was not sufficient on ARM64 during testing."*
+They already had to expand once.
+
+#### Why the activation handler in particular overflows it
+
+CoreCLR's signal handlers split into two camps:
+
+- **`sigsegv_handler` / `sigfpe_handler` / `sigbus_handler` / `sigill_handler`**
+  (`signal.cpp:633` `SwitchStackAndExecuteHandler`): these explicitly
+  *switch off* the alt stack via the arch-specific
+  `ExecuteHandlerOnCustomStack` — they alloca a
+  `SignalHandlerWorkerReturnPoint` on the alt stack, capture context,
+  then **rsp-switch back to the interrupted thread's normal stack**
+  via `setcontext`, and continue handling there. The alt stack is
+  used only as a trampoline. They never need more than the entry
+  trampoline.
+
+- **`inject_activation_handler` (SIGRTMIN, the one we crash on)**
+  (`signal.cpp:931`): does **not** switch off. Allocates a
+  `CONTEXT winContext` on the alt stack (line 946 — ~2.7 KB on
+  AMD64-AVX-512), captures registers, then calls
+  `InvokeActivationHandler(&winContext)` (line 966) which calls
+  `g_activationFunction(pWinContext)` (line 916) — a runtime hook
+  that can do GC-suspend bookkeeping, Hijack thread re-targeting,
+  tiered-JIT redispatch, etc. **All of that runs on the 12 KB
+  usable area of the per-thread alt stack.**
+
+`g_activationFunction` is set by managed-runtime code outside the
+PAL; its call depth is essentially unbounded from the PAL's
+perspective. Empirically (from our libcoreclr.so 10.0.6
+disassembly): individual functions in the post-handler chain have
+chkstk prologues up to 24 KB, several stacked frames easily exceed
+12 KB cumulative.
+
+Compare with the *separate* stack-overflow handler stack
+(`signal.cpp:227`):
+
+```cpp
+int stackOverflowStackSize = ALIGN_UP(sizeof(SignalHandlerWorkerReturnPoint), 16)
+                           + 9 * 4096;
+```
+
+CoreCLR allocates **9 pages (36 KB) + 1 page guard for the SO case
+specifically** — a process-wide, single-use stack. So the
+maintainers already know 16 KB is not enough for a substantial
+signal-handler call chain, and have a 9-page baseline for the case
+where they do need depth.
+
+#### Recommended CoreCLR fix — extend the existing pattern
+
+The minimal, smallest-blast-radius patch is to expand the
+per-thread alt stack the same way the ASAN branch already does.
+Single-line change at `thread.cpp:2184`:
+
+```diff
+-int altStackSize = SIGSTKSZ + ALIGN_UP(sizeof(SignalHandlerWorkerReturnPoint), 16) + GetVirtualPageSize();
++// SIGSTKSZ alone is too small for inject_activation_handler's
++// chain (g_activationFunction can call arbitrarily-deep runtime
++// code). Mirror the +SIGSTKSZ*4 expansion the ASAN branch below
++// already uses. Net cost: ~32 KB additional VA per managed thread.
++int altStackSize = SIGSTKSZ + (SIGSTKSZ * 4)
++                 + ALIGN_UP(sizeof(SignalHandlerWorkerReturnPoint), 16)
++                 + GetVirtualPageSize();
+```
+
+With glibc on x86-64 this raises the alt stack from 16 384 to
+**~49 152 bytes** (12 KB usable → ~44 KB usable), comparable to
+the existing 9-page stack-overflow stack. ~32 KB additional pinned
+VA per managed thread.
+
+#### Alternative — architectural fix
+
+The cleaner fix mirrors what `sigsegv_handler` already does: have
+`inject_activation_handler` also call `SwitchStackAndExecuteHandler`
+to drop back to the interrupted thread's normal stack before
+invoking `g_activationFunction`. The interrupted thread is, by
+construction (`g_safeActivationCheckFunction` returned true), at a
+safe point with its normal stack in a usable state. This eliminates
+the unbounded-depth-on-alt-stack class of problem entirely, not just
+the current symptom.
+
+Sketch (in `signal.cpp:931` `inject_activation_handler`):
+
+```cpp
+if (g_safeActivationCheckFunction(CONTEXTGetPC(&winContext)))
+{
+    // Existing path:
+    //   InvokeActivationHandler(&winContext);
+    // Proposed: get off the alt stack first, mirroring sigsegv_handler.
+    size_t targetSp = CONTEXTGetSP(&winContext) - kActivationStackGuard;
+    SwitchStackAndExecuteHandler(/* synthetic code = */ ACTIVATION_HANDLER_FLAG,
+                                 siginfo, context, targetSp);
+}
+```
+
+This is more code, more review, and changes activation-handler
+semantics — wouldn't merge in a hotfix release. But it's the right
+long-term shape.
+
+#### Why the existing `EnsureSignalAlternateStack` "already-installed" check doesn't help
+
+`thread.cpp:2178`:
+
+```cpp
+st = sigaltstack(NULL, &oss);
+if ((st == 0) && (oss.ss_flags == SS_DISABLE))
+{
+    // ... allocate and install ...
+}
+```
+
+CoreCLR only installs its own alt stack if the thread has none.
+This *would* let an external runtime (Go, a C application, the
+shim in `sigstack_helper.c`) pre-install a larger stack and
+have CoreCLR honour it — **except that on CoreCLR-created
+threads, this code runs at thread creation, before any other
+runtime can install anything**. So the existing check helps only
+for the converse case (CoreCLR called from a non-CoreCLR-owned
+thread that already had an alt stack), which isn't the .NET host
+shape.
+
+The C# shim
+(`sigstack_helper.c::ensure_large_sigaltstack`) works *despite*
+this — it overwrites CoreCLR's already-installed 16 KB
+unconditionally with `sigaltstack(&new_1MB, NULL)`, ignoring the
+`oss` it would have received. CoreCLR's PAL doesn't try to
+re-install once the thread is running, so the swap is durable for
+the thread's lifetime.
+
+#### What the Go side cannot do
+
+For the .NET case Go is irrelevant. Go takes the record-only
+branch (E1+E2 prove this); the alt stack on the kernel's books is
+the one CoreCLR installed; Go's `malg(32 * 1024)` size doesn't
+participate. The Go-side fix #1 is correct for the plain-cgo class
+**only**. There is no Go-side change that fixes the .NET case.
 
 ### 3. App-side workaround — already ships in this repo
 
