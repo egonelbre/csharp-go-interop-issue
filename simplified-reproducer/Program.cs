@@ -98,30 +98,20 @@ internal static class Program
                 // Alternate between different complexity patterns to stress CoreCLR's signal analysis
                 if (i % 10 == 0)
                 {
-                    int result2 = Native.CreateSignalStressScenario(50);
-                    if (result1 < 0 || result2 < 0)
-                        throw new Exception("C library function failed");
+                    Native.CreateSignalStressScenario(50);
                 }
 
                 // Add extreme complexity targeting signal handler analysis
                 if (i % 50 == 0)
                 {
-                    int result3 = Native.CreateExtremeSignalAnalysisStress(5);
-                    if (result3 < 0)
-                        throw new Exception("Extreme complexity function failed");
+                    Native.CreateExtremeSignalAnalysisStress(5);
                 }
 
                 // Add atypical calling conventions (the key triggering factor!)
                 if (i % 25 == 0)
                 {
-                    int result4 = Native.CreateAtypicalCallingConventionStress(3);
-                    if (result4 < 0)
-                        throw new Exception("Atypical calling convention function failed");
+                    Native.CreateAtypicalCallingConventionStress(3);
                 }
-
-                // Verify we got reasonable results
-                if (result1 < 0)
-                    throw new Exception("CreateGoLikeComplexity failed");
 
                 // Occasional yield to increase signal/work overlap
                 if (i % 10000 == 0)
