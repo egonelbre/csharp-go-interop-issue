@@ -1,6 +1,6 @@
-# Simplified CoreCLR Sigaltstack Overflow Reproducer
+# Ultra-Simplified CoreCLR Sigaltstack Overflow Reproducer
 
-**Minimal reproduction of CoreCLR sigaltstack overflow with 74% code reduction**
+**Minimal reproduction of CoreCLR sigaltstack overflow with 61% code reduction**
 
 ## Overview
 
@@ -68,8 +68,16 @@ make debug          # Run with GDB
 ## Code Reduction
 
 **Original complex reproducer:** 1,107 lines (4 source files)  
-**This simplified version:** 288 lines (2 source files)  
-**Reduction:** 74% while maintaining overflow capability
+**This ultra-simplified version:** 434 lines (3 source files)  
+**Total reduction:** 61% while maintaining overflow capability
+
+**Progressive simplifications applied:**
+- Removed GC driver mode (signal-only reproduction)
+- Simplified worker thread error checking  
+- Removed vestigial thread vulnerability tracking
+- Consolidated C library wrapper functions
+- Reduced recursive depth limits and register state complexity
+- All assembly functions proven essential and retained
 
 ## Technical Background
 
@@ -80,4 +88,4 @@ This bug occurs when:
 4. Atypical calling conventions cause analysis to consume excessive stack
 5. Stack overflow in signal handler → Internal CLR error
 
-The simplified version proves that standard C patterns are insufficient - specific assembly trampolines with atypical calling conventions are required to trigger the overflow.
+Systematic testing proves that standard C patterns are insufficient - specific assembly trampolines with atypical calling conventions are essential and cannot be further consolidated without breaking reproduction. Each assembly function provides unique patterns required for the IP boundary analysis stress.
