@@ -1,10 +1,10 @@
 /*
  * Simplified Atypical Calling Convention Module
  *
- * Minimal version that keeps the essential SA_ONSTACK characteristics:
+ * Minimal version that triggers CoreCLR's SA_ONSTACK overflow:
  * - Assembly trampolines with non-standard prologues/epilogues
  * - Atypical register usage that confuses IP boundary analysis
- * - Controlled complexity that stresses analysis to overflow 16KB
+ * - Controlled complexity that stresses CoreCLR's signal analysis to overflow 16KB sigaltstack
  */
 
 #define _GNU_SOURCE

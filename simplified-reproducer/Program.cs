@@ -1,9 +1,10 @@
-// .NET host for Complex C Library reproducer
-// Mirrors the dotnet-go-reproducer but calls our C functions that replicate
-// Go's enter/exitsyscall complexity via P/Invoke.
+// .NET host for Simplified C Library reproducer
+// Triggers CoreCLR sigaltstack overflow by calling C functions with atypical
+// calling conventions via P/Invoke during SIGRTMIN signal bombardment.
 //
-// This provides the CoreCLR runtime environment (signal handlers, sigaltstack)
-// while the C library creates the complex conditions that stress IP analysis.
+// CoreCLR provides SA_ONSTACK signal handlers with 16KB sigaltstack limit.
+// The C library creates atypical assembly patterns that cause CoreCLR's IP
+// boundary analysis (IsIPInProlog/IsIPInEpilog) to consume excessive stack.
 
 using System;
 using System.Diagnostics;
@@ -103,7 +104,7 @@ internal static class Program
                 // Call our C functions that replicate Go's complexity
                 int result1 = Native.CreateGoLikeComplexity();
 
-                // Alternate between different complexity patterns - including extreme SA_ONSTACK stress
+                // Alternate between different complexity patterns to stress CoreCLR's signal analysis
                 if (i % 10 == 0)
                 {
                     int result2 = Native.CreateSignalStressScenario(50);
