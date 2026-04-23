@@ -66,15 +66,89 @@ Single-function chkstk prologues in the release `libcoreclr.so` measure up
 to 24 KB on this machine — one frame alone can exceed the entire usable
 alt stack, let alone a chain.
 
-`gdb` on a 10.0.6 crash dump shows the expected signature:
+### Example output
 
-- `rip` inside libcoreclr
-- faulting instruction is the chkstk pattern
-  `movq $0x0, (%rsp); sub $0x1000, %rsp`
-- `rsp` below the kernel-registered `ss_sp`
+#### Process exit (unpatched `main`, aggressive stress)
 
-An `LD_PRELOAD` shim that wraps `sigaltstack(2)` confirms the installed
-size is 16384 bytes on every CoreCLR-created thread at thread create.
+```
+$ DOTNET_ROOT=<testhost> DOTNET_ROLL_FORWARD=Major LD_LIBRARY_PATH=. \
+    REPRO_WORKERS=64 REPRO_ITERATIONS=5000000 REPRO_INTERVAL_US=10 \
+    ./bin/Release/net10.0/repro-dotnet
+[dotnet-repro] mode=signal workers=64 iters=5000000 interval=10µs gc=True fix=False pid=104637
+Segmentation fault (core dumped)
+$ echo $?
+139
+```
+
+#### Symbolicated backtrace (Release build of `main` with debug info)
+
+```
+Thread 40 ".NET Finalizer" received signal SIGSEGV, Segmentation fault.
+0x00007ffff73285ba in IsIPInEpilog (…) at src/coreclr/vm/excep.cpp:6210
+
+===== CRASHED =====
+rip  0x7ffff73285ba  <IsIPInEpilog(_CONTEXT*, EECodeInfo*, int*)+58>
+rsp  0x7fbf5648f3b0
+=> 0x7ffff73285ba <IsIPInEpilog+58>:   call   0x7ffff736b060 <EECodeInfo::GetFunctionEntry>
+
+#0  IsIPInProlog (pCodeInfo=0x7fbf564901e8)
+      at src/coreclr/vm/excep.cpp:6210
+#1  IsIPInEpilog (pContextToCheck=0x7fbf56491de0, pCodeInfo=0x7fbf564901e8, …)
+      at src/coreclr/vm/excep.cpp:6277
+#2  HandleSuspensionForInterruptedThread (interruptedContext=0x7fbf56491de0)
+      at src/coreclr/vm/threadsuspend.cpp:5768
+#3  inject_activation_handler (code=<optimized out>, siginfo=<optimized out>, context=0x7fbf56492ac0)
+      at src/coreclr/pal/src/exception/signal.cpp:966
+#4  <signal handler called>
+#5  0x00007fff791b16c4 in ?? ()
+#6  0x00007fff782459ea in ?? ()
+```
+
+The chain is exactly what the mechanism section describes:
+
+- `<signal handler called>` — kernel delivered `SIGRTMIN` on the alt stack.
+- `inject_activation_handler` (frame #3, `signal.cpp:966`) — the `g_activationFunction(pWinContext)` call site.
+- `HandleSuspensionForInterruptedThread` (frame #2, `threadsuspend.cpp:5768`) — the VM's registered activation function.
+- `IsIPInEpilog` → `IsIPInProlog` (frames #1, #0, `excep.cpp:6277`, `6210`) — deep enough that the `call` instruction's push overflows the alt stack.
+
+No Go frames. The entire chain runs inside `libcoreclr.so` on the 16 KB alt stack.
+
+Same signature on a stripped 10.0.6 build (full log in
+`investigation-tools/test-artifacts/crash/gdb.log` of the repro repo)
+shows the classic chkstk overshoot pattern at the faulting `rip`:
+
+```
+=> rip:  movq   $0x0, (%rsp)
+         sub    $0x1000, %rsp
+         movq   $0x0, (%rsp)
+         sub    $0x1000, %rsp
+#0  libcoreclr.so + 0x360028   ← chkstk prologue
+#1  libcoreclr.so + 0x361e2e
+#2  libcoreclr.so + 0x364331
+#3  libcoreclr.so + 0x46804b
+#4  <signal handler called>
+```
+
+On a different call path, different depth, same overflow.
+
+#### `sigaltstack` tracer histogram (unpatched `main`)
+
+The `LD_PRELOAD` shim that wraps `sigaltstack(2)` and logs every call
+sees only the PAL-routed installs (Go on Linux uses a direct syscall
+and is invisible to libc-level interception):
+
+```
+  72 ss_size=16384     ← EnsureSignalAlternateStack install on every CoreCLR-created thread
+```
+
+After the patch:
+
+```
+  73 ss_size=49152     ← same code path, new size
+```
+
+Single variable changed; size goes from 16384 to 49152 exactly as
+predicted by the formula.
 
 ## Proposed fix
 

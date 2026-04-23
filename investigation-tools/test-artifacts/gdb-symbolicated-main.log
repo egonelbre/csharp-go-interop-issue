@@ -1,0 +1,177 @@
+
+This GDB supports auto-downloading debuginfo from the following URLs:
+  <https://debuginfod.ubuntu.com>
+Enable debuginfod for this session? (y or [n]) [answered N; input not from terminal]
+Debuginfod has been disabled.
+To make this setting permanent, add 'set debuginfod enabled off' to .gdbinit.
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+process 104524 is executing new program: /home/egon/Code/gist/dotnet-repro/dotnet-go-reproducer/bin/Release/net10.0/repro-dotnet
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+[New Thread 0x7ffff6fff6c0 (LWP 104527)]
+[New Thread 0x7ffff67fe6c0 (LWP 104528)]
+[New Thread 0x7ffff5ffd6c0 (LWP 104529)]
+[New Thread 0x7ffff57fc6c0 (LWP 104530)]
+[New Thread 0x7ffff4f2f6c0 (LWP 104531)]
+[New Thread 0x7fffe7fff6c0 (LWP 104532)]
+[New Thread 0x7ffff45366c0 (LWP 104533)]
+[New Thread 0x7ffff44906c0 (LWP 104534)]
+[New Thread 0x7ffff43ea6c0 (LWP 104535)]
+[New Thread 0x7ffff43446c0 (LWP 104536)]
+[New Thread 0x7ffff429e6c0 (LWP 104537)]
+[New Thread 0x7ffff41f86c0 (LWP 104538)]
+[New Thread 0x7ffff41526c0 (LWP 104539)]
+[New Thread 0x7ffff40ac6c0 (LWP 104540)]
+[New Thread 0x7fffe77fe6c0 (LWP 104541)]
+[New Thread 0x7fffe77586c0 (LWP 104542)]
+[New Thread 0x7fffe76ae6c0 (LWP 104543)]
+[New Thread 0x7fffe76046c0 (LWP 104544)]
+[New Thread 0x7fffe755a6c0 (LWP 104545)]
+[New Thread 0x7fffe74b06c0 (LWP 104546)]
+[New Thread 0x7fffe74066c0 (LWP 104547)]
+[New Thread 0x7fffe735c6c0 (LWP 104548)]
+[New Thread 0x7fffe72b26c0 (LWP 104549)]
+[New Thread 0x7fffe72086c0 (LWP 104550)]
+[New Thread 0x7fffe715e6c0 (LWP 104551)]
+[New Thread 0x7fffe70b46c0 (LWP 104552)]
+[New Thread 0x7fbf5744e6c0 (LWP 104553)]
+[New Thread 0x7fbf573a86c0 (LWP 104554)]
+[New Thread 0x7fbf573026c0 (LWP 104555)]
+[New Thread 0x7fbf5725c6c0 (LWP 104556)]
+[New Thread 0x7fbf571b66c0 (LWP 104557)]
+[New Thread 0x7fbf571106c0 (LWP 104558)]
+[New Thread 0x7fbf5706a6c0 (LWP 104559)]
+[New Thread 0x7fbf56fc06c0 (LWP 104560)]
+[New Thread 0x7fbf56f166c0 (LWP 104561)]
+[New Thread 0x7fbf56e6c6c0 (LWP 104562)]
+[New Thread 0x7fbf56dc26c0 (LWP 104563)]
+[New Thread 0x7fbf56d186c0 (LWP 104564)]
+[New Thread 0x7fbf56c936c0 (LWP 104565)]
+[New Thread 0x7fbf54fff6c0 (LWP 104566)]
+[New Thread 0x7fbecd9ff6c0 (LWP 104567)]
+[dotnet-repro] mode=signal workers=64 iters=5000000 interval=10µs gc=True fix=False pid=104524
+warning: File "/snap/go/11127/src/runtime/runtime-gdb.py" auto-loading has been declined by your `auto-load safe-path' set to "$debugdir:$datadir/auto-load".
+To enable execution of this file add
+	add-auto-load-safe-path /snap/go/11127/src/runtime/runtime-gdb.py
+line to your configuration file "/home/egon/.config/gdb/gdbinit".
+To completely disable this security protection add
+	set auto-load safe-path /
+line to your configuration file "/home/egon/.config/gdb/gdbinit".
+For more information about this security protection see the
+"Auto-loading safe path" section in the GDB manual.  E.g., run from the shell:
+	info "(gdb)Auto-loading safe path"
+[New Thread 0x7fbecd1fe6c0 (LWP 104568)]
+[New Thread 0x7fbecc9fd6c0 (LWP 104569)]
+[New Thread 0x7fbec57ff6c0 (LWP 104570)]
+[New Thread 0x7fbec4ffe6c0 (LWP 104571)]
+[New Thread 0x7fbe77fff6c0 (LWP 104572)]
+[New Thread 0x7fbe777fe6c0 (LWP 104573)]
+[New Thread 0x7fbe76ffd6c0 (LWP 104574)]
+[New Thread 0x7fbe767fc6c0 (LWP 104575)]
+[New Thread 0x7fbecfe5f6c0 (LWP 104576)]
+[New Thread 0x7fbe75ffb6c0 (LWP 104577)]
+[New Thread 0x7fbe757fa6c0 (LWP 104578)]
+[New Thread 0x7fbe74ff96c0 (LWP 104579)]
+[New Thread 0x7fbe4bfff6c0 (LWP 104580)]
+[New Thread 0x7fbe4b7fe6c0 (LWP 104581)]
+[New Thread 0x7fbe4affd6c0 (LWP 104582)]
+[New Thread 0x7fbe4a7fc6c0 (LWP 104583)]
+[New Thread 0x7fbe49ffb6c0 (LWP 104584)]
+[New Thread 0x7fbe497fa6c0 (LWP 104585)]
+[New Thread 0x7fbe48ff96c0 (LWP 104586)]
+[New Thread 0x7fbe2bfff6c0 (LWP 104587)]
+[New Thread 0x7fbe2b7fe6c0 (LWP 104588)]
+[New Thread 0x7fbe2affd6c0 (LWP 104589)]
+[New Thread 0x7fbe2a7fc6c0 (LWP 104590)]
+[New Thread 0x7fbe29ffb6c0 (LWP 104591)]
+[New Thread 0x7fbe297fa6c0 (LWP 104592)]
+[New Thread 0x7fbe28ff96c0 (LWP 104593)]
+[New Thread 0x7fbe0bfff6c0 (LWP 104594)]
+[New Thread 0x7fbe0b7fe6c0 (LWP 104595)]
+[New Thread 0x7fbe0affd6c0 (LWP 104596)]
+[New Thread 0x7fbe0a7fc6c0 (LWP 104597)]
+[New Thread 0x7fbe09ffb6c0 (LWP 104598)]
+[New Thread 0x7fbe097fa6c0 (LWP 104599)]
+[New Thread 0x7fbe08ff96c0 (LWP 104600)]
+[New Thread 0x7fbdebfff6c0 (LWP 104601)]
+[New Thread 0x7fbdeb7fe6c0 (LWP 104602)]
+[New Thread 0x7fbdeaffd6c0 (LWP 104603)]
+[New Thread 0x7fbdea7fc6c0 (LWP 104604)]
+[New Thread 0x7fbde9ffb6c0 (LWP 104605)]
+[New Thread 0x7fbde97fa6c0 (LWP 104606)]
+[New Thread 0x7fbde8ff96c0 (LWP 104607)]
+[New Thread 0x7fbdcbfff6c0 (LWP 104608)]
+[New Thread 0x7fbdca7fc6c0 (LWP 104611)]
+[New Thread 0x7fbdc9ffb6c0 (LWP 104612)]
+[New Thread 0x7fbdcb7fe6c0 (LWP 104610)]
+[New Thread 0x7fbdcaffd6c0 (LWP 104609)]
+[New Thread 0x7fbdc97fa6c0 (LWP 104613)]
+[New Thread 0x7fbdb3fff6c0 (LWP 104615)]
+[New Thread 0x7fbdc8ff96c0 (LWP 104614)]
+[New Thread 0x7fbdb2ffd6c0 (LWP 104617)]
+[New Thread 0x7fbdb37fe6c0 (LWP 104616)]
+[New Thread 0x7fbdb27fc6c0 (LWP 104618)]
+[New Thread 0x7fbdb1ffb6c0 (LWP 104619)]
+[New Thread 0x7fbdb17fa6c0 (LWP 104620)]
+[New Thread 0x7fbdb0ff96c0 (LWP 104621)]
+[New Thread 0x7fbd8ffff6c0 (LWP 104622)]
+[New Thread 0x7fbd8f7fe6c0 (LWP 104625)]
+[New Thread 0x7fbd8effd6c0 (LWP 104626)]
+[New Thread 0x7fbd8e7fc6c0 (LWP 104627)]
+[New Thread 0x7fbd8dffb6c0 (LWP 104628)]
+
+Thread 40 ".NET Finalizer" received signal SIGSEGV, Segmentation fault.
+[Switching to Thread 0x7fbf56c936c0 (LWP 104565)]
+0x00007ffff73285ba in IsIPInProlog (pCodeInfo=0x7fbf564901e8) at /home/egon/Code/github.com/dotnet/coreclr/src/coreclr/vm/excep.cpp:6210
+6210	    PTR_RUNTIME_FUNCTION funcEntry = pCodeInfo->GetFunctionEntry();
+
+===== CRASHED =====
+[Current thread is 40 (Thread 0x7fbf56c936c0 (LWP 104565))]
+rip            0x7ffff73285ba      0x7ffff73285ba <IsIPInEpilog(_CONTEXT*, EECodeInfo*, int*)+58>
+rsp            0x7fbf5648f3b0      0x7fbf5648f3b0
+rbp            0x7fbf56490190      0x7fbf56490190
+=> 0x7ffff73285ba <_Z12IsIPInEpilogP8_CONTEXTP10EECodeInfoPi+58>:	call   0x7ffff736b060 <_ZN10EECodeInfo16GetFunctionEntryEv>
+   0x7ffff73285bf <_Z12IsIPInEpilogP8_CONTEXTP10EECodeInfoPi+63>:	mov    0x8(%r13),%rcx
+   0x7ffff73285c3 <_Z12IsIPInEpilogP8_CONTEXTP10EECodeInfoPi+67>:	mov    (%rcx),%rcx
+   0x7ffff73285c6 <_Z12IsIPInEpilogP8_CONTEXTP10EECodeInfoPi+70>:	mov    0x8(%rax),%eax
+   0x7ffff73285c9 <_Z12IsIPInEpilogP8_CONTEXTP10EECodeInfoPi+73>:	movzbl 0x1(%rcx,%rax,1),%eax
+   0x7ffff73285ce <_Z12IsIPInEpilogP8_CONTEXTP10EECodeInfoPi+78>:	cmp    %eax,0x28(%r13)
+#0  0x00007ffff73285ba in IsIPInProlog (pCodeInfo=0x7fbf564901e8) at /home/egon/Code/github.com/dotnet/coreclr/src/coreclr/vm/excep.cpp:6210
+#1  IsIPInEpilog (pContextToCheck=pContextToCheck@entry=0x7fbf56491de0, pCodeInfo=pCodeInfo@entry=0x7fbf564901e8, pSafeToInjectThreadAbort=pSafeToInjectThreadAbort@entry=0x7fbf564901ac) at /home/egon/Code/github.com/dotnet/coreclr/src/coreclr/vm/excep.cpp:6277
+#2  0x00007ffff74b86ae in HandleSuspensionForInterruptedThread (interruptedContext=0x7fbf56491de0) at /home/egon/Code/github.com/dotnet/coreclr/src/coreclr/vm/threadsuspend.cpp:5768
+#3  0x00007ffff75e9f37 in inject_activation_handler (code=<optimized out>, siginfo=<optimized out>, context=0x7fbf56492ac0) at /home/egon/Code/github.com/dotnet/coreclr/src/coreclr/pal/src/exception/signal.cpp:966
+#4  <signal handler called>
+#5  0x00007fff791b16c4 in ?? ()
+#6  0x00007fff782459ea in ?? ()
+#7  0x00007fbf56c92a58 in ?? ()
+#8  0x00007fbfa8018828 in ?? ()
+#9  0x000055555575f100 in ?? ()
+
+===== disassemble faulting function =====
+Dump of assembler code from 0x7ffff73285ba to 0x7ffff73285fa:
+=> 0x00007ffff73285ba <_Z12IsIPInEpilogP8_CONTEXTP10EECodeInfoPi+58>:	call   0x7ffff736b060 <_ZN10EECodeInfo16GetFunctionEntryEv>
+   0x00007ffff73285bf <_Z12IsIPInEpilogP8_CONTEXTP10EECodeInfoPi+63>:	mov    0x8(%r13),%rcx
+   0x00007ffff73285c3 <_Z12IsIPInEpilogP8_CONTEXTP10EECodeInfoPi+67>:	mov    (%rcx),%rcx
+   0x00007ffff73285c6 <_Z12IsIPInEpilogP8_CONTEXTP10EECodeInfoPi+70>:	mov    0x8(%rax),%eax
+   0x00007ffff73285c9 <_Z12IsIPInEpilogP8_CONTEXTP10EECodeInfoPi+73>:	movzbl 0x1(%rcx,%rax,1),%eax
+   0x00007ffff73285ce <_Z12IsIPInEpilogP8_CONTEXTP10EECodeInfoPi+78>:	cmp    %eax,0x28(%r13)
+   0x00007ffff73285d2 <_Z12IsIPInEpilogP8_CONTEXTP10EECodeInfoPi+82>:	jae    0x7ffff73285db <_Z12IsIPInEpilogP8_CONTEXTP10EECodeInfoPi+91>
+   0x00007ffff73285d4 <_Z12IsIPInEpilogP8_CONTEXTP10EECodeInfoPi+84>:	xor    %eax,%eax
+   0x00007ffff73285d6 <_Z12IsIPInEpilogP8_CONTEXTP10EECodeInfoPi+86>:	jmp    0x7ffff73286d4 <_Z12IsIPInEpilogP8_CONTEXTP10EECodeInfoPi+340>
+   0x00007ffff73285db <_Z12IsIPInEpilogP8_CONTEXTP10EECodeInfoPi+91>:	movq   $0x0,-0xde0(%rbp)
+   0x00007ffff73285e6 <_Z12IsIPInEpilogP8_CONTEXTP10EECodeInfoPi+102>:	mov    %r13,%rdi
+   0x00007ffff73285e9 <_Z12IsIPInEpilogP8_CONTEXTP10EECodeInfoPi+105>:	call   0x7ffff736b060 <_ZN10EECodeInfo16GetFunctionEntryEv>
+   0x00007ffff73285ee <_Z12IsIPInEpilogP8_CONTEXTP10EECodeInfoPi+110>:	mov    %rax,%r15
+   0x00007ffff73285f1 <_Z12IsIPInEpilogP8_CONTEXTP10EECodeInfoPi+113>:	mov    0x8(%r13),%rax
+   0x00007ffff73285f5 <_Z12IsIPInEpilogP8_CONTEXTP10EECodeInfoPi+117>:	mov    (%rax),%r13
+   0x00007ffff73285f8 <_Z12IsIPInEpilogP8_CONTEXTP10EECodeInfoPi+120>:	lea    -0xcd0(%rbp),%rdi
+End of assembler dump.
+
+===== alt stack info (read from sigaltstack ss) =====
+faulting rsp: 0x7fbf5648f3b0
+A debugging session is active.
+
+	Inferior 1 [process 104524] will be killed.
+
+Quit anyway? (y or n) [answered Y; input not from terminal]
