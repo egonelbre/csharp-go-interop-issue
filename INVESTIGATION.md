@@ -427,7 +427,36 @@ improvements but no measured failure mode requires them.
 ## Recommended fixes
 
 Two independent, both legitimate, neither a substitute for the
-other:
+other.
+
+### Aside — what the "right" alt-stack size actually is
+
+This is where the analysis is least supported by external sources.
+What we have:
+
+| Source | Value | Note |
+|---|---:|---|
+| Linux `bits/sigstack.h` (legacy) | `MINSIGSTKSZ=2048`, `SIGSTKSZ=8192` | Static defines, predate AVX/AMX — undersized for modern signal frames |
+| `getauxval(AT_MINSIGSTKSZ)` (glibc 2.34+) | **1 776** on this box | Kernel-reported minimum for register-state restore; per-CPU-feature |
+| Go runtime, every Unix `osXXX.go` | **`malg(32 * 1024)`** | Universal across Linux, AIX, Darwin, Solaris, NetBSD, FreeBSD, Dragonfly, WASM, Plan9. **Comments document only the platform minimum**, never the 32 KB rationale. No git log entry explains the choice. |
+| libcoreclr.so 10.0.6 disassembly (this box) | **24 KB** max single-function chkstk prologue | 218 probe prologues total: 96×4 KB, 7×8 KB, 3×12 KB, 16×16 KB, 1×20 KB, 5×24 KB. Multiple of these can stack in a single signal-handling chain. |
+| README §"Underlying cause" | 8-page (32 KB) overshoot below alt stack | The post-mortem observation. Implies CoreCLR's *cumulative* chain reaches at least 32 KB past where it landed. |
+| **Direct measurement** | — | We have **not** measured CoreCLR's actual signal-handler chain depth. We measured only "16 KB is insufficient" (the .NET crash) and "32 KB is insufficient under our synthetic 64 KB probe" (the C-only repro). |
+
+**No public source we found documents a specific minimum for hosting
+CoreCLR's signal-handler chain on a foreign sigaltstack.** The
+dotnet/runtime PAL source (`src/coreclr/pal/src/exception/signal.cpp`
+upstream, not on this box) is the place that explicit number would
+live; reading that source would let us replace the back-of-envelope
+estimate below with a number CoreCLR maintainers would recognise.
+
+The same caveat applies in reverse: any size we pick on the Go side
+is "more than what we measured was insufficient", not "demonstrably
+sufficient for all chained handlers in the wild". A C runtime that
+links against a JIT or a managed-exception dispatcher (.NET, Mono,
+JVM, Wasmtime, V8) can in principle have a chkstk chain of any
+depth; the only fully safe bound is "as much VA as you're willing
+to pin".
 
 ### 1. Go runtime — for the plain-cgo class
 
@@ -435,20 +464,43 @@ other:
 
 ```diff
 -mp.gsignal = malg(32 * 1024) // Linux wants >= 2K
-+mp.gsignal = malg(64 * 1024) // chained C-runtime handlers may chkstk through this
++mp.gsignal = malg(64 * 1024) // raised to accommodate chained C-runtime handlers
 ```
 
-64 KB is the conservative minimum — most chained C-runtime
-SA_ONSTACK handlers need between 16 KB and 48 KB of probe depth.
-128 KB is a safer round number; 1 MiB has demonstrated 30× margin
-and only costs ~1 MiB of pinned VA per M.
+**Honest justification for 64 KB**, in decreasing order of strength:
+
+1. **Lower bound from disassembly**: libcoreclr.so 10.0.6 has
+   single functions whose chkstk prologues alone consume 24 KB.
+   Plus the kernel's signal trampoline and Go's own sighandler
+   chain (~2 KB). 32 KB is therefore insufficient by inspection;
+   anything ≥ ~32 KB + 24 KB ≈ 56 KB clears at least the
+   single-function ceiling for this build of CoreCLR.
+
+2. **Lower bound from a direct measurement against the C-only
+   repro at 32 KB → 1 MiB Go-side bump**: doubled, doubled, and
+   doubled — every step short of the new threshold passed cleanly.
+   So *any* increase from 32 KB delays the cliff in proportion.
+
+3. **What we did not measure**: CoreCLR's full chained chkstk
+   depth across stacked frames during a signal dispatch. The
+   24 KB max-single-function number is a lower bound on the
+   chain, not the actual chain depth.
+
+64 KB is therefore "comfortably above the worst single-function
+prologue we measured but well within reasonable VA cost" — not
+"demonstrably sufficient for the entire chain". 128 KB is safer
+on the same evidence; 1 MiB has the most margin and was the
+size we tested end-to-end. A Go runtime maintainer reviewing
+this should pick a value with input from CoreCLR/JVM/etc.
+maintainers (or read those PAL sources) rather than rubber-
+stamping our number.
 
 This fix does not regress the .NET case (Go's stack is unused
 there anyway), and it doesn't change any visible semantics.
-Other Unix platforms already allocate 32 KB
-(`os_aix.go`, `os3_solaris.go`, `os_netbsd.go`); a Linux-specific
-bump is justified because Linux is by far the most common target
-for `c-shared` builds.
+Other Unix platforms also allocate 32 KB; a Linux-specific
+bump is justified because Linux is by far the most common
+target for `c-shared` builds, but the same argument applies on
+any OS where Go is hosted by a chkstk-heavy C runtime.
 
 ### 2. CoreCLR PAL — for the .NET class
 
