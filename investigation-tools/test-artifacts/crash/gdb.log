@@ -1,0 +1,2009 @@
+
+This GDB supports auto-downloading debuginfo from the following URLs:
+  <https://debuginfod.ubuntu.com>
+Enable debuginfod for this session? (y or [n]) [answered N; input not from terminal]
+Debuginfod has been disabled.
+To make this setting permanent, add 'set debuginfod enabled off' to .gdbinit.
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+process 53568 is executing new program: /home/egon/Code/gist/dotnet-repro/bin/Release/net10.0/repro-dotnet
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+[New Thread 0x7ffff6fff6c0 (LWP 53574)]
+[New Thread 0x7ffff67fe6c0 (LWP 53575)]
+[New Thread 0x7ffff5ffd6c0 (LWP 53576)]
+[New Thread 0x7ffff57fc6c0 (LWP 53577)]
+[New Thread 0x7ffff4e1f6c0 (LWP 53578)]
+[New Thread 0x7fffe7fff6c0 (LWP 53579)]
+[New Thread 0x7ffff44266c0 (LWP 53580)]
+[New Thread 0x7ffff43806c0 (LWP 53581)]
+[New Thread 0x7ffff42da6c0 (LWP 53582)]
+[New Thread 0x7ffff42346c0 (LWP 53583)]
+[New Thread 0x7ffff418e6c0 (LWP 53584)]
+[New Thread 0x7ffff40e86c0 (LWP 53585)]
+[New Thread 0x7fffe77fe6c0 (LWP 53586)]
+[New Thread 0x7fffe777d6c0 (LWP 53587)]
+[New Thread 0x7fffe76d76c0 (LWP 53588)]
+[New Thread 0x7fffe76316c0 (LWP 53589)]
+[New Thread 0x7fffe758b6c0 (LWP 53590)]
+[New Thread 0x7fffe74e56c0 (LWP 53591)]
+[New Thread 0x7fffe743f6c0 (LWP 53592)]
+[New Thread 0x7fffe73996c0 (LWP 53593)]
+[New Thread 0x7fffe72f36c0 (LWP 53594)]
+[New Thread 0x7fffe724d6c0 (LWP 53595)]
+[New Thread 0x7fffe71a76c0 (LWP 53596)]
+[New Thread 0x7fffe71016c0 (LWP 53597)]
+[New Thread 0x7fbf5744e6c0 (LWP 53598)]
+[New Thread 0x7fbf573cd6c0 (LWP 53599)]
+[New Thread 0x7fbf5734c6c0 (LWP 53600)]
+[New Thread 0x7fbf572a66c0 (LWP 53601)]
+[New Thread 0x7fbf572006c0 (LWP 53602)]
+[New Thread 0x7fbf5715a6c0 (LWP 53603)]
+[New Thread 0x7fbf570b46c0 (LWP 53604)]
+[New Thread 0x7fbf5700e6c0 (LWP 53605)]
+[New Thread 0x7fbf56f686c0 (LWP 53606)]
+[New Thread 0x7fbf56ec26c0 (LWP 53607)]
+[New Thread 0x7fbf56e1c6c0 (LWP 53608)]
+[New Thread 0x7fbf56d726c0 (LWP 53609)]
+[New Thread 0x7fbf56cc86c0 (LWP 53610)]
+[New Thread 0x7fbf56c1e6c0 (LWP 53611)]
+[New Thread 0x7fbf56b996c0 (LWP 53612)]
+[New Thread 0x7fbf54fff6c0 (LWP 53613)]
+[New Thread 0x7fbecd9ff6c0 (LWP 53614)]
+[dotnet-repro] mode=signal workers=32 iters=1000000 interval=50µs gc=True fix=False pid=53568
+warning: File "/snap/go/11127/src/runtime/runtime-gdb.py" auto-loading has been declined by your `auto-load safe-path' set to "$debugdir:$datadir/auto-load".
+To enable execution of this file add
+	add-auto-load-safe-path /snap/go/11127/src/runtime/runtime-gdb.py
+line to your configuration file "/home/egon/.config/gdb/gdbinit".
+To completely disable this security protection add
+	set auto-load safe-path /
+line to your configuration file "/home/egon/.config/gdb/gdbinit".
+For more information about this security protection see the
+"Auto-loading safe path" section in the GDB manual.  E.g., run from the shell:
+	info "(gdb)Auto-loading safe path"
+[New Thread 0x7fbecd1fe6c0 (LWP 53615)]
+[New Thread 0x7fbecc9fd6c0 (LWP 53616)]
+[New Thread 0x7fbec57ff6c0 (LWP 53617)]
+[New Thread 0x7fbec4ffe6c0 (LWP 53618)]
+[New Thread 0x7fbe77fff6c0 (LWP 53619)]
+[New Thread 0x7fbe777fe6c0 (LWP 53620)]
+[New Thread 0x7fbe76ffd6c0 (LWP 53621)]
+[New Thread 0x7fbe767fc6c0 (LWP 53622)]
+[New Thread 0x7fbf547fe6c0 (LWP 53623)]
+[New Thread 0x7fbe75ffb6c0 (LWP 53624)]
+[New Thread 0x7fbe757fa6c0 (LWP 53625)]
+[New Thread 0x7fbe74ff96c0 (LWP 53626)]
+[New Thread 0x7fbe4bfff6c0 (LWP 53627)]
+[New Thread 0x7fbe4b7fe6c0 (LWP 53628)]
+[New Thread 0x7fbe4affd6c0 (LWP 53629)]
+[New Thread 0x7fbe4a7fc6c0 (LWP 53630)]
+[New Thread 0x7fbe49ffb6c0 (LWP 53631)]
+[New Thread 0x7fbe497fa6c0 (LWP 53632)]
+[New Thread 0x7fbe48ff96c0 (LWP 53633)]
+[New Thread 0x7fbe2bfff6c0 (LWP 53634)]
+[New Thread 0x7fbe2b7fe6c0 (LWP 53635)]
+[New Thread 0x7fbe2affd6c0 (LWP 53636)]
+[New Thread 0x7fbe2a7fc6c0 (LWP 53637)]
+[New Thread 0x7fbe29ffb6c0 (LWP 53638)]
+[New Thread 0x7fbe297fa6c0 (LWP 53639)]
+[New Thread 0x7fbe28ff96c0 (LWP 53640)]
+[New Thread 0x7fbe0bfff6c0 (LWP 53641)]
+[New Thread 0x7fbe0b7fe6c0 (LWP 53642)]
+[New Thread 0x7fbe0affd6c0 (LWP 53643)]
+[New Thread 0x7fbe0a7fc6c0 (LWP 53644)]
+[New Thread 0x7fbe09ffb6c0 (LWP 53645)]
+[New Thread 0x7fbe097fa6c0 (LWP 53646)]
+[New Thread 0x7fbe08ff96c0 (LWP 53647)]
+[New Thread 0x7fbdebfff6c0 (LWP 53648)]
+[New Thread 0x7fbdeb7fe6c0 (LWP 53649)]
+[New Thread 0x7fbdeaffd6c0 (LWP 53650)]
+[New Thread 0x7fbdea7fc6c0 (LWP 53651)]
+[New Thread 0x7fbde9ffb6c0 (LWP 53652)]
+[New Thread 0x7fbde97fa6c0 (LWP 53653)]
+[New Thread 0x7fbde8ff96c0 (LWP 53654)]
+[New Thread 0x7fbdd3fff6c0 (LWP 53655)]
+
+Thread 80 ".NET TP Worker" received signal SIGSEGV, Segmentation fault.
+[Switching to Thread 0x7fbde9ffb6c0 (LWP 53652)]
+0x00007ffff7528028 in ?? () from /usr/lib/dotnet/shared/Microsoft.NETCore.App/10.0.6/libcoreclr.so
+
+===== CRASHED =====
+[Current thread is 80 (Thread 0x7fbde9ffb6c0 (LWP 53652))]
+rip            0x7ffff7528028      0x7ffff7528028
+rsp            0x7fbecfb60118      0x7fbecfb60118
+rbp            0x7fbecfb61140      0x7fbecfb61140
+=> 0x7ffff7528028:	movq   $0x0,(%rsp)
+   0x7ffff7528030:	sub    $0x1000,%rsp
+   0x7ffff7528037:	movq   $0x0,(%rsp)
+   0x7ffff752803f:	sub    $0x1000,%rsp
+#0  0x00007ffff7528028 in ?? () from /usr/lib/dotnet/shared/Microsoft.NETCore.App/10.0.6/libcoreclr.so
+#1  0x00007ffff7529e2e in ?? () from /usr/lib/dotnet/shared/Microsoft.NETCore.App/10.0.6/libcoreclr.so
+#2  0x00007ffff752c331 in ?? () from /usr/lib/dotnet/shared/Microsoft.NETCore.App/10.0.6/libcoreclr.so
+#3  0x00007ffff763004b in ?? () from /usr/lib/dotnet/shared/Microsoft.NETCore.App/10.0.6/libcoreclr.so
+#4  <signal handler called>
+#5  0x00007fff78f643a7 in ?? ()
+#6  0x26737df2cb921083 in ?? ()
+#7  0x8fece99e31485638 in ?? ()
+#8  0x8a8c36bceddbb01b in ?? ()
+#9  0xbd90aa0887b175a6 in ?? ()
+#10 0x0000000000000001 in ?? ()
+#11 0x00007fbde9ffad30 in ?? ()
+#12 0x00007fff7901a230 in ?? ()
+#13 0x00007fbde9ffa7e0 in ?? ()
+#14 0x00007fff78f6435e in ?? ()
+#15 0x00007fbde9ffa860 in ?? ()
+#16 0x0000000000000003 in ?? ()
+#17 0x0000000000000000 in ?? ()
+warning: Memory read failed for corefile section, 4096 bytes at 0x7ffff7e7e000.
+warning: Memory read failed for corefile section, 4096 bytes at 0xffffffffff600000.
+Saved corefile ./crash/core
+process 53568
+Mapped address spaces:
+
+          Start Addr           End Addr       Size     Offset  Perms  objfile
+      0x378f9c000000     0x378f9fc00000  0x3c00000        0x0  ---p   [anon: Go: heap reservation]
+      0x378f9fc00000     0x378fa0800000   0xc00000        0x0  rw-p   [anon: Go: heap]
+      0x378fa0800000     0x378fa4000000  0x3800000        0x0  ---p   [anon: Go: heap reservation]
+      0x555555554000     0x55555555a000     0x6000        0x0  r--p   /home/egon/Code/gist/dotnet-repro/bin/Release/net10.0/repro-dotnet
+      0x55555555a000     0x555555568000     0xe000     0x5000  r-xp   /home/egon/Code/gist/dotnet-repro/bin/Release/net10.0/repro-dotnet
+      0x555555568000     0x555555569000     0x1000    0x12000  r--p   /home/egon/Code/gist/dotnet-repro/bin/Release/net10.0/repro-dotnet
+      0x555555569000     0x55555556a000     0x1000    0x12000  rw-p   /home/egon/Code/gist/dotnet-repro/bin/Release/net10.0/repro-dotnet
+      0x55555556a000     0x5555557e1000   0x277000        0x0  rw-p   [heap]
+      0x7fbdc0000000     0x7fbdc0021000    0x21000        0x0  rw-p   
+      0x7fbdc0021000     0x7fbdc4000000  0x3fdf000        0x0  ---p   
+      0x7fbdc8000000     0x7fbdc8021000    0x21000        0x0  rw-p   
+      0x7fbdc8021000     0x7fbdcc000000  0x3fdf000        0x0  ---p   
+      0x7fbdcc000000     0x7fbdcc021000    0x21000        0x0  rw-p   
+      0x7fbdcc021000     0x7fbdd0000000  0x3fdf000        0x0  ---p   
+      0x7fbdd37ff000     0x7fbdd3800000     0x1000        0x0  ---p   
+      0x7fbdd3800000     0x7fbdd4000000   0x800000        0x0  rw-p   
+      0x7fbdd4000000     0x7fbdd4021000    0x21000        0x0  rw-p   
+      0x7fbdd4021000     0x7fbdd8000000  0x3fdf000        0x0  ---p   
+      0x7fbdd8000000     0x7fbdd8021000    0x21000        0x0  rw-p   
+      0x7fbdd8021000     0x7fbddc000000  0x3fdf000        0x0  ---p   
+      0x7fbddc000000     0x7fbddc021000    0x21000        0x0  rw-p   
+      0x7fbddc021000     0x7fbde0000000  0x3fdf000        0x0  ---p   
+      0x7fbde0000000     0x7fbde0021000    0x21000        0x0  rw-p   
+      0x7fbde0021000     0x7fbde4000000  0x3fdf000        0x0  ---p   
+      0x7fbde4000000     0x7fbde4021000    0x21000        0x0  rw-p   
+      0x7fbde4021000     0x7fbde8000000  0x3fdf000        0x0  ---p   
+      0x7fbde87f9000     0x7fbde87fa000     0x1000        0x0  ---p   
+      0x7fbde87fa000     0x7fbde8ffa000   0x800000        0x0  rw-p   
+      0x7fbde8ffa000     0x7fbde8ffb000     0x1000        0x0  ---p   
+      0x7fbde8ffb000     0x7fbde97fb000   0x800000        0x0  rw-p   
+      0x7fbde97fb000     0x7fbde97fc000     0x1000        0x0  ---p   
+      0x7fbde97fc000     0x7fbde9ffc000   0x800000        0x0  rw-p   
+      0x7fbde9ffc000     0x7fbde9ffd000     0x1000        0x0  ---p   
+      0x7fbde9ffd000     0x7fbdea7fd000   0x800000        0x0  rw-p   
+      0x7fbdea7fd000     0x7fbdea7fe000     0x1000        0x0  ---p   
+      0x7fbdea7fe000     0x7fbdeaffe000   0x800000        0x0  rw-p   
+      0x7fbdeaffe000     0x7fbdeafff000     0x1000        0x0  ---p   
+      0x7fbdeafff000     0x7fbdeb7ff000   0x800000        0x0  rw-p   
+      0x7fbdeb7ff000     0x7fbdeb800000     0x1000        0x0  ---p   
+      0x7fbdeb800000     0x7fbdec000000   0x800000        0x0  rw-p   
+      0x7fbdec000000     0x7fbdec021000    0x21000        0x0  rw-p   
+      0x7fbdec021000     0x7fbdf0000000  0x3fdf000        0x0  ---p   
+      0x7fbdf0000000     0x7fbdf0021000    0x21000        0x0  rw-p   
+      0x7fbdf0021000     0x7fbdf4000000  0x3fdf000        0x0  ---p   
+      0x7fbdf4000000     0x7fbdf4021000    0x21000        0x0  rw-p   
+      0x7fbdf4021000     0x7fbdf8000000  0x3fdf000        0x0  ---p   
+      0x7fbdf8000000     0x7fbdf8021000    0x21000        0x0  rw-p   
+      0x7fbdf8021000     0x7fbdfc000000  0x3fdf000        0x0  ---p   
+      0x7fbdfc000000     0x7fbdfc021000    0x21000        0x0  rw-p   
+      0x7fbdfc021000     0x7fbe00000000  0x3fdf000        0x0  ---p   
+      0x7fbe00000000     0x7fbe00021000    0x21000        0x0  rw-p   
+      0x7fbe00021000     0x7fbe04000000  0x3fdf000        0x0  ---p   
+      0x7fbe04000000     0x7fbe04021000    0x21000        0x0  rw-p   
+      0x7fbe04021000     0x7fbe08000000  0x3fdf000        0x0  ---p   
+      0x7fbe087f9000     0x7fbe087fa000     0x1000        0x0  ---p   
+      0x7fbe087fa000     0x7fbe08ffa000   0x800000        0x0  rw-p   
+      0x7fbe08ffa000     0x7fbe08ffb000     0x1000        0x0  ---p   
+      0x7fbe08ffb000     0x7fbe097fb000   0x800000        0x0  rw-p   
+      0x7fbe097fb000     0x7fbe097fc000     0x1000        0x0  ---p   
+      0x7fbe097fc000     0x7fbe09ffc000   0x800000        0x0  rw-p   
+      0x7fbe09ffc000     0x7fbe09ffd000     0x1000        0x0  ---p   
+      0x7fbe09ffd000     0x7fbe0a7fd000   0x800000        0x0  rw-p   
+      0x7fbe0a7fd000     0x7fbe0a7fe000     0x1000        0x0  ---p   
+      0x7fbe0a7fe000     0x7fbe0affe000   0x800000        0x0  rw-p   
+      0x7fbe0affe000     0x7fbe0afff000     0x1000        0x0  ---p   
+      0x7fbe0afff000     0x7fbe0b7ff000   0x800000        0x0  rw-p   
+      0x7fbe0b7ff000     0x7fbe0b800000     0x1000        0x0  ---p   
+      0x7fbe0b800000     0x7fbe0c000000   0x800000        0x0  rw-p   
+      0x7fbe0c000000     0x7fbe0c021000    0x21000        0x0  rw-p   
+      0x7fbe0c021000     0x7fbe10000000  0x3fdf000        0x0  ---p   
+      0x7fbe10000000     0x7fbe10021000    0x21000        0x0  rw-p   
+      0x7fbe10021000     0x7fbe14000000  0x3fdf000        0x0  ---p   
+      0x7fbe14000000     0x7fbe14021000    0x21000        0x0  rw-p   
+      0x7fbe14021000     0x7fbe18000000  0x3fdf000        0x0  ---p   
+      0x7fbe18000000     0x7fbe18021000    0x21000        0x0  rw-p   
+      0x7fbe18021000     0x7fbe1c000000  0x3fdf000        0x0  ---p   
+      0x7fbe1c000000     0x7fbe1c021000    0x21000        0x0  rw-p   
+      0x7fbe1c021000     0x7fbe20000000  0x3fdf000        0x0  ---p   
+      0x7fbe20000000     0x7fbe20021000    0x21000        0x0  rw-p   
+      0x7fbe20021000     0x7fbe24000000  0x3fdf000        0x0  ---p   
+      0x7fbe24000000     0x7fbe24021000    0x21000        0x0  rw-p   
+      0x7fbe24021000     0x7fbe28000000  0x3fdf000        0x0  ---p   
+      0x7fbe287f9000     0x7fbe287fa000     0x1000        0x0  ---p   
+      0x7fbe287fa000     0x7fbe28ffa000   0x800000        0x0  rw-p   
+      0x7fbe28ffa000     0x7fbe28ffb000     0x1000        0x0  ---p   
+      0x7fbe28ffb000     0x7fbe297fb000   0x800000        0x0  rw-p   
+      0x7fbe297fb000     0x7fbe297fc000     0x1000        0x0  ---p   
+      0x7fbe297fc000     0x7fbe29ffc000   0x800000        0x0  rw-p   
+      0x7fbe29ffc000     0x7fbe29ffd000     0x1000        0x0  ---p   
+      0x7fbe29ffd000     0x7fbe2a7fd000   0x800000        0x0  rw-p   
+      0x7fbe2a7fd000     0x7fbe2a7fe000     0x1000        0x0  ---p   
+      0x7fbe2a7fe000     0x7fbe2affe000   0x800000        0x0  rw-p   
+      0x7fbe2affe000     0x7fbe2afff000     0x1000        0x0  ---p   
+      0x7fbe2afff000     0x7fbe2b7ff000   0x800000        0x0  rw-p   
+      0x7fbe2b7ff000     0x7fbe2b800000     0x1000        0x0  ---p   
+      0x7fbe2b800000     0x7fbe2c000000   0x800000        0x0  rw-p   
+      0x7fbe2c000000     0x7fbe2c021000    0x21000        0x0  rw-p   
+      0x7fbe2c021000     0x7fbe30000000  0x3fdf000        0x0  ---p   
+      0x7fbe30000000     0x7fbe30021000    0x21000        0x0  rw-p   
+      0x7fbe30021000     0x7fbe34000000  0x3fdf000        0x0  ---p   
+      0x7fbe34000000     0x7fbe34021000    0x21000        0x0  rw-p   
+      0x7fbe34021000     0x7fbe38000000  0x3fdf000        0x0  ---p   
+      0x7fbe38000000     0x7fbe38021000    0x21000        0x0  rw-p   
+      0x7fbe38021000     0x7fbe3c000000  0x3fdf000        0x0  ---p   
+      0x7fbe3c000000     0x7fbe3c021000    0x21000        0x0  rw-p   
+      0x7fbe3c021000     0x7fbe40000000  0x3fdf000        0x0  ---p   
+      0x7fbe40000000     0x7fbe40021000    0x21000        0x0  rw-p   
+      0x7fbe40021000     0x7fbe44000000  0x3fdf000        0x0  ---p   
+      0x7fbe44000000     0x7fbe44021000    0x21000        0x0  rw-p   
+      0x7fbe44021000     0x7fbe48000000  0x3fdf000        0x0  ---p   
+      0x7fbe487f9000     0x7fbe487fa000     0x1000        0x0  ---p   
+      0x7fbe487fa000     0x7fbe48ffa000   0x800000        0x0  rw-p   
+      0x7fbe48ffa000     0x7fbe48ffb000     0x1000        0x0  ---p   
+      0x7fbe48ffb000     0x7fbe497fb000   0x800000        0x0  rw-p   
+      0x7fbe497fb000     0x7fbe497fc000     0x1000        0x0  ---p   
+      0x7fbe497fc000     0x7fbe49ffc000   0x800000        0x0  rw-p   
+      0x7fbe49ffc000     0x7fbe49ffd000     0x1000        0x0  ---p   
+      0x7fbe49ffd000     0x7fbe4a7fd000   0x800000        0x0  rw-p   
+      0x7fbe4a7fd000     0x7fbe4a7fe000     0x1000        0x0  ---p   
+      0x7fbe4a7fe000     0x7fbe4affe000   0x800000        0x0  rw-p   
+      0x7fbe4affe000     0x7fbe4afff000     0x1000        0x0  ---p   
+      0x7fbe4afff000     0x7fbe4b7ff000   0x800000        0x0  rw-p   
+      0x7fbe4b7ff000     0x7fbe4b800000     0x1000        0x0  ---p   
+      0x7fbe4b800000     0x7fbe4c000000   0x800000        0x0  rw-p   
+      0x7fbe4c000000     0x7fbe4c021000    0x21000        0x0  rw-p   
+      0x7fbe4c021000     0x7fbe50000000  0x3fdf000        0x0  ---p   
+      0x7fbe50000000     0x7fbe50021000    0x21000        0x0  rw-p   
+      0x7fbe50021000     0x7fbe54000000  0x3fdf000        0x0  ---p   
+      0x7fbe54000000     0x7fbe54021000    0x21000        0x0  rw-p   
+      0x7fbe54021000     0x7fbe58000000  0x3fdf000        0x0  ---p   
+      0x7fbe58000000     0x7fbe58021000    0x21000        0x0  rw-p   
+      0x7fbe58021000     0x7fbe5c000000  0x3fdf000        0x0  ---p   
+      0x7fbe5c000000     0x7fbe5c06a000    0x6a000        0x0  rw-p   
+      0x7fbe5c06a000     0x7fbe60000000  0x3f96000        0x0  ---p   
+      0x7fbe60000000     0x7fbe60021000    0x21000        0x0  rw-p   
+      0x7fbe60021000     0x7fbe64000000  0x3fdf000        0x0  ---p   
+      0x7fbe64000000     0x7fbe64021000    0x21000        0x0  rw-p   
+      0x7fbe64021000     0x7fbe68000000  0x3fdf000        0x0  ---p   
+      0x7fbe68000000     0x7fbe68021000    0x21000        0x0  rw-p   
+      0x7fbe68021000     0x7fbe6c000000  0x3fdf000        0x0  ---p   
+      0x7fbe6c000000     0x7fbe6c021000    0x21000        0x0  rw-p   
+      0x7fbe6c021000     0x7fbe70000000  0x3fdf000        0x0  ---p   
+      0x7fbe70000000     0x7fbe70021000    0x21000        0x0  rw-p   
+      0x7fbe70021000     0x7fbe74000000  0x3fdf000        0x0  ---p   
+      0x7fbe747f9000     0x7fbe747fa000     0x1000        0x0  ---p   
+      0x7fbe747fa000     0x7fbe74ffa000   0x800000        0x0  rw-p   
+      0x7fbe74ffa000     0x7fbe74ffb000     0x1000        0x0  ---p   
+      0x7fbe74ffb000     0x7fbe757fb000   0x800000        0x0  rw-p   
+      0x7fbe757fb000     0x7fbe757fc000     0x1000        0x0  ---p   
+      0x7fbe757fc000     0x7fbe75ffc000   0x800000        0x0  rw-p   
+      0x7fbe75ffc000     0x7fbe75ffd000     0x1000        0x0  ---p   
+      0x7fbe75ffd000     0x7fbe767fd000   0x800000        0x0  rw-p   
+      0x7fbe767fd000     0x7fbe767fe000     0x1000        0x0  ---p   
+      0x7fbe767fe000     0x7fbe76ffe000   0x800000        0x0  rw-p   
+      0x7fbe76ffe000     0x7fbe76fff000     0x1000        0x0  ---p   
+      0x7fbe76fff000     0x7fbe777ff000   0x800000        0x0  rw-p   
+      0x7fbe777ff000     0x7fbe77800000     0x1000        0x0  ---p   
+      0x7fbe77800000     0x7fbe78000000   0x800000        0x0  rw-p   
+      0x7fbe78000000     0x7fbe78021000    0x21000        0x0  rw-p   
+      0x7fbe78021000     0x7fbe7c000000  0x3fdf000        0x0  ---p   
+      0x7fbe7c000000     0x7fbe92f1f000 0x16f1f000        0x0  ---p   [anon: Go: scavenge index]
+      0x7fbe92f1f000     0x7fbe92f20000     0x1000        0x0  rw-p   [anon: Go: scavenge index]
+      0x7fbe92f20000     0x7fbe9c000000  0x90e0000        0x0  ---p   [anon: Go: scavenge index]
+      0x7fbe9c000000     0x7fbeb2f1f000 0x16f1f000        0x0  ---p   [anon: Go: page summary]
+      0x7fbeb2f1f000     0x7fbeb2f20000     0x1000        0x0  rw-p   [anon: Go: page alloc]
+      0x7fbeb2f20000     0x7fbebede3000  0xbec3000        0x0  ---p   [anon: Go: page summary]
+      0x7fbebede3000     0x7fbebede4000     0x1000        0x0  rw-p   [anon: Go: page alloc]
+      0x7fbebede4000     0x7fbec0000000  0x121c000        0x0  ---p   [anon: Go: page summary]
+      0x7fbec0000000     0x7fbec0021000    0x21000        0x0  rw-p   
+      0x7fbec0021000     0x7fbec4000000  0x3fdf000        0x0  ---p   
+      0x7fbec47fe000     0x7fbec47ff000     0x1000        0x0  ---p   
+      0x7fbec47ff000     0x7fbec4fff000   0x800000        0x0  rw-p   
+      0x7fbec4fff000     0x7fbec5000000     0x1000        0x0  ---p   
+      0x7fbec5000000     0x7fbec5800000   0x800000        0x0  rw-p   
+      0x7fbec5800000     0x7fbec7800000  0x2000000        0x0  rw-p   [anon: Go: heap index]
+      0x7fbec7800000     0x7fbec7dbc000   0x5bc000        0x0  ---p   [anon: Go: page summary]
+      0x7fbec7dbc000     0x7fbec7dbd000     0x1000        0x0  rw-p   [anon: Go: page alloc]
+      0x7fbec7dbd000     0x7fbec8000000   0x243000        0x0  ---p   [anon: Go: page summary]
+      0x7fbec8000000     0x7fbec8021000    0x21000        0x0  rw-p   
+      0x7fbec8021000     0x7fbecc000000  0x3fdf000        0x0  ---p   
+      0x7fbecc03a000     0x7fbecc07d000    0x43000        0x0  r--s   /usr/lib/dotnet/shared/Microsoft.NETCore.App/10.0.6/System.Collections.dll
+      0x7fbecc07d000     0x7fbecc1fd000   0x180000        0x0  rw-p   [anon: Go: immortal metadata]
+      0x7fbecc1fd000     0x7fbecc1fe000     0x1000        0x0  ---p   
+      0x7fbecc1fe000     0x7fbecc9fe000   0x800000        0x0  rw-p   
+      0x7fbecc9fe000     0x7fbecc9ff000     0x1000        0x0  ---p   
+      0x7fbecc9ff000     0x7fbecd1ff000   0x800000        0x0  rw-p   
+      0x7fbecd1ff000     0x7fbecd200000     0x1000        0x0  ---p   
+      0x7fbecd200000     0x7fbecda00000   0x800000        0x0  rw-p   
+      0x7fbecda00000     0x7fbecdaee000    0xee000        0x0  r--p   /usr/lib/x86_64-linux-gnu/libicui18n.so.74.2
+      0x7fbecdaee000     0x7fbecdcb1000   0x1c3000    0xee000  r-xp   /usr/lib/x86_64-linux-gnu/libicui18n.so.74.2
+      0x7fbecdcb1000     0x7fbecdd3a000    0x89000   0x2b1000  r--p   /usr/lib/x86_64-linux-gnu/libicui18n.so.74.2
+      0x7fbecdd3a000     0x7fbecdd4c000    0x12000   0x339000  r--p   /usr/lib/x86_64-linux-gnu/libicui18n.so.74.2
+      0x7fbecdd4c000     0x7fbecdd4d000     0x1000   0x34b000  rw-p   /usr/lib/x86_64-linux-gnu/libicui18n.so.74.2
+      0x7fbecdd4d000     0x7fbecdd4e000     0x1000        0x0  rw-p   
+      0x7fbecdd56000     0x7fbecdd57000     0x1000        0x0  ---p   
+      0x7fbecdd57000     0x7fbecdd5a000     0x3000        0x0  rw-p   
+      0x7fbecdd5a000     0x7fbecdd5b000     0x1000        0x0  ---p   
+      0x7fbecdd5b000     0x7fbecdd5e000     0x3000        0x0  rw-p   
+      0x7fbecdd5e000     0x7fbecdd9e000    0x40000        0x0  rw-p   [anon: Go: immortal metadata]
+      0x7fbecdd9e000     0x7fbecddc0000    0x22000        0x0  r--s   /usr/lib/dotnet/shared/Microsoft.NETCore.App/10.0.6/System.Memory.dll
+      0x7fbecddc0000     0x7fbecde00000    0x40000        0x0  rw-p   [anon: Go: immortal metadata]
+      0x7fbecde00000     0x7fbecde01000     0x1000        0x0  r--p   /usr/lib/x86_64-linux-gnu/libicudata.so.74.2
+      0x7fbecde01000     0x7fbecde02000     0x1000     0x1000  r-xp   /usr/lib/x86_64-linux-gnu/libicudata.so.74.2
+      0x7fbecde02000     0x7fbecfb5e000  0x1d5c000     0x2000  r--p   /usr/lib/x86_64-linux-gnu/libicudata.so.74.2
+      0x7fbecfb5e000     0x7fbecfb5f000     0x1000  0x1d5d000  r--p   /usr/lib/x86_64-linux-gnu/libicudata.so.74.2
+      0x7fbecfb5f000     0x7fbecfb60000     0x1000  0x1d5e000  rw-p   /usr/lib/x86_64-linux-gnu/libicudata.so.74.2
+      0x7fbecfb60000     0x7fbecfb61000     0x1000        0x0  ---p   
+      0x7fbecfb61000     0x7fbecfb64000     0x3000        0x0  rw-p   
+      0x7fbecfb64000     0x7fbecfb65000     0x1000        0x0  ---p   
+      0x7fbecfb65000     0x7fbecfb68000     0x3000        0x0  rw-p   
+      0x7fbecfb68000     0x7fbecfb69000     0x1000        0x0  ---p   
+      0x7fbecfb69000     0x7fbecfb6c000     0x3000        0x0  rw-p   
+      0x7fbecfb6c000     0x7fbecfb6d000     0x1000        0x0  ---p   
+      0x7fbecfb6d000     0x7fbecfb70000     0x3000        0x0  rw-p   
+      0x7fbecfb70000     0x7fbecfb71000     0x1000        0x0  ---p   
+      0x7fbecfb71000     0x7fbecfb74000     0x3000        0x0  rw-p   
+      0x7fbecfb74000     0x7fbecfb75000     0x1000        0x0  ---p   
+      0x7fbecfb75000     0x7fbecfb78000     0x3000        0x0  rw-p   
+      0x7fbecfb78000     0x7fbecfb79000     0x1000        0x0  ---p   
+      0x7fbecfb79000     0x7fbecfb7c000     0x3000        0x0  rw-p   
+      0x7fbecfb7c000     0x7fbecfb7d000     0x1000        0x0  ---p   
+      0x7fbecfb7d000     0x7fbecfb80000     0x3000        0x0  rw-p   
+      0x7fbecfb80000     0x7fbecfc00000    0x80000        0x0  rw-p   [anon: Go: immortal metadata]
+      0x7fbecfc00000     0x7fbecfc68000    0x68000        0x0  r--p   /usr/lib/x86_64-linux-gnu/libicuuc.so.74.2
+      0x7fbecfc68000     0x7fbecfd6d000   0x105000    0x68000  r-xp   /usr/lib/x86_64-linux-gnu/libicuuc.so.74.2
+      0x7fbecfd6d000     0x7fbecfdf7000    0x8a000   0x16d000  r--p   /usr/lib/x86_64-linux-gnu/libicuuc.so.74.2
+      0x7fbecfdf7000     0x7fbecfe0a000    0x13000   0x1f7000  r--p   /usr/lib/x86_64-linux-gnu/libicuuc.so.74.2
+      0x7fbecfe0a000     0x7fbecfe0b000     0x1000   0x20a000  rw-p   /usr/lib/x86_64-linux-gnu/libicuuc.so.74.2
+      0x7fbecfe0b000     0x7fbecfe0d000     0x2000        0x0  rw-p   
+      0x7fbecfe10000     0x7fbecfe11000     0x1000        0x0  ---p   
+      0x7fbecfe11000     0x7fbecfe14000     0x3000        0x0  rw-p   
+      0x7fbecfe14000     0x7fbecfe15000     0x1000        0x0  ---p   
+      0x7fbecfe15000     0x7fbecfe18000     0x3000        0x0  rw-p   
+      0x7fbecfe18000     0x7fbecfe19000     0x1000        0x0  ---p   
+      0x7fbecfe19000     0x7fbecfe1c000     0x3000        0x0  rw-p   
+      0x7fbecfe1c000     0x7fbecfea0000    0x84000        0x0  r--s   /usr/lib/dotnet/shared/Microsoft.NETCore.App/10.0.6/System.Linq.dll
+      0x7fbecfea0000     0x7fbed0000000   0x160000        0x0  rw-p   [anon: Go: profiler hash buckets]
+      0x7fbed0000000     0x7fbed0021000    0x21000        0x0  rw-p   
+      0x7fbed0021000     0x7fbed4000000  0x3fdf000        0x0  ---p   
+      0x7fbed4000000     0x7fbed4021000    0x21000        0x0  rw-p   
+      0x7fbed4021000     0x7fbed8000000  0x3fdf000        0x0  ---p   
+      0x7fbed8000000     0x7fbed8021000    0x21000        0x0  rw-p   
+      0x7fbed8021000     0x7fbedc000000  0x3fdf000        0x0  ---p   
+      0x7fbedc000000     0x7fbedc021000    0x21000        0x0  rw-p   
+      0x7fbedc021000     0x7fbee0000000  0x3fdf000        0x0  ---p   
+      0x7fbee0000000     0x7fbee0021000    0x21000        0x0  rw-p   
+      0x7fbee0021000     0x7fbee4000000  0x3fdf000        0x0  ---p   
+      0x7fbee4000000     0x7fbee4021000    0x21000        0x0  rw-p   
+      0x7fbee4021000     0x7fbee8000000  0x3fdf000        0x0  ---p   
+      0x7fbee8000000     0x7fbee8021000    0x21000        0x0  rw-p   
+      0x7fbee8021000     0x7fbeec000000  0x3fdf000        0x0  ---p   
+      0x7fbeec000000     0x7fbeec021000    0x21000        0x0  rw-p   
+      0x7fbeec021000     0x7fbef0000000  0x3fdf000        0x0  ---p   
+      0x7fbef0000000     0x7fbef0021000    0x21000        0x0  rw-p   
+      0x7fbef0021000     0x7fbef4000000  0x3fdf000        0x0  ---p   
+      0x7fbef4000000     0x7fbef4021000    0x21000        0x0  rw-p   
+      0x7fbef4021000     0x7fbef8000000  0x3fdf000        0x0  ---p   
+      0x7fbef8000000     0x7fbef8021000    0x21000        0x0  rw-p   
+      0x7fbef8021000     0x7fbefc000000  0x3fdf000        0x0  ---p   
+      0x7fbefc000000     0x7fbefc021000    0x21000        0x0  rw-p   
+      0x7fbefc021000     0x7fbf00000000  0x3fdf000        0x0  ---p   
+      0x7fbf00000000     0x7fbf00021000    0x21000        0x0  rw-p   
+      0x7fbf00021000     0x7fbf04000000  0x3fdf000        0x0  ---p   
+      0x7fbf04000000     0x7fbf04021000    0x21000        0x0  rw-p   
+      0x7fbf04021000     0x7fbf08000000  0x3fdf000        0x0  ---p   
+      0x7fbf08000000     0x7fbf08021000    0x21000        0x0  rw-p   
+      0x7fbf08021000     0x7fbf0c000000  0x3fdf000        0x0  ---p   
+      0x7fbf0c000000     0x7fbf0c021000    0x21000        0x0  rw-p   
+      0x7fbf0c021000     0x7fbf10000000  0x3fdf000        0x0  ---p   
+      0x7fbf10000000     0x7fbf10021000    0x21000        0x0  rw-p   
+      0x7fbf10021000     0x7fbf14000000  0x3fdf000        0x0  ---p   
+      0x7fbf14000000     0x7fbf14021000    0x21000        0x0  rw-p   
+      0x7fbf14021000     0x7fbf18000000  0x3fdf000        0x0  ---p   
+      0x7fbf18000000     0x7fbf18021000    0x21000        0x0  rw-p   
+      0x7fbf18021000     0x7fbf1c000000  0x3fdf000        0x0  ---p   
+      0x7fbf1c000000     0x7fbf1c021000    0x21000        0x0  rw-p   
+      0x7fbf1c021000     0x7fbf20000000  0x3fdf000        0x0  ---p   
+      0x7fbf20000000     0x7fbf20021000    0x21000        0x0  rw-p   
+      0x7fbf20021000     0x7fbf24000000  0x3fdf000        0x0  ---p   
+      0x7fbf24000000     0x7fbf24021000    0x21000        0x0  rw-p   
+      0x7fbf24021000     0x7fbf28000000  0x3fdf000        0x0  ---p   
+      0x7fbf28000000     0x7fbf28021000    0x21000        0x0  rw-p   
+      0x7fbf28021000     0x7fbf2c000000  0x3fdf000        0x0  ---p   
+      0x7fbf2c000000     0x7fbf2c021000    0x21000        0x0  rw-p   
+      0x7fbf2c021000     0x7fbf30000000  0x3fdf000        0x0  ---p   
+      0x7fbf30000000     0x7fbf30021000    0x21000        0x0  rw-p   
+      0x7fbf30021000     0x7fbf34000000  0x3fdf000        0x0  ---p   
+      0x7fbf34000000     0x7fbf34021000    0x21000        0x0  rw-p   
+      0x7fbf34021000     0x7fbf38000000  0x3fdf000        0x0  ---p   
+      0x7fbf38000000     0x7fbf38021000    0x21000        0x0  rw-p   
+      0x7fbf38021000     0x7fbf3c000000  0x3fdf000        0x0  ---p   
+      0x7fbf3c000000     0x7fbf3c021000    0x21000        0x0  rw-p   
+      0x7fbf3c021000     0x7fbf40000000  0x3fdf000        0x0  ---p   
+      0x7fbf40000000     0x7fbf40021000    0x21000        0x0  rw-p   
+      0x7fbf40021000     0x7fbf44000000  0x3fdf000        0x0  ---p   
+      0x7fbf44000000     0x7fbf44021000    0x21000        0x0  rw-p   
+      0x7fbf44021000     0x7fbf48000000  0x3fdf000        0x0  ---p   
+      0x7fbf48000000     0x7fbf48021000    0x21000        0x0  rw-p   
+      0x7fbf48021000     0x7fbf4c000000  0x3fdf000        0x0  ---p   
+      0x7fbf4c000000     0x7fbf4c021000    0x21000        0x0  rw-p   
+      0x7fbf4c021000     0x7fbf50000000  0x3fdf000        0x0  ---p   
+      0x7fbf50000000     0x7fbf50021000    0x21000        0x0  rw-p   
+      0x7fbf50021000     0x7fbf54000000  0x3fdf000        0x0  ---p   
+      0x7fbf54000000     0x7fbf54001000     0x1000        0x0  ---p   
+      0x7fbf54001000     0x7fbf54004000     0x3000        0x0  rw-p   
+      0x7fbf54004000     0x7fbf54005000     0x1000        0x0  ---p   
+      0x7fbf54005000     0x7fbf54008000     0x3000        0x0  rw-p   
+      0x7fbf54008000     0x7fbf54009000     0x1000        0x0  ---p   
+      0x7fbf54009000     0x7fbf5400c000     0x3000        0x0  rw-p   
+      0x7fbf5400c000     0x7fbf5400d000     0x1000        0x0  ---p   
+      0x7fbf5400d000     0x7fbf54010000     0x3000        0x0  rw-p   
+      0x7fbf54010000     0x7fbf54011000     0x1000        0x0  ---p   
+      0x7fbf54011000     0x7fbf54014000     0x3000        0x0  rw-p   
+      0x7fbf54014000     0x7fbf54015000     0x1000        0x0  ---p   
+      0x7fbf54015000     0x7fbf54018000     0x3000        0x0  rw-p   
+      0x7fbf54018000     0x7fbf54019000     0x1000        0x0  ---p   
+      0x7fbf54019000     0x7fbf5401c000     0x3000        0x0  rw-p   
+      0x7fbf5401c000     0x7fbf5401d000     0x1000        0x0  ---p   
+      0x7fbf5401d000     0x7fbf54020000     0x3000        0x0  rw-p   
+      0x7fbf54020000     0x7fbf54021000     0x1000        0x0  ---p   
+      0x7fbf54021000     0x7fbf54024000     0x3000        0x0  rw-p   
+      0x7fbf54024000     0x7fbf54036000    0x12000        0x0  rw-p   [anon: Go: immortal metadata]
+      0x7fbf54036000     0x7fbf54037000     0x1000        0x0  ---p   
+      0x7fbf54037000     0x7fbf5403a000     0x3000        0x0  rw-p   
+      0x7fbf5403a000     0x7fbf5403b000     0x1000        0x0  ---p   
+      0x7fbf5403b000     0x7fbf5403e000     0x3000        0x0  rw-p   
+      0x7fbf5403e000     0x7fbf5407e000    0x40000        0x0  rw-p   [anon: Go: immortal metadata]
+      0x7fbf5407e000     0x7fbf5417e000   0x100000        0x0  rw-p   [anon: Go: page alloc index]
+      0x7fbf5417e000     0x7fbf54235000    0xb7000        0x0  ---p   [anon: Go: page summary]
+      0x7fbf54235000     0x7fbf54236000     0x1000        0x0  rw-p   [anon: Go: page alloc]
+      0x7fbf54236000     0x7fbf5427e000    0x48000        0x0  ---p   [anon: Go: page summary]
+      0x7fbf5427e000     0x7fbf5429a000    0x1c000        0x0  r--p   /home/egon/Code/gist/dotnet-repro/libgolib.so
+      0x7fbf5429a000     0x7fbf54318000    0x7e000    0x1c000  r-xp   /home/egon/Code/gist/dotnet-repro/libgolib.so
+      0x7fbf54318000     0x7fbf543aa000    0x92000    0x9a000  r--p   /home/egon/Code/gist/dotnet-repro/libgolib.so
+      0x7fbf543aa000     0x7fbf543c2000    0x18000   0x12b000  r--p   /home/egon/Code/gist/dotnet-repro/libgolib.so
+      0x7fbf543c2000     0x7fbf543ca000     0x8000   0x143000  rw-p   /home/egon/Code/gist/dotnet-repro/libgolib.so
+      0x7fbf543ca000     0x7fbf54400000    0x36000        0x0  rw-p   
+      0x7fbf54400000     0x7fbf544b4000    0xb4000        0x0  r--p   /usr/lib/dotnet/shared/Microsoft.NETCore.App/10.0.6/libclrjit.so
+      0x7fbf544b4000     0x7fbf54716000   0x262000    0xb3000  r-xp   /usr/lib/dotnet/shared/Microsoft.NETCore.App/10.0.6/libclrjit.so
+      0x7fbf54716000     0x7fbf54729000    0x13000   0x314000  r--p   /usr/lib/dotnet/shared/Microsoft.NETCore.App/10.0.6/libclrjit.so
+      0x7fbf54729000     0x7fbf5472b000     0x2000   0x326000  rw-p   /usr/lib/dotnet/shared/Microsoft.NETCore.App/10.0.6/libclrjit.so
+      0x7fbf5472b000     0x7fbf54765000    0x3a000        0x0  rw-p   
+      0x7fbf54766000     0x7fbf54767000     0x1000        0x0  ---p   
+      0x7fbf54767000     0x7fbf5476a000     0x3000        0x0  rw-p   
+      0x7fbf5476a000     0x7fbf5476b000     0x1000        0x0  ---p   
+      0x7fbf5476b000     0x7fbf5476e000     0x3000        0x0  rw-p   
+      0x7fbf5476e000     0x7fbf5476f000     0x1000        0x0  ---p   
+      0x7fbf5476f000     0x7fbf54772000     0x3000        0x0  rw-p   
+      0x7fbf54772000     0x7fbf54773000     0x1000        0x0  ---p   
+      0x7fbf54773000     0x7fbf54776000     0x3000        0x0  rw-p   
+      0x7fbf54776000     0x7fbf547b6000    0x40000        0x0  rw-p   [anon: Go: immortal metadata]
+      0x7fbf547b6000     0x7fbf547b7000     0x1000        0x0  ---p   
+      0x7fbf547b7000     0x7fbf547ba000     0x3000        0x0  rw-p   
+      0x7fbf547ba000     0x7fbf547bb000     0x1000        0x0  ---p   
+      0x7fbf547bb000     0x7fbf547be000     0x3000        0x0  rw-p   
+      0x7fbf547be000     0x7fbf547bf000     0x1000        0x0  ---p   
+      0x7fbf547bf000     0x7fbf547ff000    0x40000        0x0  rw-p   
+      0x7fbf547ff000     0x7fbf54800000     0x1000        0x0  ---p   
+      0x7fbf54800000     0x7fbf55000000   0x800000        0x0  rw-p   
+      0x7fbf55000000     0x7fbf55010000    0x10000        0x0  rw-p   
+      0x7fbf55010000     0x7fbf55400000   0x3f0000        0x0  ---p   
+      0x7fbf55400000     0x7fbf561bb000   0xdbb000        0x0  r--s   /usr/lib/dotnet/shared/Microsoft.NETCore.App/10.0.6/System.Private.CoreLib.dll
+      0x7fbf561bc000     0x7fbf561bd000     0x1000        0x0  ---p   
+      0x7fbf561bd000     0x7fbf561c0000     0x3000        0x0  rw-p   
+      0x7fbf561c0000     0x7fbf561c1000     0x1000        0x0  ---p   
+      0x7fbf561c1000     0x7fbf561c4000     0x3000        0x0  rw-p   
+      0x7fbf561c4000     0x7fbf561d9000    0x15000        0x0  r--s   /usr/lib/dotnet/shared/Microsoft.NETCore.App/10.0.6/System.Collections.NonGeneric.dll
+      0x7fbf561d9000     0x7fbf561da000     0x1000        0x0  ---p   
+      0x7fbf561da000     0x7fbf561dd000     0x3000        0x0  rw-p   
+      0x7fbf561dd000     0x7fbf561ec000     0xf000        0x0  r--s   /usr/lib/dotnet/shared/Microsoft.NETCore.App/10.0.6/System.ComponentModel.Primitives.dll
+      0x7fbf561ec000     0x7fbf5622b000    0x3f000        0x0  r--s   /usr/lib/dotnet/shared/Microsoft.NETCore.App/10.0.6/System.Diagnostics.Process.dll
+      0x7fbf5622b000     0x7fbf5622c000     0x1000        0x0  ---p   
+      0x7fbf5622c000     0x7fbf5622f000     0x3000        0x0  rw-p   
+      0x7fbf5622f000     0x7fbf5626f000    0x40000        0x0  rw-p   [anon: Go: immortal metadata]
+      0x7fbf5626f000     0x7fbf5627f000    0x10000        0x0  rw-p   [anon: Go: gc bits]
+      0x7fbf5627f000     0x7fbf5628f000    0x10000        0x0  rw-p   [anon: Go: allspans array]
+      0x7fbf5628f000     0x7fbf562a1000    0x12000        0x0  rw-p   [anon: Go: immortal metadata]
+      0x7fbf562a1000     0x7fbf562c1000    0x20000        0x0  rw-p   [anon: Go: page alloc]
+      0x7fbf562c1000     0x7fbf56301000    0x40000        0x0  rw-p   [anon: Go: immortal metadata]
+      0x7fbf56301000     0x7fbf56303000     0x2000        0x0  r--s   /usr/lib/dotnet/shared/Microsoft.NETCore.App/10.0.6/Microsoft.Win32.Primitives.dll
+      0x7fbf56303000     0x7fbf56305000     0x2000   0x115000  rw-s   /memfd:doublemapper (deleted)
+      0x7fbf56305000     0x7fbf5631c000    0x17000        0x0  r--s   /usr/lib/dotnet/shared/Microsoft.NETCore.App/10.0.6/System.Runtime.InteropServices.dll
+      0x7fbf5631c000     0x7fbf5632c000    0x10000        0x0  r--s   /usr/lib/dotnet/shared/Microsoft.NETCore.App/10.0.6/System.Threading.dll
+      0x7fbf5632c000     0x7fbf5635a000    0x2e000        0x0  r--s   /usr/lib/dotnet/shared/Microsoft.NETCore.App/10.0.6/System.Console.dll
+      0x7fbf5635a000     0x7fbf56363000     0x9000        0x0  r--s   /usr/lib/dotnet/shared/Microsoft.NETCore.App/10.0.6/System.Runtime.dll
+      0x7fbf56363000     0x7fbf56366000     0x3000        0x0  r--s   /home/egon/Code/gist/dotnet-repro/bin/Release/net10.0/repro-dotnet.dll
+      0x7fbf56366000     0x7fbf56372000     0xc000        0x0  r--p   /usr/lib/dotnet/shared/Microsoft.NETCore.App/10.0.6/libSystem.Native.so
+      0x7fbf56372000     0x7fbf5637f000     0xd000     0xb000  r-xp   /usr/lib/dotnet/shared/Microsoft.NETCore.App/10.0.6/libSystem.Native.so
+      0x7fbf5637f000     0x7fbf56380000     0x1000    0x17000  r--p   /usr/lib/dotnet/shared/Microsoft.NETCore.App/10.0.6/libSystem.Native.so
+      0x7fbf56380000     0x7fbf56381000     0x1000    0x17000  rw-p   /usr/lib/dotnet/shared/Microsoft.NETCore.App/10.0.6/libSystem.Native.so
+      0x7fbf56381000     0x7fbf56382000     0x1000        0x0  ---p   
+      0x7fbf56382000     0x7fbf56385000     0x3000        0x0  rw-p   
+      0x7fbf56385000     0x7fbf56395000    0x10000        0x0  rw-p   
+      0x7fbf56395000     0x7fbf56396000     0x1000        0x0  ---p   
+      0x7fbf56396000     0x7fbf56399000     0x3000        0x0  rw-p   
+      0x7fbf56399000     0x7fbf5639a000     0x1000        0x0  ---p   
+      0x7fbf5639a000     0x7fbf56b9a000   0x800000        0x0  rw-p   
+      0x7fbf56b9a000     0x7fbf56b9b000     0x1000        0x0  ---p   
+      0x7fbf56b9b000     0x7fbf56b9e000     0x3000        0x0  rw-p   
+      0x7fbf56b9e000     0x7fbf56b9f000     0x1000        0x0  ---p   
+      0x7fbf56b9f000     0x7fbf56c1f000    0x80000        0x0  rw-p   
+      0x7fbf56c1f000     0x7fbf56c44000    0x25000        0x0  rw-p   
+      0x7fbf56c44000     0x7fbf56c45000     0x1000        0x0  ---p   
+      0x7fbf56c45000     0x7fbf56c48000     0x3000        0x0  rw-p   
+      0x7fbf56c48000     0x7fbf56c49000     0x1000        0x0  ---p   
+      0x7fbf56c49000     0x7fbf56cc9000    0x80000        0x0  rw-p   
+      0x7fbf56cc9000     0x7fbf56cee000    0x25000        0x0  rw-p   
+      0x7fbf56cee000     0x7fbf56cef000     0x1000        0x0  ---p   
+      0x7fbf56cef000     0x7fbf56cf2000     0x3000        0x0  rw-p   
+      0x7fbf56cf2000     0x7fbf56cf3000     0x1000        0x0  ---p   
+      0x7fbf56cf3000     0x7fbf56d73000    0x80000        0x0  rw-p   
+      0x7fbf56d73000     0x7fbf56d98000    0x25000        0x0  rw-p   
+      0x7fbf56d98000     0x7fbf56d99000     0x1000        0x0  ---p   
+      0x7fbf56d99000     0x7fbf56d9c000     0x3000        0x0  rw-p   
+      0x7fbf56d9c000     0x7fbf56d9d000     0x1000        0x0  ---p   
+      0x7fbf56d9d000     0x7fbf56e1d000    0x80000        0x0  rw-p   
+      0x7fbf56e1d000     0x7fbf56e42000    0x25000        0x0  rw-p   
+      0x7fbf56e42000     0x7fbf56e43000     0x1000        0x0  ---p   
+      0x7fbf56e43000     0x7fbf56ec3000    0x80000        0x0  rw-p   
+      0x7fbf56ec3000     0x7fbf56ee8000    0x25000        0x0  rw-p   
+      0x7fbf56ee8000     0x7fbf56ee9000     0x1000        0x0  ---p   
+      0x7fbf56ee9000     0x7fbf56f69000    0x80000        0x0  rw-p   
+      0x7fbf56f69000     0x7fbf56f8e000    0x25000        0x0  rw-p   
+      0x7fbf56f8e000     0x7fbf56f8f000     0x1000        0x0  ---p   
+      0x7fbf56f8f000     0x7fbf5700f000    0x80000        0x0  rw-p   
+      0x7fbf5700f000     0x7fbf57034000    0x25000        0x0  rw-p   
+      0x7fbf57034000     0x7fbf57035000     0x1000        0x0  ---p   
+      0x7fbf57035000     0x7fbf570b5000    0x80000        0x0  rw-p   
+      0x7fbf570b5000     0x7fbf570da000    0x25000        0x0  rw-p   
+      0x7fbf570da000     0x7fbf570db000     0x1000        0x0  ---p   
+      0x7fbf570db000     0x7fbf5715b000    0x80000        0x0  rw-p   
+      0x7fbf5715b000     0x7fbf57180000    0x25000        0x0  rw-p   
+      0x7fbf57180000     0x7fbf57181000     0x1000        0x0  ---p   
+      0x7fbf57181000     0x7fbf57201000    0x80000        0x0  rw-p   
+      0x7fbf57201000     0x7fbf57226000    0x25000        0x0  rw-p   
+      0x7fbf57226000     0x7fbf57227000     0x1000        0x0  ---p   
+      0x7fbf57227000     0x7fbf572a7000    0x80000        0x0  rw-p   
+      0x7fbf572a7000     0x7fbf572cc000    0x25000        0x0  rw-p   
+      0x7fbf572cc000     0x7fbf572cd000     0x1000        0x0  ---p   
+      0x7fbf572cd000     0x7fbf5734d000    0x80000        0x0  rw-p   
+      0x7fbf5734d000     0x7fbf5734e000     0x1000        0x0  ---p   
+      0x7fbf5734e000     0x7fbf573ce000    0x80000        0x0  rw-p   
+      0x7fbf573ce000     0x7fbf573cf000     0x1000        0x0  ---p   
+      0x7fbf573cf000     0x7fbf5744f000    0x80000        0x0  rw-p   
+      0x7fbf5744f000     0x7fbf57580000   0x131000        0x0  rw-p   
+      0x7fbf57580000     0x7fbf5f44f000  0x7ecf000        0x0  ---p   
+      0x7fbf5f44f000     0x7fbf5f580000   0x131000        0x0  rw-p   
+      0x7fbf5f580000     0x7fbf6744f000  0x7ecf000        0x0  ---p   
+      0x7fbf6744f000     0x7fbf67450000     0x1000        0x0  rw-p   
+      0x7fbf67450000     0x7fbf6746f000    0x1f000        0x0  ---p   
+      0x7fbf6746f000     0x7fbf67470000     0x1000        0x0  rw-p   
+      0x7fbf67470000     0x7fbf6747f000     0xf000        0x0  ---p   
+      0x7fbf6747f000     0x7fbf6749b000    0x1c000        0x0  rw-p   
+      0x7fbf6749b000     0x7fbf68000000   0xb65000        0x0  ---p   
+      0x7fbf68000000     0x7fbf68011000    0x11000        0x0  rw-p   
+      0x7fbf68011000     0x7fbf6a000000  0x1fef000        0x0  ---p   
+      0x7fbf6a000000     0x7fbf6a001000     0x1000        0x0  rw-p   
+      0x7fbf6a001000     0x7fbf6c000000  0x1fff000        0x0  ---p   
+      0x7fbf6c000000     0x7fbf6c001000     0x1000        0x0  rw-p   
+      0x7fbf6c001000     0x7fbf6e000000  0x1fff000        0x0  ---p   
+      0x7fbf6e000000     0x7fbf6e001000     0x1000        0x0  rw-p   
+      0x7fbf6e001000     0x7fbf70000000  0x1fff000        0x0  ---p   
+      0x7fbf70000000     0x7fbf70001000     0x1000        0x0  rw-p   
+      0x7fbf70001000     0x7fbf72000000  0x1fff000        0x0  ---p   
+      0x7fbf72000000     0x7fbf72001000     0x1000        0x0  rw-p   
+      0x7fbf72001000     0x7fbf74000000  0x1fff000        0x0  ---p   
+      0x7fbf74000000     0x7fbf74001000     0x1000        0x0  rw-p   
+      0x7fbf74001000     0x7fbf76000000  0x1fff000        0x0  ---p   
+      0x7fbf76000000     0x7fbf76001000     0x1000        0x0  rw-p   
+      0x7fbf76001000     0x7fbf78000000  0x1fff000        0x0  ---p   
+      0x7fbf78000000     0x7fbf78001000     0x1000        0x0  rw-p   
+      0x7fbf78001000     0x7fbf7a000000  0x1fff000        0x0  ---p   
+      0x7fbf7a000000     0x7fbf7a001000     0x1000        0x0  rw-p   
+      0x7fbf7a001000     0x7fbf7c000000  0x1fff000        0x0  ---p   
+      0x7fbf7c000000     0x7fbf7c001000     0x1000        0x0  rw-p   
+      0x7fbf7c001000     0x7fbf7e000000  0x1fff000        0x0  ---p   
+      0x7fbf7e000000     0x7fbf7e001000     0x1000        0x0  rw-p   
+      0x7fbf7e001000     0x7fbf80000000  0x1fff000        0x0  ---p   
+      0x7fbf80000000     0x7fbf80001000     0x1000        0x0  rw-p   
+      0x7fbf80001000     0x7fbf82000000  0x1fff000        0x0  ---p   
+      0x7fbf82000000     0x7fbf82001000     0x1000        0x0  rw-p   
+      0x7fbf82001000     0x7fbf84000000  0x1fff000        0x0  ---p   
+      0x7fbf84000000     0x7fbf84001000     0x1000        0x0  rw-p   
+      0x7fbf84001000     0x7fbf86000000  0x1fff000        0x0  ---p   
+      0x7fbf86000000     0x7fbf86001000     0x1000        0x0  rw-p   
+      0x7fbf86001000     0x7fbf88000000  0x1fff000        0x0  ---p   
+      0x7fbf88000000     0x7fbf88001000     0x1000        0x0  rw-p   
+      0x7fbf88001000     0x7fbf8a000000  0x1fff000        0x0  ---p   
+      0x7fbf8a000000     0x7fbf8a001000     0x1000        0x0  rw-p   
+      0x7fbf8a001000     0x7fbf8c000000  0x1fff000        0x0  ---p   
+      0x7fbf8c000000     0x7fbf8c001000     0x1000        0x0  rw-p   
+      0x7fbf8c001000     0x7fbf8e000000  0x1fff000        0x0  ---p   
+      0x7fbf8e000000     0x7fbf8e001000     0x1000        0x0  rw-p   
+      0x7fbf8e001000     0x7fbf90000000  0x1fff000        0x0  ---p   
+      0x7fbf90000000     0x7fbf90001000     0x1000        0x0  rw-p   
+      0x7fbf90001000     0x7fbf92000000  0x1fff000        0x0  ---p   
+      0x7fbf92000000     0x7fbf92001000     0x1000        0x0  rw-p   
+      0x7fbf92001000     0x7fbf94000000  0x1fff000        0x0  ---p   
+      0x7fbf94000000     0x7fbf94001000     0x1000        0x0  rw-p   
+      0x7fbf94001000     0x7fbf96000000  0x1fff000        0x0  ---p   
+      0x7fbf96000000     0x7fbf96001000     0x1000        0x0  rw-p   
+      0x7fbf96001000     0x7fbf98000000  0x1fff000        0x0  ---p   
+      0x7fbf98000000     0x7fbf98001000     0x1000        0x0  rw-p   
+      0x7fbf98001000     0x7fbf9a000000  0x1fff000        0x0  ---p   
+      0x7fbf9a000000     0x7fbf9a001000     0x1000        0x0  rw-p   
+      0x7fbf9a001000     0x7fbf9c000000  0x1fff000        0x0  ---p   
+      0x7fbf9c000000     0x7fbf9c001000     0x1000        0x0  rw-p   
+      0x7fbf9c001000     0x7fbf9e000000  0x1fff000        0x0  ---p   
+      0x7fbf9e000000     0x7fbf9e001000     0x1000        0x0  rw-p   
+      0x7fbf9e001000     0x7fbfa0000000  0x1fff000        0x0  ---p   
+      0x7fbfa0000000     0x7fbfa0001000     0x1000        0x0  rw-p   
+      0x7fbfa0001000     0x7fbfa2000000  0x1fff000        0x0  ---p   
+      0x7fbfa2000000     0x7fbfa2001000     0x1000        0x0  rw-p   
+      0x7fbfa2001000     0x7fbfa4000000  0x1fff000        0x0  ---p   
+      0x7fbfa4000000     0x7fbfa4001000     0x1000        0x0  rw-p   
+      0x7fbfa4001000     0x7fbfa6000000  0x1fff000        0x0  ---p   
+      0x7fbfa6000000     0x7fbfa6001000     0x1000        0x0  rw-p   
+      0x7fbfa6001000     0x7fbfa8000000  0x1fff000        0x0  ---p   
+      0x7fbfa8000000     0x7fbfa8001000     0x1000        0x0  rw-p   
+      0x7fbfa8001000     0x7fbfa8400000   0x3ff000        0x0  ---p   
+      0x7fbfa8400000     0x7fbfa8401000     0x1000        0x0  rw-p   
+      0x7fbfa8401000     0x7fbfa8800000   0x3ff000        0x0  ---p   
+      0x7fbfa8800000     0x7fbfa8911000   0x111000        0x0  rw-p   
+      0x7fbfa8911000     0x7fbfa8c00000   0x2ef000        0x0  ---p   
+      0x7fbfa8c00000     0x7fbfa8c01000     0x1000        0x0  rw-p   
+      0x7fbfa8c01000     0x7fbfa9000000   0x3ff000        0x0  ---p   
+      0x7fbfa9000000     0x7fbfa9001000     0x1000        0x0  rw-p   
+      0x7fbfa9001000     0x7fbfa9400000   0x3ff000        0x0  ---p   
+      0x7fbfa9400000     0x7fbfa9401000     0x1000        0x0  rw-p   
+      0x7fbfa9401000     0x7fbfa9800000   0x3ff000        0x0  ---p   
+      0x7fbfa9800000     0x7fbfa9801000     0x1000        0x0  rw-p   
+      0x7fbfa9801000     0x7fbfa9c00000   0x3ff000        0x0  ---p   
+      0x7fbfa9c00000     0x7fbfa9c01000     0x1000        0x0  rw-p   
+      0x7fbfa9c01000     0x7fbfaa000000   0x3ff000        0x0  ---p   
+      0x7fbfaa000000     0x7fbfaa001000     0x1000        0x0  rw-p   
+      0x7fbfaa001000     0x7fbfaa400000   0x3ff000        0x0  ---p   
+      0x7fbfaa400000     0x7fbfaa401000     0x1000        0x0  rw-p   
+      0x7fbfaa401000     0x7fbfaa800000   0x3ff000        0x0  ---p   
+      0x7fbfaa800000     0x7fbfaa801000     0x1000        0x0  rw-p   
+      0x7fbfaa801000     0x7fbfaac00000   0x3ff000        0x0  ---p   
+      0x7fbfaac00000     0x7fbfaac01000     0x1000        0x0  rw-p   
+      0x7fbfaac01000     0x7fbfab000000   0x3ff000        0x0  ---p   
+      0x7fbfab000000     0x7fbfab001000     0x1000        0x0  rw-p   
+      0x7fbfab001000     0x7fbfab400000   0x3ff000        0x0  ---p   
+      0x7fbfab400000     0x7fbfab401000     0x1000        0x0  rw-p   
+      0x7fbfab401000     0x7fbfab800000   0x3ff000        0x0  ---p   
+      0x7fbfab800000     0x7fbfab801000     0x1000        0x0  rw-p   
+      0x7fbfab801000     0x7fbfabc00000   0x3ff000        0x0  ---p   
+      0x7fbfabc00000     0x7fbfabc01000     0x1000        0x0  rw-p   
+      0x7fbfabc01000     0x7fbfac000000   0x3ff000        0x0  ---p   
+      0x7fbfac000000     0x7fbfac001000     0x1000        0x0  rw-p   
+      0x7fbfac001000     0x7fbfac400000   0x3ff000        0x0  ---p   
+      0x7fbfac400000     0x7fbfac401000     0x1000        0x0  rw-p   
+      0x7fbfac401000     0x7fbfac800000   0x3ff000        0x0  ---p   
+      0x7fbfac800000     0x7fbfac801000     0x1000        0x0  rw-p   
+      0x7fbfac801000     0x7fbfacc00000   0x3ff000        0x0  ---p   
+      0x7fbfacc00000     0x7fbfacc01000     0x1000        0x0  rw-p   
+      0x7fbfacc01000     0x7fbfad000000   0x3ff000        0x0  ---p   
+      0x7fbfad000000     0x7fbfad001000     0x1000        0x0  rw-p   
+      0x7fbfad001000     0x7fbfad400000   0x3ff000        0x0  ---p   
+      0x7fbfad400000     0x7fbfad401000     0x1000        0x0  rw-p   
+      0x7fbfad401000     0x7fbfad800000   0x3ff000        0x0  ---p   
+      0x7fbfad800000     0x7fbfad801000     0x1000        0x0  rw-p   
+      0x7fbfad801000     0x7fbfadc00000   0x3ff000        0x0  ---p   
+      0x7fbfadc00000     0x7fbfadc01000     0x1000        0x0  rw-p   
+      0x7fbfadc01000     0x7fbfae000000   0x3ff000        0x0  ---p   
+      0x7fbfae000000     0x7fbfae001000     0x1000        0x0  rw-p   
+      0x7fbfae001000     0x7fbfae400000   0x3ff000        0x0  ---p   
+      0x7fbfae400000     0x7fbfae401000     0x1000        0x0  rw-p   
+      0x7fbfae401000     0x7fbfae800000   0x3ff000        0x0  ---p   
+      0x7fbfae800000     0x7fbfae801000     0x1000        0x0  rw-p   
+      0x7fbfae801000     0x7fbfaec00000   0x3ff000        0x0  ---p   
+      0x7fbfaec00000     0x7fbfaec01000     0x1000        0x0  rw-p   
+      0x7fbfaec01000     0x7fbfaf000000   0x3ff000        0x0  ---p   
+      0x7fbfaf000000     0x7fbfaf001000     0x1000        0x0  rw-p   
+      0x7fbfaf001000     0x7fbfaf400000   0x3ff000        0x0  ---p   
+      0x7fbfaf400000     0x7fbfaf401000     0x1000        0x0  rw-p   
+      0x7fbfaf401000     0x7fbfaf800000   0x3ff000        0x0  ---p   
+      0x7fbfaf800000     0x7fbfaf801000     0x1000        0x0  rw-p   
+      0x7fbfaf801000     0x7fbfafc00000   0x3ff000        0x0  ---p   
+      0x7fbfafc00000     0x7fbfafc01000     0x1000        0x0  rw-p   
+      0x7fbfafc01000     0x7fbfb0000000   0x3ff000        0x0  ---p   
+      0x7fbfb0000000     0x7fbfb0001000     0x1000        0x0  rw-p   
+      0x7fbfb0001000     0x7fbfb0400000   0x3ff000        0x0  ---p   
+      0x7fbfb0400000     0x7fbfb0401000     0x1000        0x0  rw-p   
+      0x7fbfb0401000     0x7fbfb0800000   0x3ff000        0x0  ---p   
+      0x7fbfb0800000     0x7fbfb0801000     0x1000        0x0  rw-p   
+      0x7fbfb0801000     0x7fbfb0c00000   0x3ff000        0x0  ---p   
+      0x7fbfb0c00000     0x7fbfb0c01000     0x1000        0x0  rw-p   
+      0x7fbfb0c01000     0x7fbfb1000000   0x3ff000        0x0  ---p   
+      0x7fbfb1000000     0x7fbfb1001000     0x1000        0x0  rw-p   
+      0x7fbfb1001000     0x7fbfb1400000   0x3ff000        0x0  ---p   
+      0x7fbfb1400000     0x7fbfb1401000     0x1000        0x0  rw-p   
+      0x7fbfb1401000     0x7fbfb1800000   0x3ff000        0x0  ---p   
+      0x7fbfb1800000     0x7fbfb1801000     0x1000        0x0  rw-p   
+      0x7fbfb1801000     0x7fbfb1c00000   0x3ff000        0x0  ---p   
+      0x7fbfb1c00000     0x7fbfb1c01000     0x1000        0x0  rw-p   
+      0x7fbfb1c01000     0x7fbfb2000000   0x3ff000        0x0  ---p   
+      0x7fbfb2000000     0x7fbfb2001000     0x1000        0x0  rw-p   
+      0x7fbfb2001000     0x7fbfb2400000   0x3ff000        0x0  ---p   
+      0x7fbfb2400000     0x7fbfb2401000     0x1000        0x0  rw-p   
+      0x7fbfb2401000     0x7fbfb2800000   0x3ff000        0x0  ---p   
+      0x7fbfb2800000     0x7fbfb2801000     0x1000        0x0  rw-p   
+      0x7fbfb2801000     0x7fbfb2c00000   0x3ff000        0x0  ---p   
+      0x7fbfb2c00000     0x7fbfb2c01000     0x1000        0x0  rw-p   
+      0x7fbfb2c01000     0x7fbfb3000000   0x3ff000        0x0  ---p   
+      0x7fbfb3000000     0x7fbfb3001000     0x1000        0x0  rw-p   
+      0x7fbfb3001000     0x7fbfb3400000   0x3ff000        0x0  ---p   
+      0x7fbfb3400000     0x7fbfb3401000     0x1000        0x0  rw-p   
+      0x7fbfb3401000     0x7fbfb3800000   0x3ff000        0x0  ---p   
+      0x7fbfb3800000     0x7fbfb3801000     0x1000        0x0  rw-p   
+      0x7fbfb3801000     0x7fbfb3c00000   0x3ff000        0x0  ---p   
+      0x7fbfb3c00000     0x7fbfb3c01000     0x1000        0x0  rw-p   
+      0x7fbfb3c01000     0x7fbfb4000000   0x3ff000        0x0  ---p   
+      0x7fbfb4000000     0x7fbfb4001000     0x1000        0x0  rw-p   
+      0x7fbfb4001000     0x7fbfb4400000   0x3ff000        0x0  ---p   
+      0x7fbfb4400000     0x7fbfb4401000     0x1000        0x0  rw-p   
+      0x7fbfb4401000     0x7fbfb4800000   0x3ff000        0x0  ---p   
+      0x7fbfb4800000     0x7fbfb4801000     0x1000        0x0  rw-p   
+      0x7fbfb4801000     0x7fbfb4c00000   0x3ff000        0x0  ---p   
+      0x7fbfb4c00000     0x7fbfb4c01000     0x1000        0x0  rw-p   
+      0x7fbfb4c01000     0x7fbfb5000000   0x3ff000        0x0  ---p   
+      0x7fbfb5000000     0x7fbfb5001000     0x1000        0x0  rw-p   
+      0x7fbfb5001000     0x7fbfb5400000   0x3ff000        0x0  ---p   
+      0x7fbfb5400000     0x7fbfb5401000     0x1000        0x0  rw-p   
+      0x7fbfb5401000     0x7fbfb5800000   0x3ff000        0x0  ---p   
+      0x7fbfb5800000     0x7fbfb5801000     0x1000        0x0  rw-p   
+      0x7fbfb5801000     0x7fbfb5c00000   0x3ff000        0x0  ---p   
+      0x7fbfb5c00000     0x7fbfb5c01000     0x1000        0x0  rw-p   
+      0x7fbfb5c01000     0x7fbfb6000000   0x3ff000        0x0  ---p   
+      0x7fbfb6000000     0x7fbfb6001000     0x1000        0x0  rw-p   
+      0x7fbfb6001000     0x7fbfb6400000   0x3ff000        0x0  ---p   
+      0x7fbfb6400000     0x7fbfb6401000     0x1000        0x0  rw-p   
+      0x7fbfb6401000     0x7fbfb6800000   0x3ff000        0x0  ---p   
+      0x7fbfb6800000     0x7fbfb6801000     0x1000        0x0  rw-p   
+      0x7fbfb6801000     0x7fbfb6c00000   0x3ff000        0x0  ---p   
+      0x7fbfb6c00000     0x7fbfb6c01000     0x1000        0x0  rw-p   
+      0x7fbfb6c01000     0x7fbfb7000000   0x3ff000        0x0  ---p   
+      0x7fbfb7000000     0x7fbfb7001000     0x1000        0x0  rw-p   
+      0x7fbfb7001000     0x7fbfb7400000   0x3ff000        0x0  ---p   
+      0x7fbfb7400000     0x7fbfb7401000     0x1000        0x0  rw-p   
+      0x7fbfb7401000     0x7fbfb7800000   0x3ff000        0x0  ---p   
+      0x7fbfb7800000     0x7fbfb7801000     0x1000        0x0  rw-p   
+      0x7fbfb7801000     0x7fbfb7c00000   0x3ff000        0x0  ---p   
+      0x7fbfb7c00000     0x7fbfb7c01000     0x1000        0x0  rw-p   
+      0x7fbfb7c01000     0x7fbfb8000000   0x3ff000        0x0  ---p   
+      0x7fbfb8000000     0x7fbfb8001000     0x1000        0x0  rw-p   
+      0x7fbfb8001000     0x7fbfb8400000   0x3ff000        0x0  ---p   
+      0x7fbfb8400000     0x7fbfb8401000     0x1000        0x0  rw-p   
+      0x7fbfb8401000     0x7fbfb8800000   0x3ff000        0x0  ---p   
+      0x7fbfb8800000     0x7fbfb8801000     0x1000        0x0  rw-p   
+      0x7fbfb8801000     0x7fbfb8c00000   0x3ff000        0x0  ---p   
+      0x7fbfb8c00000     0x7fbfb8c01000     0x1000        0x0  rw-p   
+      0x7fbfb8c01000     0x7fbfb9000000   0x3ff000        0x0  ---p   
+      0x7fbfb9000000     0x7fbfb9001000     0x1000        0x0  rw-p   
+      0x7fbfb9001000     0x7fbfb9400000   0x3ff000        0x0  ---p   
+      0x7fbfb9400000     0x7fbfb9401000     0x1000        0x0  rw-p   
+      0x7fbfb9401000     0x7fbfb9800000   0x3ff000        0x0  ---p   
+      0x7fbfb9800000     0x7fbfb9801000     0x1000        0x0  rw-p   
+      0x7fbfb9801000     0x7fbfb9c00000   0x3ff000        0x0  ---p   
+      0x7fbfb9c00000     0x7fbfb9c01000     0x1000        0x0  rw-p   
+      0x7fbfb9c01000     0x7fbfba000000   0x3ff000        0x0  ---p   
+      0x7fbfba000000     0x7fbfba001000     0x1000        0x0  rw-p   
+      0x7fbfba001000     0x7fbfba400000   0x3ff000        0x0  ---p   
+      0x7fbfba400000     0x7fbfba401000     0x1000        0x0  rw-p   
+      0x7fbfba401000     0x7fbfba800000   0x3ff000        0x0  ---p   
+      0x7fbfba800000     0x7fbfba801000     0x1000        0x0  rw-p   
+      0x7fbfba801000     0x7fbfbac00000   0x3ff000        0x0  ---p   
+      0x7fbfbac00000     0x7fbfbac01000     0x1000        0x0  rw-p   
+      0x7fbfbac01000     0x7fbfbb000000   0x3ff000        0x0  ---p   
+      0x7fbfbb000000     0x7fbfbb001000     0x1000        0x0  rw-p   
+      0x7fbfbb001000     0x7fbfbb400000   0x3ff000        0x0  ---p   
+      0x7fbfbb400000     0x7fbfbb401000     0x1000        0x0  rw-p   
+      0x7fbfbb401000     0x7fbfbb800000   0x3ff000        0x0  ---p   
+      0x7fbfbb800000     0x7fbfbb801000     0x1000        0x0  rw-p   
+      0x7fbfbb801000     0x7fbfbbc00000   0x3ff000        0x0  ---p   
+      0x7fbfbbc00000     0x7fbfbbc01000     0x1000        0x0  rw-p   
+      0x7fbfbbc01000     0x7fbfbc000000   0x3ff000        0x0  ---p   
+      0x7fbfbc000000     0x7fbfbc001000     0x1000        0x0  rw-p   
+      0x7fbfbc001000     0x7fbfbc400000   0x3ff000        0x0  ---p   
+      0x7fbfbc400000     0x7fbfbc401000     0x1000        0x0  rw-p   
+      0x7fbfbc401000     0x7fbfbc800000   0x3ff000        0x0  ---p   
+      0x7fbfbc800000     0x7fbfbc801000     0x1000        0x0  rw-p   
+      0x7fbfbc801000     0x7fbfbcc00000   0x3ff000        0x0  ---p   
+      0x7fbfbcc00000     0x7fbfbcc01000     0x1000        0x0  rw-p   
+      0x7fbfbcc01000     0x7fbfbd000000   0x3ff000        0x0  ---p   
+      0x7fbfbd000000     0x7fbfbd001000     0x1000        0x0  rw-p   
+      0x7fbfbd001000     0x7fbfbd400000   0x3ff000        0x0  ---p   
+      0x7fbfbd400000     0x7fbfbd401000     0x1000        0x0  rw-p   
+      0x7fbfbd401000     0x7fbfbd800000   0x3ff000        0x0  ---p   
+      0x7fbfbd800000     0x7fbfbd801000     0x1000        0x0  rw-p   
+      0x7fbfbd801000     0x7fbfbdc00000   0x3ff000        0x0  ---p   
+      0x7fbfbdc00000     0x7fbfbdc01000     0x1000        0x0  rw-p   
+      0x7fbfbdc01000     0x7fbfbe000000   0x3ff000        0x0  ---p   
+      0x7fbfbe000000     0x7fbfbe001000     0x1000        0x0  rw-p   
+      0x7fbfbe001000     0x7fbfbe400000   0x3ff000        0x0  ---p   
+      0x7fbfbe400000     0x7fbfbe401000     0x1000        0x0  rw-p   
+      0x7fbfbe401000     0x7fbfbe800000   0x3ff000        0x0  ---p   
+      0x7fbfbe800000     0x7fbfbe801000     0x1000        0x0  rw-p   
+      0x7fbfbe801000     0x7fbfbec00000   0x3ff000        0x0  ---p   
+      0x7fbfbec00000     0x7fbfbec01000     0x1000        0x0  rw-p   
+      0x7fbfbec01000     0x7fbfbf000000   0x3ff000        0x0  ---p   
+      0x7fbfbf000000     0x7fbfbf001000     0x1000        0x0  rw-p   
+      0x7fbfbf001000     0x7fbfbf400000   0x3ff000        0x0  ---p   
+      0x7fbfbf400000     0x7fbfbf401000     0x1000        0x0  rw-p   
+      0x7fbfbf401000     0x7fbfbf800000   0x3ff000        0x0  ---p   
+      0x7fbfbf800000     0x7fbfbf801000     0x1000        0x0  rw-p   
+      0x7fbfbf801000     0x7fbfbfc00000   0x3ff000        0x0  ---p   
+      0x7fbfbfc00000     0x7fbfbfc01000     0x1000        0x0  rw-p   
+      0x7fbfbfc01000     0x7fbfc0000000   0x3ff000        0x0  ---p   
+      0x7fbfc0000000     0x7fbfc0001000     0x1000        0x0  rw-p   
+      0x7fbfc0001000     0x7fbfc2000000  0x1fff000        0x0  ---p   
+      0x7fbfc2000000     0x7fbfc2001000     0x1000        0x0  rw-p   
+      0x7fbfc2001000     0x7fbfc4000000  0x1fff000        0x0  ---p   
+      0x7fbfc4000000     0x7fbfc4001000     0x1000        0x0  rw-p   
+      0x7fbfc4001000     0x7fbfc6000000  0x1fff000        0x0  ---p   
+      0x7fbfc6000000     0x7fbfc6001000     0x1000        0x0  rw-p   
+      0x7fbfc6001000     0x7fbfc8000000  0x1fff000        0x0  ---p   
+      0x7fbfc8000000     0x7fbfc8001000     0x1000        0x0  rw-p   
+      0x7fbfc8001000     0x7fbfca000000  0x1fff000        0x0  ---p   
+      0x7fbfca000000     0x7fbfca001000     0x1000        0x0  rw-p   
+      0x7fbfca001000     0x7fbfcc000000  0x1fff000        0x0  ---p   
+      0x7fbfcc000000     0x7fbfcc001000     0x1000        0x0  rw-p   
+      0x7fbfcc001000     0x7fbfce000000  0x1fff000        0x0  ---p   
+      0x7fbfce000000     0x7fbfce001000     0x1000        0x0  rw-p   
+      0x7fbfce001000     0x7fbfd0000000  0x1fff000        0x0  ---p   
+      0x7fbfd0000000     0x7fbfd0001000     0x1000        0x0  rw-p   
+      0x7fbfd0001000     0x7fbfd2000000  0x1fff000        0x0  ---p   
+      0x7fbfd2000000     0x7fbfd2001000     0x1000        0x0  rw-p   
+      0x7fbfd2001000     0x7fbfd4000000  0x1fff000        0x0  ---p   
+      0x7fbfd4000000     0x7fbfd4001000     0x1000        0x0  rw-p   
+      0x7fbfd4001000     0x7fbfd6000000  0x1fff000        0x0  ---p   
+      0x7fbfd6000000     0x7fbfd6001000     0x1000        0x0  rw-p   
+      0x7fbfd6001000     0x7fbfd8000000  0x1fff000        0x0  ---p   
+      0x7fbfd8000000     0x7fbfd8001000     0x1000        0x0  rw-p   
+      0x7fbfd8001000     0x7fbfda000000  0x1fff000        0x0  ---p   
+      0x7fbfda000000     0x7fbfda001000     0x1000        0x0  rw-p   
+      0x7fbfda001000     0x7fbfdc000000  0x1fff000        0x0  ---p   
+      0x7fbfdc000000     0x7fbfdc001000     0x1000        0x0  rw-p   
+      0x7fbfdc001000     0x7fbfde000000  0x1fff000        0x0  ---p   
+      0x7fbfde000000     0x7fbfde001000     0x1000        0x0  rw-p   
+      0x7fbfde001000     0x7fbfe0000000  0x1fff000        0x0  ---p   
+      0x7fbfe0000000     0x7fbfe0001000     0x1000        0x0  rw-p   
+      0x7fbfe0001000     0x7fbfe2000000  0x1fff000        0x0  ---p   
+      0x7fbfe2000000     0x7fbfe2001000     0x1000        0x0  rw-p   
+      0x7fbfe2001000     0x7fbfe4000000  0x1fff000        0x0  ---p   
+      0x7fbfe4000000     0x7fbfe4001000     0x1000        0x0  rw-p   
+      0x7fbfe4001000     0x7fbfe6000000  0x1fff000        0x0  ---p   
+      0x7fbfe6000000     0x7fbfe6001000     0x1000        0x0  rw-p   
+      0x7fbfe6001000     0x7fbfe8000000  0x1fff000        0x0  ---p   
+      0x7fbfe8000000     0x7fbfe8001000     0x1000        0x0  rw-p   
+      0x7fbfe8001000     0x7fbfea000000  0x1fff000        0x0  ---p   
+      0x7fbfea000000     0x7fbfea001000     0x1000        0x0  rw-p   
+      0x7fbfea001000     0x7fbfec000000  0x1fff000        0x0  ---p   
+      0x7fbfec000000     0x7fbfec001000     0x1000        0x0  rw-p   
+      0x7fbfec001000     0x7fbfee000000  0x1fff000        0x0  ---p   
+      0x7fbfee000000     0x7fbfee001000     0x1000        0x0  rw-p   
+      0x7fbfee001000     0x7fbff0000000  0x1fff000        0x0  ---p   
+      0x7fbff0000000     0x7fbff0001000     0x1000        0x0  rw-p   
+      0x7fbff0001000     0x7fbff2000000  0x1fff000        0x0  ---p   
+      0x7fbff2000000     0x7fbff2001000     0x1000        0x0  rw-p   
+      0x7fbff2001000     0x7fbff4000000  0x1fff000        0x0  ---p   
+      0x7fbff4000000     0x7fbff4001000     0x1000        0x0  rw-p   
+      0x7fbff4001000     0x7fbff6000000  0x1fff000        0x0  ---p   
+      0x7fbff6000000     0x7fbff6001000     0x1000        0x0  rw-p   
+      0x7fbff6001000     0x7fbff8000000  0x1fff000        0x0  ---p   
+      0x7fbff8000000     0x7fbff8001000     0x1000        0x0  rw-p   
+      0x7fbff8001000     0x7fbffa000000  0x1fff000        0x0  ---p   
+      0x7fbffa000000     0x7fbffa001000     0x1000        0x0  rw-p   
+      0x7fbffa001000     0x7fbffc000000  0x1fff000        0x0  ---p   
+      0x7fbffc000000     0x7fbffc001000     0x1000        0x0  rw-p   
+      0x7fbffc001000     0x7fbffe000000  0x1fff000        0x0  ---p   
+      0x7fbffe000000     0x7fbffe001000     0x1000        0x0  rw-p   
+      0x7fbffe001000     0x7fff68000000 0x3f69fff000        0x0  ---p   
+      0x7fff68000000     0x7fff68021000    0x21000        0x0  rw-p   
+      0x7fff68021000     0x7fff6c000000  0x3fdf000        0x0  ---p   
+      0x7fff6c000000     0x7fff6c021000    0x21000        0x0  rw-p   
+      0x7fff6c021000     0x7fff70000000  0x3fdf000        0x0  ---p   
+      0x7fff70000000     0x7fff70021000    0x21000        0x0  rw-p   
+      0x7fff70021000     0x7fff74000000  0x3fdf000        0x0  ---p   
+      0x7fff74000000     0x7fff74021000    0x21000        0x0  rw-p   
+      0x7fff74021000     0x7fff78000000  0x3fdf000        0x0  ---p   
+      0x7fff78000000     0x7fff78001000     0x1000        0x0  ---p   
+      0x7fff78001000     0x7fff78004000     0x3000        0x0  rw-p   
+      0x7fff78004000     0x7fff78005000     0x1000        0x0  ---p   
+      0x7fff78005000     0x7fff78008000     0x3000        0x0  rw-p   
+      0x7fff78008000     0x7fff78009000     0x1000        0x0  ---p   
+      0x7fff78009000     0x7fff7800c000     0x3000        0x0  rw-p   
+      0x7fff7800c000     0x7fff7800d000     0x1000        0x0  ---p   
+      0x7fff7800d000     0x7fff78010000     0x3000        0x0  rw-p   
+      0x7fff78010000     0x7fff78030000    0x20000        0x0  ---p   
+      0x7fff78030000     0x7fff78031000     0x1000        0x0  r-xs   /memfd:doublemapper (deleted)
+      0x7fff78031000     0x7fff78040000     0xf000        0x0  ---p   
+      0x7fff78040000     0x7fff78043000     0x3000     0x1000  rw-s   /memfd:doublemapper (deleted)
+      0x7fff78043000     0x7fff78044000     0x1000     0x4000  ---s   /memfd:doublemapper (deleted)
+      0x7fff78044000     0x7fff7804c000     0x8000     0x5000  rw-s   /memfd:doublemapper (deleted)
+      0x7fff7804c000     0x7fff7804d000     0x1000     0xd000  ---s   /memfd:doublemapper (deleted)
+      0x7fff7804d000     0x7fff7804e000     0x1000     0xe000  r-xs   /memfd:doublemapper (deleted)
+      0x7fff7804e000     0x7fff78050000     0x2000     0xf000  ---s   /memfd:doublemapper (deleted)
+      0x7fff78050000     0x7fff78051000     0x1000    0x11000  rw-s   /memfd:doublemapper (deleted)
+      0x7fff78051000     0x7fff78056000     0x5000    0x12000  ---s   /memfd:doublemapper (deleted)
+      0x7fff78056000     0x7fff78057000     0x1000    0x17000  rw-s   /memfd:doublemapper (deleted)
+      0x7fff78057000     0x7fff78060000     0x9000    0x18000  ---s   /memfd:doublemapper (deleted)
+      0x7fff78060000     0x7fff78061000     0x1000        0x0  r--p   /usr/lib/dotnet/shared/Microsoft.NETCore.App/10.0.6/System.Private.CoreLib.dll
+      0x7fff78061000     0x7fff78070000     0xf000        0x0  ---p   
+      0x7fff78070000     0x7fff78b3a000   0xaca000        0x0  r-xp   /usr/lib/dotnet/shared/Microsoft.NETCore.App/10.0.6/System.Private.CoreLib.dll
+      0x7fff78b3a000     0x7fff78b59000    0x1f000        0x0  ---p   
+      0x7fff78b59000     0x7fff78e41000   0x2e8000   0xac9000  rw-p   /usr/lib/dotnet/shared/Microsoft.NETCore.App/10.0.6/System.Private.CoreLib.dll
+      0x7fff78e41000     0x7fff78e60000    0x1f000        0x0  ---p   
+      0x7fff78e60000     0x7fff78e6b000     0xb000   0xdb0000  r--p   /usr/lib/dotnet/shared/Microsoft.NETCore.App/10.0.6/System.Private.CoreLib.dll
+      0x7fff78e6b000     0x7fff78e70000     0x5000        0x0  ---p   
+      0x7fff78e70000     0x7fff78eff000    0x8f000    0x21000  rw-s   /memfd:doublemapper (deleted)
+      0x7fff78eff000     0x7fff78f00000     0x1000    0xb0000  ---s   /memfd:doublemapper (deleted)
+      0x7fff78f00000     0x7fff78f04000     0x4000    0xb1000  r-xs   /memfd:doublemapper (deleted)
+      0x7fff78f04000     0x7fff78f08000     0x4000    0xb5000  rw-s   /memfd:doublemapper (deleted)
+      0x7fff78f08000     0x7fff78f10000     0x8000    0xb9000  ---s   /memfd:doublemapper (deleted)
+      0x7fff78f10000     0x7fff78f14000     0x4000    0xc1000  r-xs   /memfd:doublemapper (deleted)
+      0x7fff78f14000     0x7fff78f18000     0x4000    0xc5000  rw-s   /memfd:doublemapper (deleted)
+      0x7fff78f18000     0x7fff78f1c000     0x4000    0xc9000  r-xs   /memfd:doublemapper (deleted)
+      0x7fff78f1c000     0x7fff78f60000    0x44000    0xcd000  rw-s   /memfd:doublemapper (deleted)
+      0x7fff78f60000     0x7fff78f67000     0x7000   0x111000  r-xs   /memfd:doublemapper (deleted)
+      0x7fff78f67000     0x7fff78fe0000    0x79000   0x118000  ---s   /memfd:doublemapper (deleted)
+      0x7fff78fe0000     0x7fff7902f000    0x4f000   0x191000  rw-s   /memfd:doublemapper (deleted)
+      0x7fff7902f000     0x7fff79030000     0x1000   0x1e0000  ---s   /memfd:doublemapper (deleted)
+      0x7fff79030000     0x7fff79031000     0x1000        0x0  r--p   /usr/lib/dotnet/shared/Microsoft.NETCore.App/10.0.6/System.Console.dll
+      0x7fff79031000     0x7fff79040000     0xf000        0x0  ---p   
+      0x7fff79040000     0x7fff79065000    0x25000        0x0  r-xp   /usr/lib/dotnet/shared/Microsoft.NETCore.App/10.0.6/System.Console.dll
+      0x7fff79065000     0x7fff79084000    0x1f000        0x0  ---p   
+      0x7fff79084000     0x7fff7908d000     0x9000    0x24000  rw-p   /usr/lib/dotnet/shared/Microsoft.NETCore.App/10.0.6/System.Console.dll
+      0x7fff7908d000     0x7fff790ad000    0x20000        0x0  ---p   
+      0x7fff790ad000     0x7fff790ae000     0x1000    0x2d000  r--p   /usr/lib/dotnet/shared/Microsoft.NETCore.App/10.0.6/System.Console.dll
+      0x7fff790ae000     0x7fff790b0000     0x2000        0x0  ---p   
+      0x7fff790b0000     0x7fff790c0000    0x10000   0x1e1000  rw-s   /memfd:doublemapper (deleted)
+      0x7fff790c0000     0x7fff790c1000     0x1000        0x0  r--p   /usr/lib/dotnet/shared/Microsoft.NETCore.App/10.0.6/System.Threading.dll
+      0x7fff790c1000     0x7fff790d0000     0xf000        0x0  ---p   
+      0x7fff790d0000     0x7fff790dd000     0xd000        0x0  r-xp   /usr/lib/dotnet/shared/Microsoft.NETCore.App/10.0.6/System.Threading.dll
+      0x7fff790dd000     0x7fff790fc000    0x1f000        0x0  ---p   
+      0x7fff790fc000     0x7fff79100000     0x4000     0xc000  rw-p   /usr/lib/dotnet/shared/Microsoft.NETCore.App/10.0.6/System.Threading.dll
+      0x7fff79100000     0x7fff7911f000    0x1f000        0x0  ---p   
+      0x7fff7911f000     0x7fff79120000     0x1000     0xf000  r--p   /usr/lib/dotnet/shared/Microsoft.NETCore.App/10.0.6/System.Threading.dll
+      0x7fff79120000     0x7fff79130000    0x10000   0x1f1000  rw-s   /memfd:doublemapper (deleted)
+      0x7fff79130000     0x7fff79131000     0x1000        0x0  r--p   /usr/lib/dotnet/shared/Microsoft.NETCore.App/10.0.6/System.Runtime.InteropServices.dll
+      0x7fff79131000     0x7fff79140000     0xf000        0x0  ---p   
+      0x7fff79140000     0x7fff79153000    0x13000        0x0  r-xp   /usr/lib/dotnet/shared/Microsoft.NETCore.App/10.0.6/System.Runtime.InteropServices.dll
+      0x7fff79153000     0x7fff79172000    0x1f000        0x0  ---p   
+      0x7fff79172000     0x7fff79177000     0x5000    0x12000  rw-p   /usr/lib/dotnet/shared/Microsoft.NETCore.App/10.0.6/System.Runtime.InteropServices.dll
+      0x7fff79177000     0x7fff79196000    0x1f000        0x0  ---p   
+      0x7fff79196000     0x7fff79197000     0x1000    0x16000  r--p   /usr/lib/dotnet/shared/Microsoft.NETCore.App/10.0.6/System.Runtime.InteropServices.dll
+      0x7fff79197000     0x7fff791a0000     0x9000        0x0  ---p   
+      0x7fff791a0000     0x7fff791e0000    0x40000   0x201000  rw-s   /memfd:doublemapper (deleted)
+      0x7fff791e0000     0x7fff791e4000     0x4000   0x241000  r-xs   /memfd:doublemapper (deleted)
+      0x7fff791e4000     0x7fff791e8000     0x4000   0x245000  rw-s   /memfd:doublemapper (deleted)
+      0x7fff791e8000     0x7fff791ec000     0x4000   0x249000  r-xs   /memfd:doublemapper (deleted)
+      0x7fff791ec000     0x7fff7920c000    0x20000   0x24d000  rw-s   /memfd:doublemapper (deleted)
+      0x7fff7920c000     0x7fff79210000     0x4000   0x26d000  ---s   /memfd:doublemapper (deleted)
+      0x7fff79210000     0x7fff79211000     0x1000        0x0  r--p   /usr/lib/dotnet/shared/Microsoft.NETCore.App/10.0.6/System.Diagnostics.Process.dll
+      0x7fff79211000     0x7fff79220000     0xf000        0x0  ---p   
+      0x7fff79220000     0x7fff79252000    0x32000        0x0  r-xp   /usr/lib/dotnet/shared/Microsoft.NETCore.App/10.0.6/System.Diagnostics.Process.dll
+      0x7fff79252000     0x7fff79271000    0x1f000        0x0  ---p   
+      0x7fff79271000     0x7fff7927e000     0xd000    0x31000  rw-p   /usr/lib/dotnet/shared/Microsoft.NETCore.App/10.0.6/System.Diagnostics.Process.dll
+      0x7fff7927e000     0x7fff7929d000    0x1f000        0x0  ---p   
+      0x7fff7929d000     0x7fff7929f000     0x2000    0x3d000  r--p   /usr/lib/dotnet/shared/Microsoft.NETCore.App/10.0.6/System.Diagnostics.Process.dll
+      0x7fff7929f000     0x7fff792a0000     0x1000        0x0  ---p   
+      0x7fff792a0000     0x7fff792a1000     0x1000        0x0  r--p   /usr/lib/dotnet/shared/Microsoft.NETCore.App/10.0.6/System.ComponentModel.Primitives.dll
+      0x7fff792a1000     0x7fff792b0000     0xf000        0x0  ---p   
+      0x7fff792b0000     0x7fff792bc000     0xc000        0x0  r-xp   /usr/lib/dotnet/shared/Microsoft.NETCore.App/10.0.6/System.ComponentModel.Primitives.dll
+      0x7fff792bc000     0x7fff792db000    0x1f000        0x0  ---p   
+      0x7fff792db000     0x7fff792df000     0x4000     0xb000  rw-p   /usr/lib/dotnet/shared/Microsoft.NETCore.App/10.0.6/System.ComponentModel.Primitives.dll
+      0x7fff792df000     0x7fff792fe000    0x1f000        0x0  ---p   
+      0x7fff792fe000     0x7fff792ff000     0x1000     0xe000  r--p   /usr/lib/dotnet/shared/Microsoft.NETCore.App/10.0.6/System.ComponentModel.Primitives.dll
+      0x7fff792ff000     0x7fff79300000     0x1000        0x0  ---p   
+      0x7fff79300000     0x7fff79310000    0x10000   0x271000  rw-s   /memfd:doublemapper (deleted)
+      0x7fff79310000     0x7fff79311000     0x1000        0x0  r--p   /usr/lib/dotnet/shared/Microsoft.NETCore.App/10.0.6/System.Collections.NonGeneric.dll
+      0x7fff79311000     0x7fff79320000     0xf000        0x0  ---p   
+      0x7fff79320000     0x7fff79331000    0x11000        0x0  r-xp   /usr/lib/dotnet/shared/Microsoft.NETCore.App/10.0.6/System.Collections.NonGeneric.dll
+      0x7fff79331000     0x7fff79350000    0x1f000        0x0  ---p   
+      0x7fff79350000     0x7fff79355000     0x5000    0x10000  rw-p   /usr/lib/dotnet/shared/Microsoft.NETCore.App/10.0.6/System.Collections.NonGeneric.dll
+      0x7fff79355000     0x7fff79374000    0x1f000        0x0  ---p   
+      0x7fff79374000     0x7fff79375000     0x1000    0x14000  r--p   /usr/lib/dotnet/shared/Microsoft.NETCore.App/10.0.6/System.Collections.NonGeneric.dll
+      0x7fff79375000     0x7fff79380000     0xb000        0x0  ---p   
+      0x7fff79380000     0x7fff79381000     0x1000        0x0  r--p   /usr/lib/dotnet/shared/Microsoft.NETCore.App/10.0.6/System.Linq.dll
+      0x7fff79381000     0x7fff79390000     0xf000        0x0  ---p   
+      0x7fff79390000     0x7fff793f3000    0x63000        0x0  r-xp   /usr/lib/dotnet/shared/Microsoft.NETCore.App/10.0.6/System.Linq.dll
+      0x7fff793f3000     0x7fff79412000    0x1f000        0x0  ---p   
+      0x7fff79412000     0x7fff79433000    0x21000    0x62000  rw-p   /usr/lib/dotnet/shared/Microsoft.NETCore.App/10.0.6/System.Linq.dll
+      0x7fff79433000     0x7fff79452000    0x1f000        0x0  ---p   
+      0x7fff79452000     0x7fff79454000     0x2000    0x82000  r--p   /usr/lib/dotnet/shared/Microsoft.NETCore.App/10.0.6/System.Linq.dll
+      0x7fff79454000     0x7fff79460000     0xc000        0x0  ---p   
+      0x7fff79460000     0x7fff794a0000    0x40000   0x281000  rw-s   /memfd:doublemapper (deleted)
+      0x7fff794a0000     0x7fff794a1000     0x1000        0x0  r--p   /usr/lib/dotnet/shared/Microsoft.NETCore.App/10.0.6/System.Memory.dll
+      0x7fff794a1000     0x7fff794b0000     0xf000        0x0  ---p   
+      0x7fff794b0000     0x7fff794cb000    0x1b000        0x0  r-xp   /usr/lib/dotnet/shared/Microsoft.NETCore.App/10.0.6/System.Memory.dll
+      0x7fff794cb000     0x7fff794ea000    0x1f000        0x0  ---p   
+      0x7fff794ea000     0x7fff794f2000     0x8000    0x1a000  rw-p   /usr/lib/dotnet/shared/Microsoft.NETCore.App/10.0.6/System.Memory.dll
+      0x7fff794f2000     0x7fff79511000    0x1f000        0x0  ---p   
+      0x7fff79511000     0x7fff79512000     0x1000    0x21000  r--p   /usr/lib/dotnet/shared/Microsoft.NETCore.App/10.0.6/System.Memory.dll
+      0x7fff79512000     0x7fff79520000     0xe000        0x0  ---p   
+      0x7fff79520000     0x7fff79568000    0x48000   0x2c1000  rw-s   /memfd:doublemapper (deleted)
+      0x7fff79568000     0x7fff79570000     0x8000   0x309000  ---s   /memfd:doublemapper (deleted)
+      0x7fff79570000     0x7fff79571000     0x1000        0x0  r--p   /usr/lib/dotnet/shared/Microsoft.NETCore.App/10.0.6/System.Collections.dll
+      0x7fff79571000     0x7fff79580000     0xf000        0x0  ---p   
+      0x7fff79580000     0x7fff795b2000    0x32000        0x0  r-xp   /usr/lib/dotnet/shared/Microsoft.NETCore.App/10.0.6/System.Collections.dll
+      0x7fff795b2000     0x7fff795d1000    0x1f000        0x0  ---p   
+      0x7fff795d1000     0x7fff795e2000    0x11000    0x31000  rw-p   /usr/lib/dotnet/shared/Microsoft.NETCore.App/10.0.6/System.Collections.dll
+      0x7fff795e2000     0x7fff79601000    0x1f000        0x0  ---p   
+      0x7fff79601000     0x7fff79603000     0x2000    0x41000  r--p   /usr/lib/dotnet/shared/Microsoft.NETCore.App/10.0.6/System.Collections.dll
+      0x7fff79603000     0x7fff79610000     0xd000        0x0  ---p   
+      0x7fff79610000     0x7fff7961f000     0xf000   0x311000  rw-s   /memfd:doublemapper (deleted)
+      0x7fff7961f000     0x7fff79620000     0x1000   0x320000  ---s   /memfd:doublemapper (deleted)
+      0x7fff79620000     0x7fffe7000000 0x6d9e0000        0x0  ---p   
+      0x7fffe7001000     0x7fffe7002000     0x1000   0x117000  rw-s   /memfd:doublemapper (deleted)
+      0x7fffe7002000     0x7fffe7003000     0x1000        0x0  ---p   
+      0x7fffe7003000     0x7fffe7006000     0x3000        0x0  rw-p   
+      0x7fffe7006000     0x7fffe7007000     0x1000        0x0  ---p   
+      0x7fffe7007000     0x7fffe700a000     0x3000        0x0  rw-p   
+      0x7fffe700a000     0x7fffe700b000     0x1000        0x0  ---p   
+      0x7fffe700b000     0x7fffe700e000     0x3000        0x0  rw-p   
+      0x7fffe700e000     0x7fffe700f000     0x1000        0x0  ---p   
+      0x7fffe700f000     0x7fffe7012000     0x3000        0x0  rw-p   
+      0x7fffe7012000     0x7fffe7081000    0x6f000        0x0  rw-p   
+      0x7fffe7081000     0x7fffe7082000     0x1000        0x0  ---p   
+      0x7fffe7082000     0x7fffe7102000    0x80000        0x0  rw-p   
+      0x7fffe7102000     0x7fffe7127000    0x25000        0x0  rw-p   
+      0x7fffe7127000     0x7fffe7128000     0x1000        0x0  ---p   
+      0x7fffe7128000     0x7fffe71a8000    0x80000        0x0  rw-p   
+      0x7fffe71a8000     0x7fffe71cd000    0x25000        0x0  rw-p   
+      0x7fffe71cd000     0x7fffe71ce000     0x1000        0x0  ---p   
+      0x7fffe71ce000     0x7fffe724e000    0x80000        0x0  rw-p   
+      0x7fffe724e000     0x7fffe7273000    0x25000        0x0  rw-p   
+      0x7fffe7273000     0x7fffe7274000     0x1000        0x0  ---p   
+      0x7fffe7274000     0x7fffe72f4000    0x80000        0x0  rw-p   
+      0x7fffe72f4000     0x7fffe7319000    0x25000        0x0  rw-p   
+      0x7fffe7319000     0x7fffe731a000     0x1000        0x0  ---p   
+      0x7fffe731a000     0x7fffe739a000    0x80000        0x0  rw-p   
+      0x7fffe739a000     0x7fffe73bf000    0x25000        0x0  rw-p   
+      0x7fffe73bf000     0x7fffe73c0000     0x1000        0x0  ---p   
+      0x7fffe73c0000     0x7fffe7440000    0x80000        0x0  rw-p   
+      0x7fffe7440000     0x7fffe7465000    0x25000        0x0  rw-p   
+      0x7fffe7465000     0x7fffe7466000     0x1000        0x0  ---p   
+      0x7fffe7466000     0x7fffe74e6000    0x80000        0x0  rw-p   
+      0x7fffe74e6000     0x7fffe750b000    0x25000        0x0  rw-p   
+      0x7fffe750b000     0x7fffe750c000     0x1000        0x0  ---p   
+      0x7fffe750c000     0x7fffe758c000    0x80000        0x0  rw-p   
+      0x7fffe758c000     0x7fffe75b1000    0x25000        0x0  rw-p   
+      0x7fffe75b1000     0x7fffe75b2000     0x1000        0x0  ---p   
+      0x7fffe75b2000     0x7fffe7632000    0x80000        0x0  rw-p   
+      0x7fffe7632000     0x7fffe7657000    0x25000        0x0  rw-p   
+      0x7fffe7657000     0x7fffe7658000     0x1000        0x0  ---p   
+      0x7fffe7658000     0x7fffe76d8000    0x80000        0x0  rw-p   
+      0x7fffe76d8000     0x7fffe76fd000    0x25000        0x0  rw-p   
+      0x7fffe76fd000     0x7fffe76fe000     0x1000        0x0  ---p   
+      0x7fffe76fe000     0x7fffe777e000    0x80000        0x0  rw-p   
+      0x7fffe777e000     0x7fffe777f000     0x1000        0x0  ---p   
+      0x7fffe777f000     0x7fffe77ff000    0x80000        0x0  rw-p   
+      0x7fffe77ff000     0x7fffe7800000     0x1000        0x0  ---p   
+      0x7fffe7800000     0x7fffe8000000   0x800000        0x0  rw-p   
+      0x7fffe8000000     0x7fffe8021000    0x21000        0x0  rw-p   
+      0x7fffe8021000     0x7fffec000000  0x3fdf000        0x0  ---p   
+      0x7fffec000000     0x7fffec021000    0x21000        0x0  rw-p   
+      0x7fffec021000     0x7ffff0000000  0x3fdf000        0x0  ---p   
+      0x7ffff0000000     0x7ffff0021000    0x21000        0x0  rw-p   
+      0x7ffff0021000     0x7ffff4000000  0x3fdf000        0x0  ---p   
+      0x7ffff4000000     0x7ffff4002000     0x2000        0x0  r--s   /usr/lib/dotnet/shared/Microsoft.NETCore.App/10.0.6/System.Threading.Thread.dll
+      0x7ffff4002000     0x7ffff4003000     0x1000        0x0  ---p   
+      0x7ffff4003000     0x7ffff4006000     0x3000        0x0  rw-p   
+      0x7ffff4006000     0x7ffff4007000     0x1000        0x0  ---p   
+      0x7ffff4007000     0x7ffff400a000     0x3000        0x0  rw-p   
+      0x7ffff400a000     0x7ffff400b000     0x1000        0x0  ---p   
+      0x7ffff400b000     0x7ffff400e000     0x3000        0x0  rw-p   
+      0x7ffff400e000     0x7ffff400f000     0x1000        0x0  ---p   
+      0x7ffff400f000     0x7ffff4012000     0x3000        0x0  rw-p   
+      0x7ffff4012000     0x7ffff4013000     0x1000        0x0  ---p   
+      0x7ffff4013000     0x7ffff4016000     0x3000        0x0  rw-p   
+      0x7ffff4016000     0x7ffff4017000     0x1000        0x0  ---p   
+      0x7ffff4017000     0x7ffff401a000     0x3000        0x0  rw-p   
+      0x7ffff401a000     0x7ffff401b000     0x1000        0x0  ---p   
+      0x7ffff401b000     0x7ffff401e000     0x3000        0x0  rw-p   
+      0x7ffff401e000     0x7ffff4068000    0x4a000        0x0  rw-p   
+      0x7ffff4068000     0x7ffff4069000     0x1000        0x0  ---p   
+      0x7ffff4069000     0x7ffff40e9000    0x80000        0x0  rw-p   
+      0x7ffff40e9000     0x7ffff410e000    0x25000        0x0  rw-p   
+      0x7ffff410e000     0x7ffff410f000     0x1000        0x0  ---p   
+      0x7ffff410f000     0x7ffff418f000    0x80000        0x0  rw-p   
+      0x7ffff418f000     0x7ffff41b4000    0x25000        0x0  rw-p   
+      0x7ffff41b4000     0x7ffff41b5000     0x1000        0x0  ---p   
+      0x7ffff41b5000     0x7ffff4235000    0x80000        0x0  rw-p   
+      0x7ffff4235000     0x7ffff425a000    0x25000        0x0  rw-p   
+      0x7ffff425a000     0x7ffff425b000     0x1000        0x0  ---p   
+      0x7ffff425b000     0x7ffff42db000    0x80000        0x0  rw-p   
+      0x7ffff42db000     0x7ffff4300000    0x25000        0x0  rw-p   
+      0x7ffff4300000     0x7ffff4301000     0x1000        0x0  ---p   
+      0x7ffff4301000     0x7ffff4381000    0x80000        0x0  rw-p   
+      0x7ffff4381000     0x7ffff43a6000    0x25000        0x0  rw-p   
+      0x7ffff43a6000     0x7ffff43a7000     0x1000        0x0  ---p   
+      0x7ffff43a7000     0x7ffff4427000    0x80000        0x0  rw-p   
+      0x7ffff4427000     0x7ffff461f000   0x1f8000        0x0  rw-p   
+      0x7ffff461f000     0x7ffff4620000     0x1000        0x0  ---p   
+      0x7ffff4620000     0x7ffff4e20000   0x800000        0x0  rw-p   
+      0x7ffff4e20000     0x7ffff4e21000     0x1000        0x0  rw-p   
+      0x7ffff4e21000     0x7ffff4e30000     0xf000        0x0  ---p   
+      0x7ffff4e30000     0x7ffff4e31000     0x1000        0x0  rw-p   
+      0x7ffff4e31000     0x7ffff4e40000     0xf000        0x0  ---p   
+      0x7ffff4e40000     0x7ffff4e41000     0x1000        0x0  rw-p   
+      0x7ffff4e41000     0x7ffff4e50000     0xf000        0x0  ---p   
+      0x7ffff4e50000     0x7ffff4e51000     0x1000        0x0  rw-p   
+      0x7ffff4e51000     0x7ffff4e60000     0xf000        0x0  ---p   
+      0x7ffff4e60000     0x7ffff4e61000     0x1000        0x0  rw-p   
+      0x7ffff4e61000     0x7ffff4e70000     0xf000        0x0  ---p   
+      0x7ffff4e70000     0x7ffff4e71000     0x1000        0x0  rw-p   
+      0x7ffff4e71000     0x7ffff4e80000     0xf000        0x0  ---p   
+      0x7ffff4e80000     0x7ffff4e81000     0x1000        0x0  rw-p   
+      0x7ffff4e81000     0x7ffff4e90000     0xf000        0x0  ---p   
+      0x7ffff4e90000     0x7ffff4e91000     0x1000        0x0  rw-p   
+      0x7ffff4e91000     0x7ffff4ea0000     0xf000        0x0  ---p   
+      0x7ffff4ea0000     0x7ffff4ea1000     0x1000        0x0  rw-p   
+      0x7ffff4ea1000     0x7ffff4eb0000     0xf000        0x0  ---p   
+      0x7ffff4eb0000     0x7ffff4eb1000     0x1000        0x0  rw-p   
+      0x7ffff4eb1000     0x7ffff4ec0000     0xf000        0x0  ---p   
+      0x7ffff4ec0000     0x7ffff4ec1000     0x1000        0x0  rw-p   
+      0x7ffff4ec1000     0x7ffff4ed0000     0xf000        0x0  ---p   
+      0x7ffff4ed0000     0x7ffff4ed1000     0x1000        0x0  rw-p   
+      0x7ffff4ed1000     0x7ffff4ee0000     0xf000        0x0  ---p   
+      0x7ffff4ee0000     0x7ffff4ee1000     0x1000        0x0  rw-p   
+      0x7ffff4ee1000     0x7ffff4ef0000     0xf000        0x0  ---p   
+      0x7ffff4ef0000     0x7ffff4ef1000     0x1000        0x0  rw-p   
+      0x7ffff4ef1000     0x7ffff4f00000     0xf000        0x0  ---p   
+      0x7ffff4f00000     0x7ffff4f01000     0x1000        0x0  rw-p   
+      0x7ffff4f01000     0x7ffff4f10000     0xf000        0x0  ---p   
+      0x7ffff4f10000     0x7ffff4f11000     0x1000        0x0  rw-p   
+      0x7ffff4f11000     0x7ffff4f20000     0xf000        0x0  ---p   
+      0x7ffff4f20000     0x7ffff4f21000     0x1000        0x0  rw-p   
+      0x7ffff4f21000     0x7ffff4f30000     0xf000        0x0  ---p   
+      0x7ffff4f30000     0x7ffff4f31000     0x1000        0x0  rw-p   
+      0x7ffff4f31000     0x7ffff4f40000     0xf000        0x0  ---p   
+      0x7ffff4f40000     0x7ffff4f41000     0x1000        0x0  rw-p   
+      0x7ffff4f41000     0x7ffff4f50000     0xf000        0x0  ---p   
+      0x7ffff4f50000     0x7ffff4f51000     0x1000        0x0  rw-p   
+      0x7ffff4f51000     0x7ffff4f60000     0xf000        0x0  ---p   
+      0x7ffff4f60000     0x7ffff4f61000     0x1000        0x0  rw-p   
+      0x7ffff4f61000     0x7ffff4f70000     0xf000        0x0  ---p   
+      0x7ffff4f70000     0x7ffff4f71000     0x1000        0x0  rw-p   
+      0x7ffff4f71000     0x7ffff4f80000     0xf000        0x0  ---p   
+      0x7ffff4f80000     0x7ffff4f81000     0x1000        0x0  rw-p   
+      0x7ffff4f81000     0x7ffff4f90000     0xf000        0x0  ---p   
+      0x7ffff4f90000     0x7ffff4f91000     0x1000        0x0  rw-p   
+      0x7ffff4f91000     0x7ffff4fa0000     0xf000        0x0  ---p   
+      0x7ffff4fa0000     0x7ffff4fa2000     0x2000        0x0  rw-p   
+      0x7ffff4fa2000     0x7ffff4fb0000     0xe000        0x0  ---p   
+      0x7ffff4fb0000     0x7ffff4fb2000     0x2000        0x0  rw-p   
+      0x7ffff4fb2000     0x7ffff4fc0000     0xe000        0x0  ---p   
+      0x7ffff4fc0000     0x7ffff4fc1000     0x1000        0x0  rw-p   
+      0x7ffff4fc1000     0x7ffff4fd0000     0xf000        0x0  ---p   
+      0x7ffff4fd0000     0x7ffff4fd1000     0x1000        0x0  rw-p   
+      0x7ffff4fd1000     0x7ffff4fe0000     0xf000        0x0  ---p   
+      0x7ffff4fe0000     0x7ffff4fe1000     0x1000        0x0  rw-p   
+      0x7ffff4fe1000     0x7ffff4ff0000     0xf000        0x0  ---p   
+      0x7ffff4ff0000     0x7ffff4ff1000     0x1000        0x0  ---p   
+      0x7ffff4ff1000     0x7ffff4ff4000     0x3000        0x0  rw-p   
+      0x7ffff4ff4000     0x7ffff4ff5000     0x1000        0x0  ---p   
+      0x7ffff4ff5000     0x7ffff4ff8000     0x3000        0x0  rw-p   
+      0x7ffff4ff8000     0x7ffff4ff9000     0x1000        0x0  ---p   
+      0x7ffff4ff9000     0x7ffff4ffc000     0x3000        0x0  rw-p   
+      0x7ffff4ffc000     0x7ffff4ffd000     0x1000        0x0  ---p   
+      0x7ffff4ffd000     0x7ffff57fd000   0x800000        0x0  rw-p   
+      0x7ffff57fd000     0x7ffff57fe000     0x1000        0x0  ---p   
+      0x7ffff57fe000     0x7ffff5ffe000   0x800000        0x0  rw-p   
+      0x7ffff5ffe000     0x7ffff5fff000     0x1000        0x0  ---p   
+      0x7ffff5fff000     0x7ffff67ff000   0x800000        0x0  rw-p   
+      0x7ffff67ff000     0x7ffff6800000     0x1000        0x0  ---p   
+      0x7ffff6800000     0x7ffff7000000   0x800000        0x0  rw-p   
+      0x7ffff7000000     0x7ffff70be000    0xbe000        0x0  r--p   /usr/lib/dotnet/shared/Microsoft.NETCore.App/10.0.6/libcoreclr.so
+      0x7ffff70be000     0x7ffff70bf000     0x1000    0xbe000  r--p   /usr/lib/dotnet/shared/Microsoft.NETCore.App/10.0.6/libcoreclr.so
+      0x7ffff70bf000     0x7ffff71c8000   0x109000    0xbf000  r--p   /usr/lib/dotnet/shared/Microsoft.NETCore.App/10.0.6/libcoreclr.so
+      0x7ffff71c8000     0x7ffff7694000   0x4cc000   0x1c7000  r-xp   /usr/lib/dotnet/shared/Microsoft.NETCore.App/10.0.6/libcoreclr.so
+      0x7ffff7694000     0x7ffff76bb000    0x27000   0x692000  r--p   /usr/lib/dotnet/shared/Microsoft.NETCore.App/10.0.6/libcoreclr.so
+      0x7ffff76bb000     0x7ffff76e4000    0x29000   0x6b8000  rw-p   /usr/lib/dotnet/shared/Microsoft.NETCore.App/10.0.6/libcoreclr.so
+      0x7ffff76e4000     0x7ffff772f000    0x4b000        0x0  rw-p   
+      0x7ffff7730000     0x7ffff7731000     0x1000        0x0  ---p   
+      0x7ffff7731000     0x7ffff7734000     0x3000        0x0  rw-p   
+      0x7ffff7734000     0x7ffff7735000     0x1000        0x0  ---p   
+      0x7ffff7735000     0x7ffff7738000     0x3000        0x0  rw-p   
+      0x7ffff7738000     0x7ffff7739000     0x1000        0x0  ---p   
+      0x7ffff7739000     0x7ffff773c000     0x3000        0x0  rw-p   
+      0x7ffff773c000     0x7ffff773d000     0x1000        0x0  ---p   
+      0x7ffff773d000     0x7ffff7740000     0x3000        0x0  rw-p   
+      0x7ffff7740000     0x7ffff7741000     0x1000        0x0  rw-p   
+      0x7ffff7741000     0x7ffff7750000     0xf000        0x0  ---p   
+      0x7ffff7750000     0x7ffff7752000     0x2000        0x0  rw-p   
+      0x7ffff7752000     0x7ffff7760000     0xe000        0x0  ---p   
+      0x7ffff7760000     0x7ffff7762000     0x2000        0x0  rw-p   
+      0x7ffff7762000     0x7ffff7770000     0xe000        0x0  ---p   
+      0x7ffff7770000     0x7ffff7771000     0x1000        0x0  rw-p   
+      0x7ffff7771000     0x7ffff7772000     0x1000        0x0  ---p   
+      0x7ffff7772000     0x7ffff7775000     0x3000        0x0  rw-p   
+      0x7ffff7775000     0x7ffff7776000     0x1000        0x0  ---p   
+      0x7ffff7776000     0x7ffff7779000     0x3000        0x0  rw-p   
+      0x7ffff7779000     0x7ffff777a000     0x1000        0x0  ---p   
+      0x7ffff777a000     0x7ffff777d000     0x3000        0x0  rw-p   
+      0x7ffff777d000     0x7ffff7789000     0xc000        0x0  r--p   /usr/lib/x86_64-linux-gnu/liblttng-ust.so.1.0.0
+      0x7ffff7789000     0x7ffff77d4000    0x4b000     0xc000  r-xp   /usr/lib/x86_64-linux-gnu/liblttng-ust.so.1.0.0
+      0x7ffff77d4000     0x7ffff77ed000    0x19000    0x57000  r--p   /usr/lib/x86_64-linux-gnu/liblttng-ust.so.1.0.0
+      0x7ffff77ed000     0x7ffff77f1000     0x4000    0x70000  r--p   /usr/lib/x86_64-linux-gnu/liblttng-ust.so.1.0.0
+      0x7ffff77f1000     0x7ffff77f7000     0x6000    0x74000  rw-p   /usr/lib/x86_64-linux-gnu/liblttng-ust.so.1.0.0
+      0x7ffff77f7000     0x7ffff7800000     0x9000        0x0  rw-p   
+      0x7ffff7800000     0x7ffff7828000    0x28000        0x0  r--p   /usr/lib/x86_64-linux-gnu/libc.so.6
+      0x7ffff7828000     0x7ffff79b0000   0x188000    0x28000  r-xp   /usr/lib/x86_64-linux-gnu/libc.so.6
+      0x7ffff79b0000     0x7ffff79ff000    0x4f000   0x1b0000  r--p   /usr/lib/x86_64-linux-gnu/libc.so.6
+      0x7ffff79ff000     0x7ffff7a03000     0x4000   0x1fe000  r--p   /usr/lib/x86_64-linux-gnu/libc.so.6
+      0x7ffff7a03000     0x7ffff7a05000     0x2000   0x202000  rw-p   /usr/lib/x86_64-linux-gnu/libc.so.6
+      0x7ffff7a05000     0x7ffff7a13000     0xe000        0x0  rw-p   
+      0x7ffff7a13000     0x7ffff7a14000     0x1000        0x0  ---p   
+      0x7ffff7a14000     0x7ffff7a17000     0x3000        0x0  rw-p   
+      0x7ffff7a17000     0x7ffff7a18000     0x1000        0x0  ---p   
+      0x7ffff7a18000     0x7ffff7a1b000     0x3000        0x0  rw-p   
+      0x7ffff7a1b000     0x7ffff7a1c000     0x1000        0x0  ---p   
+      0x7ffff7a1c000     0x7ffff7a1f000     0x3000        0x0  rw-p   
+      0x7ffff7a1f000     0x7ffff7a20000     0x1000        0x0  ---p   
+      0x7ffff7a20000     0x7ffff7a23000     0x3000        0x0  rw-p   
+      0x7ffff7a23000     0x7ffff7a24000     0x1000        0x0  ---p   
+      0x7ffff7a24000     0x7ffff7a27000     0x3000        0x0  rw-p   
+      0x7ffff7a27000     0x7ffff7a28000     0x1000        0x0  ---p   
+      0x7ffff7a28000     0x7ffff7a2b000     0x3000        0x0  rw-p   
+      0x7ffff7a2b000     0x7ffff7a2e000     0x3000        0x0  r--p   /usr/lib/x86_64-linux-gnu/libnuma.so.1.0.0
+      0x7ffff7a2e000     0x7ffff7a35000     0x7000     0x3000  r-xp   /usr/lib/x86_64-linux-gnu/libnuma.so.1.0.0
+      0x7ffff7a35000     0x7ffff7a37000     0x2000     0xa000  r--p   /usr/lib/x86_64-linux-gnu/libnuma.so.1.0.0
+      0x7ffff7a37000     0x7ffff7a38000     0x1000     0xb000  r--p   /usr/lib/x86_64-linux-gnu/libnuma.so.1.0.0
+      0x7ffff7a38000     0x7ffff7a39000     0x1000     0xc000  rw-p   /usr/lib/x86_64-linux-gnu/libnuma.so.1.0.0
+      0x7ffff7a39000     0x7ffff7a8c000    0x53000        0x0  r--p   /usr/lib/dotnet/shared/Microsoft.NETCore.App/10.0.6/libcoreclrtraceptprovider.so
+      0x7ffff7a8c000     0x7ffff7ab8000    0x2c000    0x52000  r-xp   /usr/lib/dotnet/shared/Microsoft.NETCore.App/10.0.6/libcoreclrtraceptprovider.so
+      0x7ffff7ab8000     0x7ffff7ad0000    0x18000    0x7d000  r--p   /usr/lib/dotnet/shared/Microsoft.NETCore.App/10.0.6/libcoreclrtraceptprovider.so
+      0x7ffff7ad0000     0x7ffff7ad7000     0x7000    0x94000  rw-p   /usr/lib/dotnet/shared/Microsoft.NETCore.App/10.0.6/libcoreclrtraceptprovider.so
+      0x7ffff7ad7000     0x7ffff7ad9000     0x2000        0x0  r--p   /usr/lib/x86_64-linux-gnu/liblttng-ust-tracepoint.so.1.0.0
+      0x7ffff7ad9000     0x7ffff7ae0000     0x7000     0x2000  r-xp   /usr/lib/x86_64-linux-gnu/liblttng-ust-tracepoint.so.1.0.0
+      0x7ffff7ae0000     0x7ffff7ae2000     0x2000     0x9000  r--p   /usr/lib/x86_64-linux-gnu/liblttng-ust-tracepoint.so.1.0.0
+      0x7ffff7ae2000     0x7ffff7ae3000     0x1000     0xb000  r--p   /usr/lib/x86_64-linux-gnu/liblttng-ust-tracepoint.so.1.0.0
+      0x7ffff7ae3000     0x7ffff7ae4000     0x1000     0xc000  rw-p   /usr/lib/x86_64-linux-gnu/liblttng-ust-tracepoint.so.1.0.0
+      0x7ffff7ae4000     0x7ffff7af4000    0x10000        0x0  rw-p   
+      0x7ffff7af4000     0x7ffff7af7000     0x3000        0x0  r--p   /usr/lib/x86_64-linux-gnu/liblzma.so.5.4.5
+      0x7ffff7af7000     0x7ffff7b19000    0x22000     0x3000  r-xp   /usr/lib/x86_64-linux-gnu/liblzma.so.5.4.5
+      0x7ffff7b19000     0x7ffff7b24000     0xb000    0x25000  r--p   /usr/lib/x86_64-linux-gnu/liblzma.so.5.4.5
+      0x7ffff7b24000     0x7ffff7b25000     0x1000    0x30000  r--p   /usr/lib/x86_64-linux-gnu/liblzma.so.5.4.5
+      0x7ffff7b25000     0x7ffff7b26000     0x1000    0x31000  rw-p   /usr/lib/x86_64-linux-gnu/liblzma.so.5.4.5
+      0x7ffff7b26000     0x7ffff7b29000     0x3000        0x0  r--p   /usr/lib/x86_64-linux-gnu/libunwind.so.8.0.1
+      0x7ffff7b29000     0x7ffff7b33000     0xa000     0x3000  r-xp   /usr/lib/x86_64-linux-gnu/libunwind.so.8.0.1
+      0x7ffff7b33000     0x7ffff7b35000     0x2000     0xd000  r--p   /usr/lib/x86_64-linux-gnu/libunwind.so.8.0.1
+      0x7ffff7b35000     0x7ffff7b36000     0x1000     0xe000  r--p   /usr/lib/x86_64-linux-gnu/libunwind.so.8.0.1
+      0x7ffff7b36000     0x7ffff7b37000     0x1000     0xf000  rw-p   /usr/lib/x86_64-linux-gnu/libunwind.so.8.0.1
+      0x7ffff7b37000     0x7ffff7b41000     0xa000        0x0  rw-p   
+      0x7ffff7b41000     0x7ffff7b43000     0x2000        0x0  r--p   /usr/lib/x86_64-linux-gnu/libunwind-x86_64.so.8.0.1
+      0x7ffff7b43000     0x7ffff7b4f000     0xc000     0x2000  r-xp   /usr/lib/x86_64-linux-gnu/libunwind-x86_64.so.8.0.1
+      0x7ffff7b4f000     0x7ffff7b51000     0x2000     0xe000  r--p   /usr/lib/x86_64-linux-gnu/libunwind-x86_64.so.8.0.1
+      0x7ffff7b51000     0x7ffff7b52000     0x1000     0xf000  r--p   /usr/lib/x86_64-linux-gnu/libunwind-x86_64.so.8.0.1
+      0x7ffff7b52000     0x7ffff7b53000     0x1000    0x10000  rw-p   /usr/lib/x86_64-linux-gnu/libunwind-x86_64.so.8.0.1
+      0x7ffff7b53000     0x7ffff7b5d000     0xa000        0x0  rw-p   
+      0x7ffff7b5d000     0x7ffff7b6f000    0x12000        0x0  r--p   /usr/lib/dotnet/shared/Microsoft.NETCore.App/10.0.6/libhostpolicy.so
+      0x7ffff7b6f000     0x7ffff7bab000    0x3c000    0x11000  r-xp   /usr/lib/dotnet/shared/Microsoft.NETCore.App/10.0.6/libhostpolicy.so
+      0x7ffff7bab000     0x7ffff7bac000     0x1000    0x4c000  r--p   /usr/lib/dotnet/shared/Microsoft.NETCore.App/10.0.6/libhostpolicy.so
+      0x7ffff7bac000     0x7ffff7bad000     0x1000    0x4c000  rw-p   /usr/lib/dotnet/shared/Microsoft.NETCore.App/10.0.6/libhostpolicy.so
+      0x7ffff7bad000     0x7ffff7bae000     0x1000        0x0  rw-p   
+      0x7ffff7bae000     0x7ffff7bc1000    0x13000        0x0  r--p   /usr/lib/dotnet/host/fxr/10.0.6/libhostfxr.so
+      0x7ffff7bc1000     0x7ffff7bfe000    0x3d000    0x12000  r-xp   /usr/lib/dotnet/host/fxr/10.0.6/libhostfxr.so
+      0x7ffff7bfe000     0x7ffff7bff000     0x1000    0x4e000  r--p   /usr/lib/dotnet/host/fxr/10.0.6/libhostfxr.so
+      0x7ffff7bff000     0x7ffff7c00000     0x1000    0x4e000  rw-p   /usr/lib/dotnet/host/fxr/10.0.6/libhostfxr.so
+      0x7ffff7c00000     0x7ffff7c9d000    0x9d000        0x0  r--p   /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.33
+      0x7ffff7c9d000     0x7ffff7de5000   0x148000    0x9d000  r-xp   /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.33
+      0x7ffff7de5000     0x7ffff7e6c000    0x87000   0x1e5000  r--p   /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.33
+      0x7ffff7e6c000     0x7ffff7e77000     0xb000   0x26b000  r--p   /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.33
+      0x7ffff7e77000     0x7ffff7e7a000     0x3000   0x276000  rw-p   /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.33
+      0x7ffff7e7a000     0x7ffff7e7e000     0x4000        0x0  rw-p   
+      0x7ffff7e7e000     0x7ffff7e7f000     0x1000        0x0  ---p   /memfd:dotnet_ipc_created (deleted)
+      0x7ffff7e7f000     0x7ffff7e80000     0x1000   0x111000  rw-s   /memfd:doublemapper (deleted)
+      0x7ffff7e80000     0x7ffff7e81000     0x1000        0x0  rw-p   
+      0x7ffff7e81000     0x7ffff7e83000     0x2000        0x0  r--p   /usr/lib/x86_64-linux-gnu/liblttng-ust-common.so.1.0.0
+      0x7ffff7e83000     0x7ffff7e8a000     0x7000     0x2000  r-xp   /usr/lib/x86_64-linux-gnu/liblttng-ust-common.so.1.0.0
+      0x7ffff7e8a000     0x7ffff7e8c000     0x2000     0x9000  r--p   /usr/lib/x86_64-linux-gnu/liblttng-ust-common.so.1.0.0
+      0x7ffff7e8c000     0x7ffff7e8d000     0x1000     0xa000  r--p   /usr/lib/x86_64-linux-gnu/liblttng-ust-common.so.1.0.0
+      0x7ffff7e8d000     0x7ffff7e8e000     0x1000     0xb000  rw-p   /usr/lib/x86_64-linux-gnu/liblttng-ust-common.so.1.0.0
+      0x7ffff7e8e000     0x7ffff7e93000     0x5000        0x0  rw-p   
+      0x7ffff7e93000     0x7ffff7e97000     0x4000        0x0  r--p   /usr/lib/x86_64-linux-gnu/libgcc_s.so.1
+      0x7ffff7e97000     0x7ffff7ebb000    0x24000     0x4000  r-xp   /usr/lib/x86_64-linux-gnu/libgcc_s.so.1
+      0x7ffff7ebb000     0x7ffff7ebf000     0x4000    0x28000  r--p   /usr/lib/x86_64-linux-gnu/libgcc_s.so.1
+      0x7ffff7ebf000     0x7ffff7ec0000     0x1000    0x2b000  r--p   /usr/lib/x86_64-linux-gnu/libgcc_s.so.1
+      0x7ffff7ec0000     0x7ffff7ec1000     0x1000    0x2c000  rw-p   /usr/lib/x86_64-linux-gnu/libgcc_s.so.1
+      0x7ffff7ec1000     0x7ffff7ed1000    0x10000        0x0  r--p   /usr/lib/x86_64-linux-gnu/libm.so.6
+      0x7ffff7ed1000     0x7ffff7f50000    0x7f000    0x10000  r-xp   /usr/lib/x86_64-linux-gnu/libm.so.6
+      0x7ffff7f50000     0x7ffff7fa8000    0x58000    0x8f000  r--p   /usr/lib/x86_64-linux-gnu/libm.so.6
+      0x7ffff7fa8000     0x7ffff7fa9000     0x1000    0xe7000  r--p   /usr/lib/x86_64-linux-gnu/libm.so.6
+      0x7ffff7fa9000     0x7ffff7faa000     0x1000    0xe8000  rw-p   /usr/lib/x86_64-linux-gnu/libm.so.6
+      0x7ffff7faa000     0x7ffff7fab000     0x1000        0x0  ---p   
+      0x7ffff7fab000     0x7ffff7fb5000     0xa000        0x0  rw-p   
+      0x7ffff7fb5000     0x7ffff7fb6000     0x1000        0x0  ---p   
+      0x7ffff7fb6000     0x7ffff7fb9000     0x3000        0x0  rw-p   
+      0x7ffff7fb9000     0x7ffff7fba000     0x1000        0x0  r--s   /dev/shm/lttng-ust-wait-8-1000
+      0x7ffff7fba000     0x7ffff7fbb000     0x1000        0x0  r--s   /dev/shm/lttng-ust-wait-8
+      0x7ffff7fbb000     0x7ffff7fbd000     0x2000        0x0  rw-p   
+      0x7ffff7fbd000     0x7ffff7fc1000     0x4000        0x0  r--p   [vvar]
+      0x7ffff7fc1000     0x7ffff7fc3000     0x2000        0x0  r--p   [vvar_vclock]
+      0x7ffff7fc3000     0x7ffff7fc5000     0x2000        0x0  r-xp   [vdso]
+      0x7ffff7fc5000     0x7ffff7fc6000     0x1000        0x0  r--p   /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2
+      0x7ffff7fc6000     0x7ffff7ff1000    0x2b000     0x1000  r-xp   /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2
+      0x7ffff7ff1000     0x7ffff7ffb000     0xa000    0x2c000  r--p   /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2
+      0x7ffff7ffb000     0x7ffff7ffd000     0x2000    0x36000  r--p   /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2
+      0x7ffff7ffd000     0x7ffff7fff000     0x2000    0x38000  rw-p   /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2
+      0x7ffffffde000     0x7ffffffff000    0x21000        0x0  rw-p   [stack]
+  0xffffffffff600000 0xffffffffff601000     0x1000        0x0  --xp   [vsyscall]
+
+Thread 83 (Thread 0x7fbdd3fff6c0 (LWP 53655) ".NET TP Worker"):
+#0  0x00007ffff762ffb0 in ?? () from /usr/lib/dotnet/shared/Microsoft.NETCore.App/10.0.6/libcoreclr.so
+#1  <signal handler called>
+#2  runtime.futex () at /snap/go/11127/src/runtime/sys_linux_amd64.s:569
+#3  0x00007fbf542d7d90 in runtime.futexsleep (addr=0xca, val=4294967295, ns=140459727993923) at /snap/go/11127/src/runtime/os_linux.go:73
+#4  0x00007fbf542b1bad in runtime.semasleep (ns=-1, ~r0=<optimized out>) at /snap/go/11127/src/runtime/lock_futex.go:146
+#5  0x00007fbf542b200f in runtime.lock2 (l=0x378f9fe1c068) at /snap/go/11127/src/runtime/lock_spinbit.go:250
+
+Thread 82 (Thread 0x7fbde8ff96c0 (LWP 53654) "repro-dotnet"):
+#0  0x00007ffff762ffb0 in ?? () from /usr/lib/dotnet/shared/Microsoft.NETCore.App/10.0.6/libcoreclr.so
+#1  <signal handler called>
+#2  runtime.futex () at /snap/go/11127/src/runtime/sys_linux_amd64.s:569
+#3  0x00007fbf542d7d90 in runtime.futexsleep (addr=0xca, val=0, ns=140459727993923) at /snap/go/11127/src/runtime/os_linux.go:73
+#4  0x00007fbf542b1807 in runtime.notesleep (n=0x378fa0500160) at /snap/go/11127/src/runtime/lock_futex.go:47
+#5  0x00007fbf542e2f4c in runtime.mPark () at /snap/go/11127/src/runtime/proc.go:1967
+
+Thread 81 (Thread 0x7fbde97fa6c0 (LWP 53653) ".NET TP Worker"):
+#0  0x00007ffff762ffb0 in ?? () from /usr/lib/dotnet/shared/Microsoft.NETCore.App/10.0.6/libcoreclr.so
+#1  <signal handler called>
+#2  0x00007fbf542b1d1c in runtime.lock2 (l=0x378f9fe1c068) at /snap/go/11127/src/runtime/lock_spinbit.go:157
+#3  0x00007fbf542ac0e5 in runtime.lockWithRank (l=0x378f9fe1c068, rank=<optimized out>) at /snap/go/11127/src/runtime/lockrank_off.go:24
+#4  runtime.lock (l=0x378f9fe1c068) at /snap/go/11127/src/runtime/lock_spinbit.go:152
+#5  runtime.chanrecv (c=0x378f9fe1c000, ep=0x0, block=true, selected=<optimized out>, received=<optimized out>) at /snap/go/11127/src/runtime/chan.go:586
+
+Thread 80 (Thread 0x7fbde9ffb6c0 (LWP 53652) ".NET TP Worker"):
+#0  0x00007ffff7528028 in ?? () from /usr/lib/dotnet/shared/Microsoft.NETCore.App/10.0.6/libcoreclr.so
+#1  0x00007ffff7529e2e in ?? () from /usr/lib/dotnet/shared/Microsoft.NETCore.App/10.0.6/libcoreclr.so
+#2  0x00007ffff752c331 in ?? () from /usr/lib/dotnet/shared/Microsoft.NETCore.App/10.0.6/libcoreclr.so
+#3  0x00007ffff763004b in ?? () from /usr/lib/dotnet/shared/Microsoft.NETCore.App/10.0.6/libcoreclr.so
+#4  <signal handler called>
+#5  0x00007fff78f643a7 in ?? ()
+
+Thread 79 (Thread 0x7fbdea7fc6c0 (LWP 53651) ".NET TP Worker"):
+#0  runtime.cgoSigtramp () at /snap/go/11127/src/runtime/sys_linux_amd64.s:400
+#1  <signal handler called>
+#2  runtime.futex () at /snap/go/11127/src/runtime/sys_linux_amd64.s:569
+#3  0x00007fbf542d7d90 in runtime.futexsleep (addr=0xca, val=4294967295, ns=140459727993923) at /snap/go/11127/src/runtime/os_linux.go:73
+#4  0x00007fbf542b1bad in runtime.semasleep (ns=-1, ~r0=<optimized out>) at /snap/go/11127/src/runtime/lock_futex.go:146
+#5  0x00007fbf542b200f in runtime.lock2 (l=0x378f9fe1c068) at /snap/go/11127/src/runtime/lock_spinbit.go:250
+
+Thread 78 (Thread 0x7fbdeaffd6c0 (LWP 53650) ".NET TP Worker"):
+#0  0x00007ffff762ffb0 in ?? () from /usr/lib/dotnet/shared/Microsoft.NETCore.App/10.0.6/libcoreclr.so
+#1  <signal handler called>
+#2  runtime.futex () at /snap/go/11127/src/runtime/sys_linux_amd64.s:569
+#3  0x00007fbf542d7d90 in runtime.futexsleep (addr=0xca, val=4294967295, ns=140459727993923) at /snap/go/11127/src/runtime/os_linux.go:73
+#4  0x00007fbf542b1bad in runtime.semasleep (ns=-1, ~r0=<optimized out>) at /snap/go/11127/src/runtime/lock_futex.go:146
+#5  0x00007fbf542b200f in runtime.lock2 (l=0x378f9fe1c068) at /snap/go/11127/src/runtime/lock_spinbit.go:250
+
+Thread 77 (Thread 0x7fbdeb7fe6c0 (LWP 53649) ".NET TP Worker"):
+#0  0x00007ffff762ffb0 in ?? () from /usr/lib/dotnet/shared/Microsoft.NETCore.App/10.0.6/libcoreclr.so
+#1  <signal handler called>
+#2  0x00007fbf542abfb3 in runtime.chanrecv (c=0x378f9fe1c000, ep=0x0, block=true, selected=<optimized out>, received=<optimized out>) at /snap/go/11127/src/runtime/chan.go:540
+#3  0x00007fbf542abf72 in runtime.chanrecv1 (c=0x378f9fe1c000, elem=0x0) at /snap/go/11127/src/runtime/chan.go:509
+#4  0x00007fbf542aa928 in runtime.cgocallbackg1 (fn=0x7fbf54316900 <_cgoexp_1c9984f9958e_ping>, frame=0x7fbdeb7fd7c4, ctxt=0) at /snap/go/11127/src/runtime/cgocall.go:428
+#5  0x00007fbf542aa652 in runtime.cgocallbackg (fn=0x7fbf54316900 <_cgoexp_1c9984f9958e_ping>, frame=0x7fbdeb7fd7c4, ctxt=0) at /snap/go/11127/src/runtime/cgocall.go:362
+
+Thread 76 (Thread 0x7fbdebfff6c0 (LWP 53648) ".NET TP Worker"):
+#0  0x00007ffff762ffb0 in ?? () from /usr/lib/dotnet/shared/Microsoft.NETCore.App/10.0.6/libcoreclr.so
+#1  <signal handler called>
+#2  runtime.futex () at /snap/go/11127/src/runtime/sys_linux_amd64.s:569
+#3  0x00007fbf542d7d90 in runtime.futexsleep (addr=0xca, val=4294967295, ns=140459727993923) at /snap/go/11127/src/runtime/os_linux.go:73
+#4  0x00007fbf542b1bad in runtime.semasleep (ns=-1, ~r0=<optimized out>) at /snap/go/11127/src/runtime/lock_futex.go:146
+#5  0x00007fbf542b200f in runtime.lock2 (l=0x378f9fe1c068) at /snap/go/11127/src/runtime/lock_spinbit.go:250
+
+Thread 75 (Thread 0x7fbe08ff96c0 (LWP 53647) ".NET TP Worker"):
+#0  0x00007ffff762ffb0 in ?? () from /usr/lib/dotnet/shared/Microsoft.NETCore.App/10.0.6/libcoreclr.so
+#1  <signal handler called>
+#2  runtime.futex () at /snap/go/11127/src/runtime/sys_linux_amd64.s:569
+#3  0x00007fbf542d7d90 in runtime.futexsleep (addr=0xca, val=4294967295, ns=140459727993923) at /snap/go/11127/src/runtime/os_linux.go:73
+#4  0x00007fbf542b1bad in runtime.semasleep (ns=-1, ~r0=<optimized out>) at /snap/go/11127/src/runtime/lock_futex.go:146
+#5  0x00007fbf542b200f in runtime.lock2 (l=0x378f9fe1c068) at /snap/go/11127/src/runtime/lock_spinbit.go:250
+
+Thread 74 (Thread 0x7fbe097fa6c0 (LWP 53646) ".NET TP Worker"):
+#0  0x00007ffff762ffb0 in ?? () from /usr/lib/dotnet/shared/Microsoft.NETCore.App/10.0.6/libcoreclr.so
+#1  <signal handler called>
+#2  runtime.futex () at /snap/go/11127/src/runtime/sys_linux_amd64.s:569
+#3  0x00007fbf542d7d90 in runtime.futexsleep (addr=0xca, val=4294967295, ns=140459727993923) at /snap/go/11127/src/runtime/os_linux.go:73
+#4  0x00007fbf542b1bad in runtime.semasleep (ns=-1, ~r0=<optimized out>) at /snap/go/11127/src/runtime/lock_futex.go:146
+#5  0x00007fbf542b200f in runtime.lock2 (l=0x378f9fe1c068) at /snap/go/11127/src/runtime/lock_spinbit.go:250
+
+Thread 73 (Thread 0x7fbe09ffb6c0 (LWP 53645) ".NET TP Worker"):
+#0  0x00007ffff762ffb0 in ?? () from /usr/lib/dotnet/shared/Microsoft.NETCore.App/10.0.6/libcoreclr.so
+#1  <signal handler called>
+#2  runtime.futex () at /snap/go/11127/src/runtime/sys_linux_amd64.s:569
+#3  0x00007fbf542d7d90 in runtime.futexsleep (addr=0xca, val=4294967295, ns=140459727993923) at /snap/go/11127/src/runtime/os_linux.go:73
+#4  0x00007fbf542b1bad in runtime.semasleep (ns=-1, ~r0=<optimized out>) at /snap/go/11127/src/runtime/lock_futex.go:146
+#5  0x00007fbf542b200f in runtime.lock2 (l=0x378f9fe1c068) at /snap/go/11127/src/runtime/lock_spinbit.go:250
+
+Thread 72 (Thread 0x7fbe0a7fc6c0 (LWP 53644) ".NET TP Worker"):
+#0  0x00007ffff762ffb0 in ?? () from /usr/lib/dotnet/shared/Microsoft.NETCore.App/10.0.6/libcoreclr.so
+#1  <signal handler called>
+#2  runtime.reentersyscall (pc=140459727986945, sp=61090006904800, bp=0) at /snap/go/11127/src/runtime/proc.go:4655
+#3  0x00007fbf542aa6a8 in runtime.cgocallbackg (fn=0x7fbf54316900 <_cgoexp_1c9984f9958e_ping>, frame=0x7fbe0a7fb7c4, ctxt=0) at /snap/go/11127/src/runtime/cgocall.go:383
+#4  0x00007fbf543141ab in runtime.cgocallbackg (fn=0x7fbf54316900 <_cgoexp_1c9984f9958e_ping>, frame=0x7fbe0a7fb7c4, ctxt=0) at ./<autogenerated>:1
+#5  0x00007fbf54311f0d in runtime.cgocallback () at /snap/go/11127/src/runtime/asm_amd64.s:1160
+
+Thread 71 (Thread 0x7fbe0affd6c0 (LWP 53643) ".NET TP Worker"):
+#0  0x00007ffff762ffb0 in ?? () from /usr/lib/dotnet/shared/Microsoft.NETCore.App/10.0.6/libcoreclr.so
+#1  <signal handler called>
+#2  runtime.procyieldAsm () at /snap/go/11127/src/runtime/asm_amd64.s:870
+#3  0x00007fbf542b1ecb in runtime.procyield (cycles=<optimized out>) at /snap/go/11127/src/runtime/stubs.go:282
+#4  runtime.lock2 (l=0x378f9fe1c068) at /snap/go/11127/src/runtime/lock_spinbit.go:216
+#5  0x00007fbf542ac0e5 in runtime.lockWithRank (l=0x10, rank=<optimized out>) at /snap/go/11127/src/runtime/lockrank_off.go:24
+
+Thread 70 (Thread 0x7fbe0b7fe6c0 (LWP 53642) ".NET TP Worker"):
+#0  0x00007ffff762ffb0 in ?? () from /usr/lib/dotnet/shared/Microsoft.NETCore.App/10.0.6/libcoreclr.so
+#1  <signal handler called>
+#2  runtime.futex () at /snap/go/11127/src/runtime/sys_linux_amd64.s:570
+#3  0x00007fbf542d7d90 in runtime.futexsleep (addr=0x0, val=4294967295, ns=140459727993923) at /snap/go/11127/src/runtime/os_linux.go:73
+#4  0x00007fbf542b1bad in runtime.semasleep (ns=-1, ~r0=<optimized out>) at /snap/go/11127/src/runtime/lock_futex.go:146
+#5  0x00007fbf542b200f in runtime.lock2 (l=0x378f9fe1c068) at /snap/go/11127/src/runtime/lock_spinbit.go:250
+
+Thread 69 (Thread 0x7fbe0bfff6c0 (LWP 53641) ".NET TP Worker"):
+#0  0x00007ffff762ffb0 in ?? () from /usr/lib/dotnet/shared/Microsoft.NETCore.App/10.0.6/libcoreclr.so
+#1  <signal handler called>
+#2  runtime.futex () at /snap/go/11127/src/runtime/sys_linux_amd64.s:570
+#3  0x00007fbf542d7d90 in runtime.futexsleep (addr=0x0, val=4294967295, ns=140459727993923) at /snap/go/11127/src/runtime/os_linux.go:73
+#4  0x00007fbf542b1bad in runtime.semasleep (ns=-1, ~r0=<optimized out>) at /snap/go/11127/src/runtime/lock_futex.go:146
+#5  0x00007fbf542b200f in runtime.lock2 (l=0x378f9fe1c068) at /snap/go/11127/src/runtime/lock_spinbit.go:250
+
+Thread 68 (Thread 0x7fbe28ff96c0 (LWP 53640) ".NET TP Worker"):
+#0  0x00007ffff762ffb0 in ?? () from /usr/lib/dotnet/shared/Microsoft.NETCore.App/10.0.6/libcoreclr.so
+#1  <signal handler called>
+#2  runtime.futex () at /snap/go/11127/src/runtime/sys_linux_amd64.s:569
+#3  0x00007fbf542d7d90 in runtime.futexsleep (addr=0xca, val=4294967295, ns=140459727993923) at /snap/go/11127/src/runtime/os_linux.go:73
+#4  0x00007fbf542b1bad in runtime.semasleep (ns=-1, ~r0=<optimized out>) at /snap/go/11127/src/runtime/lock_futex.go:146
+#5  0x00007fbf542b200f in runtime.lock2 (l=0x378f9fe1c068) at /snap/go/11127/src/runtime/lock_spinbit.go:250
+
+Thread 67 (Thread 0x7fbe297fa6c0 (LWP 53639) ".NET TP Worker"):
+#0  0x00007ffff762ffb0 in ?? () from /usr/lib/dotnet/shared/Microsoft.NETCore.App/10.0.6/libcoreclr.so
+#1  <signal handler called>
+#2  runtime.futex () at /snap/go/11127/src/runtime/sys_linux_amd64.s:570
+#3  0x00007fbf542d7d90 in runtime.futexsleep (addr=0x0, val=4294967295, ns=140459727993923) at /snap/go/11127/src/runtime/os_linux.go:73
+#4  0x00007fbf542b1bad in runtime.semasleep (ns=-1, ~r0=<optimized out>) at /snap/go/11127/src/runtime/lock_futex.go:146
+#5  0x00007fbf542b200f in runtime.lock2 (l=0x378f9fe1c068) at /snap/go/11127/src/runtime/lock_spinbit.go:250
+
+Thread 66 (Thread 0x7fbe29ffb6c0 (LWP 53638) ".NET TP Worker"):
+#0  0x00007ffff762ffb0 in ?? () from /usr/lib/dotnet/shared/Microsoft.NETCore.App/10.0.6/libcoreclr.so
+#1  <signal handler called>
+#2  runtime.lock2 (l=0x378f9fe1c068) at /snap/go/11127/src/runtime/lock_spinbit.go:166
+#3  0x00007fbf542ac0e5 in runtime.lockWithRank (l=0x378f9fe1c068, rank=<optimized out>) at /snap/go/11127/src/runtime/lockrank_off.go:24
+#4  runtime.lock (l=0x378f9fe1c068) at /snap/go/11127/src/runtime/lock_spinbit.go:152
+#5  runtime.chanrecv (c=0x378f9fe1c000, ep=0x0, block=true, selected=<optimized out>, received=<optimized out>) at /snap/go/11127/src/runtime/chan.go:586
+
+Thread 65 (Thread 0x7fbe2a7fc6c0 (LWP 53637) ".NET TP Worker"):
+#0  0x00007ffff762ffb0 in ?? () from /usr/lib/dotnet/shared/Microsoft.NETCore.App/10.0.6/libcoreclr.so
+#1  <signal handler called>
+#2  runtime.futex () at /snap/go/11127/src/runtime/sys_linux_amd64.s:569
+#3  0x00007fbf542d7d90 in runtime.futexsleep (addr=0xca, val=4294967295, ns=140459727993923) at /snap/go/11127/src/runtime/os_linux.go:73
+#4  0x00007fbf542b1bad in runtime.semasleep (ns=-1, ~r0=<optimized out>) at /snap/go/11127/src/runtime/lock_futex.go:146
+#5  0x00007fbf542b200f in runtime.lock2 (l=0x378f9fe1c068) at /snap/go/11127/src/runtime/lock_spinbit.go:250
+
+Thread 64 (Thread 0x7fbe2affd6c0 (LWP 53636) ".NET TP Worker"):
+#0  0x00007ffff762ffb0 in ?? () from /usr/lib/dotnet/shared/Microsoft.NETCore.App/10.0.6/libcoreclr.so
+#1  <signal handler called>
+#2  runtime.futex () at /snap/go/11127/src/runtime/sys_linux_amd64.s:570
+#3  0x00007fbf542d7d90 in runtime.futexsleep (addr=0x0, val=4294967295, ns=140459727993923) at /snap/go/11127/src/runtime/os_linux.go:73
+#4  0x00007fbf542b1bad in runtime.semasleep (ns=-1, ~r0=<optimized out>) at /snap/go/11127/src/runtime/lock_futex.go:146
+#5  0x00007fbf542b200f in runtime.lock2 (l=0x378f9fe1c068) at /snap/go/11127/src/runtime/lock_spinbit.go:250
+
+Thread 63 (Thread 0x7fbe2b7fe6c0 (LWP 53635) ".NET TP Worker"):
+#0  0x00007ffff762ffb0 in ?? () from /usr/lib/dotnet/shared/Microsoft.NETCore.App/10.0.6/libcoreclr.so
+#1  <signal handler called>
+#2  runtime.futex () at /snap/go/11127/src/runtime/sys_linux_amd64.s:570
+#3  0x00007fbf542d7d90 in runtime.futexsleep (addr=0x0, val=4294967295, ns=140459727993923) at /snap/go/11127/src/runtime/os_linux.go:73
+#4  0x00007fbf542b1bad in runtime.semasleep (ns=-1, ~r0=<optimized out>) at /snap/go/11127/src/runtime/lock_futex.go:146
+#5  0x00007fbf542b200f in runtime.lock2 (l=0x378f9fe1c068) at /snap/go/11127/src/runtime/lock_spinbit.go:250
+
+Thread 62 (Thread 0x7fbe2bfff6c0 (LWP 53634) ".NET TP Worker"):
+#0  0x00007ffff762ffb0 in ?? () from /usr/lib/dotnet/shared/Microsoft.NETCore.App/10.0.6/libcoreclr.so
+#1  <signal handler called>
+#2  runtime.futex () at /snap/go/11127/src/runtime/sys_linux_amd64.s:570
+#3  0x00007fbf542d7d90 in runtime.futexsleep (addr=0x0, val=4294967295, ns=140459727993923) at /snap/go/11127/src/runtime/os_linux.go:73
+#4  0x00007fbf542b1bad in runtime.semasleep (ns=-1, ~r0=<optimized out>) at /snap/go/11127/src/runtime/lock_futex.go:146
+#5  0x00007fbf542b200f in runtime.lock2 (l=0x378f9fe1c068) at /snap/go/11127/src/runtime/lock_spinbit.go:250
+
+Thread 61 (Thread 0x7fbe48ff96c0 (LWP 53633) ".NET TP Worker"):
+#0  runtime.cgoSigtramp () at /snap/go/11127/src/runtime/sys_linux_amd64.s:400
+#1  <signal handler called>
+#2  runtime.futex () at /snap/go/11127/src/runtime/sys_linux_amd64.s:570
+#3  0x00007fbf542d7d90 in runtime.futexsleep (addr=0x0, val=4294967295, ns=140459727993923) at /snap/go/11127/src/runtime/os_linux.go:73
+#4  0x00007fbf542b1bad in runtime.semasleep (ns=-1, ~r0=<optimized out>) at /snap/go/11127/src/runtime/lock_futex.go:146
+#5  0x00007fbf542b200f in runtime.lock2 (l=0x378f9fe1c068) at /snap/go/11127/src/runtime/lock_spinbit.go:250
+
+Thread 60 (Thread 0x7fbe497fa6c0 (LWP 53632) ".NET TP Worker"):
+#0  runtime.cgoSigtramp () at /snap/go/11127/src/runtime/sys_linux_amd64.s:400
+#1  <signal handler called>
+#2  runtime.futex () at /snap/go/11127/src/runtime/sys_linux_amd64.s:569
+#3  0x00007fbf542d7d90 in runtime.futexsleep (addr=0xca, val=4294967295, ns=140459727993923) at /snap/go/11127/src/runtime/os_linux.go:73
+#4  0x00007fbf542b1bad in runtime.semasleep (ns=-1, ~r0=<optimized out>) at /snap/go/11127/src/runtime/lock_futex.go:146
+#5  0x00007fbf542b200f in runtime.lock2 (l=0x378f9fe1c068) at /snap/go/11127/src/runtime/lock_spinbit.go:250
+
+Thread 59 (Thread 0x7fbe49ffb6c0 (LWP 53631) ".NET TP Worker"):
+#0  runtime.cgoSigtramp () at /snap/go/11127/src/runtime/sys_linux_amd64.s:400
+#1  <signal handler called>
+#2  0x00007fbf542f5a60 in runtime.canPreemptM (mp=<optimized out>) at /snap/go/11127/src/runtime/preempt.go:290
+#3  runtime.newstack () at /snap/go/11127/src/runtime/stack.go:1095
+#4  0x00007fbf5431061a in runtime.morestack () at /snap/go/11127/src/runtime/asm_amd64.s:681
+#5  0x00007fbe49ffa7d0 in ?? ()
+
+Thread 58 (Thread 0x7fbe4a7fc6c0 (LWP 53630) ".NET TP Worker"):
+#0  0x00007ffff762ffb0 in ?? () from /usr/lib/dotnet/shared/Microsoft.NETCore.App/10.0.6/libcoreclr.so
+#1  <signal handler called>
+#2  runtime.futex () at /snap/go/11127/src/runtime/sys_linux_amd64.s:570
+#3  0x00007fbf542d7d90 in runtime.futexsleep (addr=0x0, val=4294967295, ns=140459727993923) at /snap/go/11127/src/runtime/os_linux.go:73
+#4  0x00007fbf542b1bad in runtime.semasleep (ns=-1, ~r0=<optimized out>) at /snap/go/11127/src/runtime/lock_futex.go:146
+#5  0x00007fbf542b200f in runtime.lock2 (l=0x378f9fe1c068) at /snap/go/11127/src/runtime/lock_spinbit.go:250
+
+Thread 57 (Thread 0x7fbe4affd6c0 (LWP 53629) ".NET TP Worker"):
+#0  0x00007ffff762ffb0 in ?? () from /usr/lib/dotnet/shared/Microsoft.NETCore.App/10.0.6/libcoreclr.so
+#1  <signal handler called>
+#2  runtime.futex () at /snap/go/11127/src/runtime/sys_linux_amd64.s:570
+#3  0x00007fbf542d7d90 in runtime.futexsleep (addr=0x0, val=4294967295, ns=140459727993923) at /snap/go/11127/src/runtime/os_linux.go:73
+#4  0x00007fbf542b1bad in runtime.semasleep (ns=-1, ~r0=<optimized out>) at /snap/go/11127/src/runtime/lock_futex.go:146
+#5  0x00007fbf542b200f in runtime.lock2 (l=0x378f9fe1c068) at /snap/go/11127/src/runtime/lock_spinbit.go:250
+
+Thread 56 (Thread 0x7fbe4b7fe6c0 (LWP 53628) ".NET TP Worker"):
+#0  0x00007ffff762ffb0 in ?? () from /usr/lib/dotnet/shared/Microsoft.NETCore.App/10.0.6/libcoreclr.so
+#1  <signal handler called>
+#2  runtime.futex () at /snap/go/11127/src/runtime/sys_linux_amd64.s:570
+#3  0x00007fbf542d7d90 in runtime.futexsleep (addr=0x0, val=4294967295, ns=140459727993923) at /snap/go/11127/src/runtime/os_linux.go:73
+#4  0x00007fbf542b1bad in runtime.semasleep (ns=-1, ~r0=<optimized out>) at /snap/go/11127/src/runtime/lock_futex.go:146
+#5  0x00007fbf542b200f in runtime.lock2 (l=0x378f9fe1c068) at /snap/go/11127/src/runtime/lock_spinbit.go:250
+
+Thread 55 (Thread 0x7fbe4bfff6c0 (LWP 53627) ".NET TP Worker"):
+#0  0x00007ffff762ffb0 in ?? () from /usr/lib/dotnet/shared/Microsoft.NETCore.App/10.0.6/libcoreclr.so
+#1  <signal handler called>
+#2  runtime.futex () at /snap/go/11127/src/runtime/sys_linux_amd64.s:569
+#3  0x00007fbf542d7d90 in runtime.futexsleep (addr=0xca, val=4294967295, ns=140459727993923) at /snap/go/11127/src/runtime/os_linux.go:73
+#4  0x00007fbf542b1bad in runtime.semasleep (ns=-1, ~r0=<optimized out>) at /snap/go/11127/src/runtime/lock_futex.go:146
+#5  0x00007fbf542b200f in runtime.lock2 (l=0x378f9fe1c068) at /snap/go/11127/src/runtime/lock_spinbit.go:250
+
+Thread 54 (Thread 0x7fbe74ff96c0 (LWP 53626) ".NET TP Worker"):
+#0  0x00007ffff762ffb0 in ?? () from /usr/lib/dotnet/shared/Microsoft.NETCore.App/10.0.6/libcoreclr.so
+#1  <signal handler called>
+#2  runtime.futex () at /snap/go/11127/src/runtime/sys_linux_amd64.s:570
+#3  0x00007fbf542d7d90 in runtime.futexsleep (addr=0x0, val=4294967295, ns=140459727993923) at /snap/go/11127/src/runtime/os_linux.go:73
+#4  0x00007fbf542b1bad in runtime.semasleep (ns=-1, ~r0=<optimized out>) at /snap/go/11127/src/runtime/lock_futex.go:146
+#5  0x00007fbf542b200f in runtime.lock2 (l=0x378f9fe1c068) at /snap/go/11127/src/runtime/lock_spinbit.go:250
+
+Thread 53 (Thread 0x7fbe757fa6c0 (LWP 53625) ".NET TP Worker"):
+#0  0x00007ffff762ffb0 in ?? () from /usr/lib/dotnet/shared/Microsoft.NETCore.App/10.0.6/libcoreclr.so
+#1  <signal handler called>
+#2  runtime.futex () at /snap/go/11127/src/runtime/sys_linux_amd64.s:569
+#3  0x00007fbf542d7d90 in runtime.futexsleep (addr=0xca, val=4294967295, ns=140459727993923) at /snap/go/11127/src/runtime/os_linux.go:73
+#4  0x00007fbf542b1bad in runtime.semasleep (ns=-1, ~r0=<optimized out>) at /snap/go/11127/src/runtime/lock_futex.go:146
+#5  0x00007fbf542b200f in runtime.lock2 (l=0x378f9fe1c068) at /snap/go/11127/src/runtime/lock_spinbit.go:250
+
+Thread 52 (Thread 0x7fbe75ffb6c0 (LWP 53624) ".NET TP Worker"):
+#0  0x00007ffff762ffb0 in ?? () from /usr/lib/dotnet/shared/Microsoft.NETCore.App/10.0.6/libcoreclr.so
+#1  <signal handler called>
+#2  runtime.futex () at /snap/go/11127/src/runtime/sys_linux_amd64.s:569
+#3  0x00007fbf542d7d90 in runtime.futexsleep (addr=0xca, val=4294967295, ns=140459727993923) at /snap/go/11127/src/runtime/os_linux.go:73
+#4  0x00007fbf542b1bad in runtime.semasleep (ns=-1, ~r0=<optimized out>) at /snap/go/11127/src/runtime/lock_futex.go:146
+#5  0x00007fbf542b200f in runtime.lock2 (l=0x378f9fe1c068) at /snap/go/11127/src/runtime/lock_spinbit.go:250
+
+Thread 51 (Thread 0x7fbf547fe6c0 (LWP 53623) ".NET TP Gate"):
+#0  0x00007ffff762ffb0 in ?? () from /usr/lib/dotnet/shared/Microsoft.NETCore.App/10.0.6/libcoreclr.so
+#1  <signal handler called>
+#2  0x00007ffff7898d71 in __futex_abstimed_wait_common64 (private=0, cancel=true, abstime=0x7fbf547fd500, op=137, expected=0, futex_word=0x5555557cb5b0) at ./nptl/futex-internal.c:57
+#3  __futex_abstimed_wait_common (cancel=true, private=0, abstime=0x7fbf547fd500, clockid=32767, expected=0, futex_word=0x5555557cb5b0) at ./nptl/futex-internal.c:87
+#4  __GI___futex_abstimed_wait_cancelable64 (futex_word=futex_word@entry=0x5555557cb5b0, expected=expected@entry=0, clockid=clockid@entry=1, abstime=abstime@entry=0x7fbf547fd500, private=private@entry=0) at ./nptl/futex-internal.c:139
+#5  0x00007ffff789bc8e in __pthread_cond_wait_common (abstime=0x7fbf547fd500, clockid=1, mutex=0x5555557cb560, cond=0x5555557cb588) at ./nptl/pthread_cond_wait.c:503
+
+Thread 50 (Thread 0x7fbe767fc6c0 (LWP 53622) ".NET TP Worker"):
+#0  0x00007ffff762ffb0 in ?? () from /usr/lib/dotnet/shared/Microsoft.NETCore.App/10.0.6/libcoreclr.so
+#1  <signal handler called>
+#2  runtime.futex () at /snap/go/11127/src/runtime/sys_linux_amd64.s:570
+#3  0x00007fbf542d7d90 in runtime.futexsleep (addr=0x0, val=4294967295, ns=140459727993923) at /snap/go/11127/src/runtime/os_linux.go:73
+#4  0x00007fbf542b1bad in runtime.semasleep (ns=-1, ~r0=<optimized out>) at /snap/go/11127/src/runtime/lock_futex.go:146
+#5  0x00007fbf542b200f in runtime.lock2 (l=0x378f9fe1c068) at /snap/go/11127/src/runtime/lock_spinbit.go:250
+
+Thread 49 (Thread 0x7fbe76ffd6c0 (LWP 53621) "activation-send"):
+#0  0x00007fff78613768 in ?? ()
+#1  0x0000000000000000 in ?? ()
+
+Thread 48 (Thread 0x7fbe777fe6c0 (LWP 53620) "repro-dotnet"):
+#0  0x00007ffff762ffb0 in ?? () from /usr/lib/dotnet/shared/Microsoft.NETCore.App/10.0.6/libcoreclr.so
+#1  <signal handler called>
+#2  runtime.futex () at /snap/go/11127/src/runtime/sys_linux_amd64.s:569
+#3  0x00007fbf542d7d90 in runtime.futexsleep (addr=0xca, val=0, ns=140459727993923) at /snap/go/11127/src/runtime/os_linux.go:73
+#4  0x00007fbf542b1807 in runtime.notesleep (n=0x7fbf543ea4d8 <runtime[newmHandoff]+24>) at /snap/go/11127/src/runtime/lock_futex.go:47
+#5  0x00007fbf542e2e31 in runtime.templateThread () at /snap/go/11127/src/runtime/proc.go:2986
+
+Thread 47 (Thread 0x7fbe77fff6c0 (LWP 53619) "repro-dotnet"):
+#0  0x00007ffff762ffb0 in ?? () from /usr/lib/dotnet/shared/Microsoft.NETCore.App/10.0.6/libcoreclr.so
+#1  <signal handler called>
+#2  runtime.futex () at /snap/go/11127/src/runtime/sys_linux_amd64.s:569
+#3  0x00007fbf542d7d90 in runtime.futexsleep (addr=0xca, val=0, ns=140459727993923) at /snap/go/11127/src/runtime/os_linux.go:73
+#4  0x00007fbf542b1807 in runtime.notesleep (n=0x378f9fe00160) at /snap/go/11127/src/runtime/lock_futex.go:47
+#5  0x00007fbf542e2f4c in runtime.mPark () at /snap/go/11127/src/runtime/proc.go:1967
+
+Thread 46 (Thread 0x7fbec4ffe6c0 (LWP 53618) "repro-dotnet"):
+#0  0x00007ffff762ffb0 in ?? () from /usr/lib/dotnet/shared/Microsoft.NETCore.App/10.0.6/libcoreclr.so
+#1  <signal handler called>
+#2  runtime.futex () at /snap/go/11127/src/runtime/sys_linux_amd64.s:569
+#3  0x00007fbf542d7d90 in runtime.futexsleep (addr=0xca, val=0, ns=140459727993923) at /snap/go/11127/src/runtime/os_linux.go:73
+#4  0x00007fbf542b1807 in runtime.notesleep (n=0x378f9fd99960) at /snap/go/11127/src/runtime/lock_futex.go:47
+#5  0x00007fbf542e2f4c in runtime.mPark () at /snap/go/11127/src/runtime/proc.go:1967
+
+Thread 45 (Thread 0x7fbec57ff6c0 (LWP 53617) "repro-dotnet"):
+#0  0x00007ffff762ffb0 in ?? () from /usr/lib/dotnet/shared/Microsoft.NETCore.App/10.0.6/libcoreclr.so
+#1  <signal handler called>
+#2  runtime.futex () at /snap/go/11127/src/runtime/sys_linux_amd64.s:569
+#3  0x00007fbf542d7d90 in runtime.futexsleep (addr=0xca, val=0, ns=140459727993923) at /snap/go/11127/src/runtime/os_linux.go:73
+#4  0x00007fbf542b1807 in runtime.notesleep (n=0x378f9fd99160) at /snap/go/11127/src/runtime/lock_futex.go:47
+#5  0x00007fbf542e2f4c in runtime.mPark () at /snap/go/11127/src/runtime/proc.go:1967
+
+Thread 44 (Thread 0x7fbecc9fd6c0 (LWP 53616) "repro-dotnet"):
+#0  0x00007ffff762ffb0 in ?? () from /usr/lib/dotnet/shared/Microsoft.NETCore.App/10.0.6/libcoreclr.so
+#1  <signal handler called>
+#2  runtime.usleep () at /snap/go/11127/src/runtime/sys_linux_amd64.s:135
+#3  0x00007fbf542eb2d2 in runtime.sysmon () at /snap/go/11127/src/runtime/proc.go:6506
+#4  0x00007fbf542e1715 in runtime.mstart1 () at /snap/go/11127/src/runtime/proc.go:1935
+#5  0x00007fbf542e1655 in runtime.mstart0 () at /snap/go/11127/src/runtime/proc.go:1888
+
+Thread 43 (Thread 0x7fbecd1fe6c0 (LWP 53615) "repro-dotnet"):
+#0  0x00007ffff762ffb0 in ?? () from /usr/lib/dotnet/shared/Microsoft.NETCore.App/10.0.6/libcoreclr.so
+#1  <signal handler called>
+#2  runtime.futex () at /snap/go/11127/src/runtime/sys_linux_amd64.s:569
+#3  0x00007fbf542d7d90 in runtime.futexsleep (addr=0xca, val=0, ns=140459727993923) at /snap/go/11127/src/runtime/os_linux.go:73
+#4  0x00007fbf542b1807 in runtime.notesleep (n=0x7fbf543cb418 <runtime.m0+344>) at /snap/go/11127/src/runtime/lock_futex.go:47
+#5  0x00007fbf542e2f4c in runtime.mPark () at /snap/go/11127/src/runtime/proc.go:1967
+
+Thread 42 (Thread 0x7fbecd9ff6c0 (LWP 53614) ".NET SigHandler"):
+#0  0x00007ffff762ffb0 in ?? () from /usr/lib/dotnet/shared/Microsoft.NETCore.App/10.0.6/libcoreclr.so
+#1  <signal handler called>
+#2  0x00007ffff791bac8 in __GI___libc_read (nbytes=1, buf=0x7fbecd9fee8f, fd=32) at ../sysdeps/unix/sysv/linux/read.c:26
+#3  __GI___libc_read (fd=32, buf=0x7fbecd9fee8f, nbytes=1) at ../sysdeps/unix/sysv/linux/read.c:24
+#4  0x00007fbf5637ad7f in ?? () from /usr/lib/dotnet/shared/Microsoft.NETCore.App/10.0.6/libSystem.Native.so
+#5  0x00007ffff789caa4 in start_thread (arg=<optimized out>) at ./nptl/pthread_create.c:447
+
+Thread 41 (Thread 0x7fbf54fff6c0 (LWP 53613) ".NET Tiered Com"):
+#0  0x00007ffff762ffb0 in ?? () from /usr/lib/dotnet/shared/Microsoft.NETCore.App/10.0.6/libcoreclr.so
+#1  <signal handler called>
+#2  0x00007ffff7898d71 in __futex_abstimed_wait_common64 (private=0, cancel=true, abstime=0x7fbf54ffeb40, op=137, expected=0, futex_word=0x555555759320) at ./nptl/futex-internal.c:57
+#3  __futex_abstimed_wait_common (cancel=true, private=0, abstime=0x7fbf54ffeb40, clockid=0, expected=0, futex_word=0x555555759320) at ./nptl/futex-internal.c:87
+#4  __GI___futex_abstimed_wait_cancelable64 (futex_word=futex_word@entry=0x555555759320, expected=expected@entry=0, clockid=clockid@entry=1, abstime=abstime@entry=0x7fbf54ffeb40, private=private@entry=0) at ./nptl/futex-internal.c:139
+#5  0x00007ffff789bc8e in __pthread_cond_wait_common (abstime=0x7fbf54ffeb40, clockid=1, mutex=0x5555557592d0, cond=0x5555557592f8) at ./nptl/pthread_cond_wait.c:503
+
+Thread 40 (Thread 0x7fbf56b996c0 (LWP 53612) ".NET Finalizer"):
+#0  0x00007ffff762ffb0 in ?? () from /usr/lib/dotnet/shared/Microsoft.NETCore.App/10.0.6/libcoreclr.so
+#1  <signal handler called>
+#2  0x00007ffff7898d71 in __futex_abstimed_wait_common64 (private=32767, cancel=true, abstime=0x7fbf56b98720, op=137, expected=0, futex_word=0x555555753d94) at ./nptl/futex-internal.c:57
+#3  __futex_abstimed_wait_common (cancel=true, private=32767, abstime=0x7fbf56b98720, clockid=32767, expected=0, futex_word=0x555555753d94) at ./nptl/futex-internal.c:87
+#4  __GI___futex_abstimed_wait_cancelable64 (futex_word=futex_word@entry=0x555555753d94, expected=expected@entry=0, clockid=clockid@entry=1, abstime=abstime@entry=0x7fbf56b98720, private=private@entry=0) at ./nptl/futex-internal.c:139
+#5  0x00007ffff789bc8e in __pthread_cond_wait_common (abstime=0x7fbf56b98720, clockid=1, mutex=0x555555753d40, cond=0x555555753d68) at ./nptl/pthread_cond_wait.c:503
+
+Thread 39 (Thread 0x7fbf56c1e6c0 (LWP 53611) ".NET Server GC"):
+#0  0x00007ffff762ffb0 in ?? () from /usr/lib/dotnet/shared/Microsoft.NETCore.App/10.0.6/libcoreclr.so
+#1  <signal handler called>
+#2  0x00007ffff7898d6f in __futex_abstimed_wait_common64 (private=0, cancel=true, abstime=0x0, op=393, expected=0, futex_word=0x5555556fd078) at ./nptl/futex-internal.c:57
+#3  __futex_abstimed_wait_common (cancel=true, private=0, abstime=0x0, clockid=0, expected=0, futex_word=0x5555556fd078) at ./nptl/futex-internal.c:87
+#4  __GI___futex_abstimed_wait_cancelable64 (futex_word=futex_word@entry=0x5555556fd078, expected=expected@entry=0, clockid=clockid@entry=0, abstime=abstime@entry=0x0, private=private@entry=0) at ./nptl/futex-internal.c:139
+#5  0x00007ffff789b7ed in __pthread_cond_wait_common (abstime=0x0, clockid=0, mutex=0x5555556fd080, cond=0x5555556fd050) at ./nptl/pthread_cond_wait.c:503
+
+Thread 38 (Thread 0x7fbf56cc86c0 (LWP 53610) ".NET Server GC"):
+#0  0x00007ffff762ffb0 in ?? () from /usr/lib/dotnet/shared/Microsoft.NETCore.App/10.0.6/libcoreclr.so
+#1  <signal handler called>
+#2  0x00007ffff7898d6f in __futex_abstimed_wait_common64 (private=0, cancel=true, abstime=0x0, op=393, expected=0, futex_word=0x5555556f86c8) at ./nptl/futex-internal.c:57
+#3  __futex_abstimed_wait_common (cancel=true, private=0, abstime=0x0, clockid=0, expected=0, futex_word=0x5555556f86c8) at ./nptl/futex-internal.c:87
+#4  __GI___futex_abstimed_wait_cancelable64 (futex_word=futex_word@entry=0x5555556f86c8, expected=expected@entry=0, clockid=clockid@entry=0, abstime=abstime@entry=0x0, private=private@entry=0) at ./nptl/futex-internal.c:139
+#5  0x00007ffff789b7ed in __pthread_cond_wait_common (abstime=0x0, clockid=0, mutex=0x5555556f86d0, cond=0x5555556f86a0) at ./nptl/pthread_cond_wait.c:503
+
+Thread 37 (Thread 0x7fbf56d726c0 (LWP 53609) ".NET Server GC"):
+#0  0x00007ffff762ffb0 in ?? () from /usr/lib/dotnet/shared/Microsoft.NETCore.App/10.0.6/libcoreclr.so
+#1  <signal handler called>
+#2  0x00007ffff7898d6f in __futex_abstimed_wait_common64 (private=0, cancel=true, abstime=0x0, op=393, expected=0, futex_word=0x5555556f3d18) at ./nptl/futex-internal.c:57
+#3  __futex_abstimed_wait_common (cancel=true, private=0, abstime=0x0, clockid=0, expected=0, futex_word=0x5555556f3d18) at ./nptl/futex-internal.c:87
+#4  __GI___futex_abstimed_wait_cancelable64 (futex_word=futex_word@entry=0x5555556f3d18, expected=expected@entry=0, clockid=clockid@entry=0, abstime=abstime@entry=0x0, private=private@entry=0) at ./nptl/futex-internal.c:139
+#5  0x00007ffff789b7ed in __pthread_cond_wait_common (abstime=0x0, clockid=0, mutex=0x5555556f3d20, cond=0x5555556f3cf0) at ./nptl/pthread_cond_wait.c:503
+
+Thread 36 (Thread 0x7fbf56e1c6c0 (LWP 53608) ".NET Server GC"):
+#0  0x00007ffff762ffb0 in ?? () from /usr/lib/dotnet/shared/Microsoft.NETCore.App/10.0.6/libcoreclr.so
+#1  <signal handler called>
+#2  0x00007ffff7898d6f in __futex_abstimed_wait_common64 (private=0, cancel=true, abstime=0x0, op=393, expected=0, futex_word=0x5555556ef368) at ./nptl/futex-internal.c:57
+#3  __futex_abstimed_wait_common (cancel=true, private=0, abstime=0x0, clockid=0, expected=0, futex_word=0x5555556ef368) at ./nptl/futex-internal.c:87
+#4  __GI___futex_abstimed_wait_cancelable64 (futex_word=futex_word@entry=0x5555556ef368, expected=expected@entry=0, clockid=clockid@entry=0, abstime=abstime@entry=0x0, private=private@entry=0) at ./nptl/futex-internal.c:139
+#5  0x00007ffff789b7ed in __pthread_cond_wait_common (abstime=0x0, clockid=0, mutex=0x5555556ef370, cond=0x5555556ef340) at ./nptl/pthread_cond_wait.c:503
+
+Thread 35 (Thread 0x7fbf56ec26c0 (LWP 53607) ".NET Server GC"):
+#0  0x00007ffff762ffb0 in ?? () from /usr/lib/dotnet/shared/Microsoft.NETCore.App/10.0.6/libcoreclr.so
+#1  <signal handler called>
+#2  0x00007ffff7898d6f in __futex_abstimed_wait_common64 (private=0, cancel=true, abstime=0x0, op=393, expected=0, futex_word=0x5555556ea9b8) at ./nptl/futex-internal.c:57
+#3  __futex_abstimed_wait_common (cancel=true, private=0, abstime=0x0, clockid=0, expected=0, futex_word=0x5555556ea9b8) at ./nptl/futex-internal.c:87
+#4  __GI___futex_abstimed_wait_cancelable64 (futex_word=futex_word@entry=0x5555556ea9b8, expected=expected@entry=0, clockid=clockid@entry=0, abstime=abstime@entry=0x0, private=private@entry=0) at ./nptl/futex-internal.c:139
+#5  0x00007ffff789b7ed in __pthread_cond_wait_common (abstime=0x0, clockid=0, mutex=0x5555556ea9c0, cond=0x5555556ea990) at ./nptl/pthread_cond_wait.c:503
+
+Thread 34 (Thread 0x7fbf56f686c0 (LWP 53606) ".NET Server GC"):
+#0  0x00007ffff762ffb0 in ?? () from /usr/lib/dotnet/shared/Microsoft.NETCore.App/10.0.6/libcoreclr.so
+#1  <signal handler called>
+#2  0x00007ffff7898d6f in __futex_abstimed_wait_common64 (private=0, cancel=true, abstime=0x0, op=393, expected=0, futex_word=0x5555556e6008) at ./nptl/futex-internal.c:57
+#3  __futex_abstimed_wait_common (cancel=true, private=0, abstime=0x0, clockid=0, expected=0, futex_word=0x5555556e6008) at ./nptl/futex-internal.c:87
+#4  __GI___futex_abstimed_wait_cancelable64 (futex_word=futex_word@entry=0x5555556e6008, expected=expected@entry=0, clockid=clockid@entry=0, abstime=abstime@entry=0x0, private=private@entry=0) at ./nptl/futex-internal.c:139
+#5  0x00007ffff789b7ed in __pthread_cond_wait_common (abstime=0x0, clockid=0, mutex=0x5555556e6010, cond=0x5555556e5fe0) at ./nptl/pthread_cond_wait.c:503
+
+Thread 33 (Thread 0x7fbf5700e6c0 (LWP 53605) ".NET Server GC"):
+#0  0x00007ffff762ffb0 in ?? () from /usr/lib/dotnet/shared/Microsoft.NETCore.App/10.0.6/libcoreclr.so
+#1  <signal handler called>
+#2  0x00007ffff7898d6f in __futex_abstimed_wait_common64 (private=0, cancel=true, abstime=0x0, op=393, expected=0, futex_word=0x5555556e1658) at ./nptl/futex-internal.c:57
+#3  __futex_abstimed_wait_common (cancel=true, private=0, abstime=0x0, clockid=0, expected=0, futex_word=0x5555556e1658) at ./nptl/futex-internal.c:87
+#4  __GI___futex_abstimed_wait_cancelable64 (futex_word=futex_word@entry=0x5555556e1658, expected=expected@entry=0, clockid=clockid@entry=0, abstime=abstime@entry=0x0, private=private@entry=0) at ./nptl/futex-internal.c:139
+#5  0x00007ffff789b7ed in __pthread_cond_wait_common (abstime=0x0, clockid=0, mutex=0x5555556e1660, cond=0x5555556e1630) at ./nptl/pthread_cond_wait.c:503
+
+Thread 32 (Thread 0x7fbf570b46c0 (LWP 53604) ".NET Server GC"):
+#0  0x00007ffff7898d71 in __futex_abstimed_wait_common64 (private=0, cancel=true, abstime=0x0, op=393, expected=0, futex_word=0x5555556dcca8) at ./nptl/futex-internal.c:57
+#1  __futex_abstimed_wait_common (cancel=true, private=0, abstime=0x0, clockid=0, expected=0, futex_word=0x5555556dcca8) at ./nptl/futex-internal.c:87
+#2  __GI___futex_abstimed_wait_cancelable64 (futex_word=futex_word@entry=0x5555556dcca8, expected=expected@entry=0, clockid=clockid@entry=0, abstime=abstime@entry=0x0, private=private@entry=0) at ./nptl/futex-internal.c:139
+#3  0x00007ffff789b7ed in __pthread_cond_wait_common (abstime=0x0, clockid=0, mutex=0x5555556dccb0, cond=0x5555556dcc80) at ./nptl/pthread_cond_wait.c:503
+#4  ___pthread_cond_wait (cond=0x5555556dcc80, mutex=0x5555556dccb0) at ./nptl/pthread_cond_wait.c:627
+#5  0x00007ffff72f2c72 in ?? () from /usr/lib/dotnet/shared/Microsoft.NETCore.App/10.0.6/libcoreclr.so
+
+Thread 31 (Thread 0x7fbf5715a6c0 (LWP 53603) ".NET Server GC"):
+#0  0x00007ffff762ffb0 in ?? () from /usr/lib/dotnet/shared/Microsoft.NETCore.App/10.0.6/libcoreclr.so
+#1  <signal handler called>
+#2  0x00007ffff7898d6f in __futex_abstimed_wait_common64 (private=0, cancel=true, abstime=0x0, op=393, expected=0, futex_word=0x5555556d82f8) at ./nptl/futex-internal.c:57
+#3  __futex_abstimed_wait_common (cancel=true, private=0, abstime=0x0, clockid=0, expected=0, futex_word=0x5555556d82f8) at ./nptl/futex-internal.c:87
+#4  __GI___futex_abstimed_wait_cancelable64 (futex_word=futex_word@entry=0x5555556d82f8, expected=expected@entry=0, clockid=clockid@entry=0, abstime=abstime@entry=0x0, private=private@entry=0) at ./nptl/futex-internal.c:139
+#5  0x00007ffff789b7ed in __pthread_cond_wait_common (abstime=0x0, clockid=0, mutex=0x5555556d8300, cond=0x5555556d82d0) at ./nptl/pthread_cond_wait.c:503
+
+Thread 30 (Thread 0x7fbf572006c0 (LWP 53602) ".NET Server GC"):
+#0  0x00007ffff762ffb0 in ?? () from /usr/lib/dotnet/shared/Microsoft.NETCore.App/10.0.6/libcoreclr.so
+#1  <signal handler called>
+#2  0x00007ffff7898d6f in __futex_abstimed_wait_common64 (private=0, cancel=true, abstime=0x0, op=393, expected=0, futex_word=0x5555556d3948) at ./nptl/futex-internal.c:57
+#3  __futex_abstimed_wait_common (cancel=true, private=0, abstime=0x0, clockid=0, expected=0, futex_word=0x5555556d3948) at ./nptl/futex-internal.c:87
+#4  __GI___futex_abstimed_wait_cancelable64 (futex_word=futex_word@entry=0x5555556d3948, expected=expected@entry=0, clockid=clockid@entry=0, abstime=abstime@entry=0x0, private=private@entry=0) at ./nptl/futex-internal.c:139
+#5  0x00007ffff789b7ed in __pthread_cond_wait_common (abstime=0x0, clockid=0, mutex=0x5555556d3950, cond=0x5555556d3920) at ./nptl/pthread_cond_wait.c:503
+
+Thread 29 (Thread 0x7fbf572a66c0 (LWP 53601) ".NET Server GC"):
+#0  0x00007ffff762ffb0 in ?? () from /usr/lib/dotnet/shared/Microsoft.NETCore.App/10.0.6/libcoreclr.so
+#1  <signal handler called>
+#2  0x00007ffff7898d6f in __futex_abstimed_wait_common64 (private=0, cancel=true, abstime=0x0, op=393, expected=0, futex_word=0x5555556cef98) at ./nptl/futex-internal.c:57
+#3  __futex_abstimed_wait_common (cancel=true, private=0, abstime=0x0, clockid=0, expected=0, futex_word=0x5555556cef98) at ./nptl/futex-internal.c:87
+#4  __GI___futex_abstimed_wait_cancelable64 (futex_word=futex_word@entry=0x5555556cef98, expected=expected@entry=0, clockid=clockid@entry=0, abstime=abstime@entry=0x0, private=private@entry=0) at ./nptl/futex-internal.c:139
+#5  0x00007ffff789b7ed in __pthread_cond_wait_common (abstime=0x0, clockid=0, mutex=0x5555556cefa0, cond=0x5555556cef70) at ./nptl/pthread_cond_wait.c:503
+
+Thread 28 (Thread 0x7fbf5734c6c0 (LWP 53600) ".NET Server GC"):
+#0  0x00007ffff762ffb0 in ?? () from /usr/lib/dotnet/shared/Microsoft.NETCore.App/10.0.6/libcoreclr.so
+#1  <signal handler called>
+#2  0x00007ffff7898d6f in __futex_abstimed_wait_common64 (private=0, cancel=true, abstime=0x0, op=393, expected=0, futex_word=0x5555556ca5e8) at ./nptl/futex-internal.c:57
+#3  __futex_abstimed_wait_common (cancel=true, private=0, abstime=0x0, clockid=0, expected=0, futex_word=0x5555556ca5e8) at ./nptl/futex-internal.c:87
+#4  __GI___futex_abstimed_wait_cancelable64 (futex_word=futex_word@entry=0x5555556ca5e8, expected=expected@entry=0, clockid=clockid@entry=0, abstime=abstime@entry=0x0, private=private@entry=0) at ./nptl/futex-internal.c:139
+#5  0x00007ffff789b7ed in __pthread_cond_wait_common (abstime=0x0, clockid=0, mutex=0x5555556ca5f0, cond=0x5555556ca5c0) at ./nptl/pthread_cond_wait.c:503
+
+Thread 27 (Thread 0x7fbf573cd6c0 (LWP 53599) ".NET Server GC"):
+#0  0x00007ffff762ffb0 in ?? () from /usr/lib/dotnet/shared/Microsoft.NETCore.App/10.0.6/libcoreclr.so
+#1  <signal handler called>
+#2  0x00007ffff7898d6f in __futex_abstimed_wait_common64 (private=0, cancel=true, abstime=0x0, op=393, expected=0, futex_word=0x5555556c5c38) at ./nptl/futex-internal.c:57
+#3  __futex_abstimed_wait_common (cancel=true, private=0, abstime=0x0, clockid=0, expected=0, futex_word=0x5555556c5c38) at ./nptl/futex-internal.c:87
+#4  __GI___futex_abstimed_wait_cancelable64 (futex_word=futex_word@entry=0x5555556c5c38, expected=expected@entry=0, clockid=clockid@entry=0, abstime=abstime@entry=0x0, private=private@entry=0) at ./nptl/futex-internal.c:139
+#5  0x00007ffff789b7ed in __pthread_cond_wait_common (abstime=0x0, clockid=0, mutex=0x5555556c5c40, cond=0x5555556c5c10) at ./nptl/pthread_cond_wait.c:503
+
+Thread 26 (Thread 0x7fbf5744e6c0 (LWP 53598) ".NET Server GC"):
+#0  0x00007ffff762ffb0 in ?? () from /usr/lib/dotnet/shared/Microsoft.NETCore.App/10.0.6/libcoreclr.so
+#1  <signal handler called>
+#2  0x00007ffff7898d6f in __futex_abstimed_wait_common64 (private=0, cancel=true, abstime=0x0, op=393, expected=0, futex_word=0x5555556c1288) at ./nptl/futex-internal.c:57
+#3  __futex_abstimed_wait_common (cancel=true, private=0, abstime=0x0, clockid=0, expected=0, futex_word=0x5555556c1288) at ./nptl/futex-internal.c:87
+#4  __GI___futex_abstimed_wait_cancelable64 (futex_word=futex_word@entry=0x5555556c1288, expected=expected@entry=0, clockid=clockid@entry=0, abstime=abstime@entry=0x0, private=private@entry=0) at ./nptl/futex-internal.c:139
+#5  0x00007ffff789b7ed in __pthread_cond_wait_common (abstime=0x0, clockid=0, mutex=0x5555556c1290, cond=0x5555556c1260) at ./nptl/pthread_cond_wait.c:503
+
+Thread 25 (Thread 0x7fffe71016c0 (LWP 53597) ".NET Server GC"):
+#0  0x00007ffff762ffb0 in ?? () from /usr/lib/dotnet/shared/Microsoft.NETCore.App/10.0.6/libcoreclr.so
+#1  <signal handler called>
+#2  0x00007ffff7898d6f in __futex_abstimed_wait_common64 (private=0, cancel=true, abstime=0x0, op=393, expected=0, futex_word=0x5555556bc8d8) at ./nptl/futex-internal.c:57
+#3  __futex_abstimed_wait_common (cancel=true, private=0, abstime=0x0, clockid=0, expected=0, futex_word=0x5555556bc8d8) at ./nptl/futex-internal.c:87
+#4  __GI___futex_abstimed_wait_cancelable64 (futex_word=futex_word@entry=0x5555556bc8d8, expected=expected@entry=0, clockid=clockid@entry=0, abstime=abstime@entry=0x0, private=private@entry=0) at ./nptl/futex-internal.c:139
+#5  0x00007ffff789b7ed in __pthread_cond_wait_common (abstime=0x0, clockid=0, mutex=0x5555556bc8e0, cond=0x5555556bc8b0) at ./nptl/pthread_cond_wait.c:503
+
+Thread 24 (Thread 0x7fffe71a76c0 (LWP 53596) ".NET Server GC"):
+#0  0x00007ffff762ffb0 in ?? () from /usr/lib/dotnet/shared/Microsoft.NETCore.App/10.0.6/libcoreclr.so
+#1  <signal handler called>
+#2  0x00007ffff7898d6f in __futex_abstimed_wait_common64 (private=0, cancel=true, abstime=0x0, op=393, expected=0, futex_word=0x5555556b7f28) at ./nptl/futex-internal.c:57
+#3  __futex_abstimed_wait_common (cancel=true, private=0, abstime=0x0, clockid=0, expected=0, futex_word=0x5555556b7f28) at ./nptl/futex-internal.c:87
+#4  __GI___futex_abstimed_wait_cancelable64 (futex_word=futex_word@entry=0x5555556b7f28, expected=expected@entry=0, clockid=clockid@entry=0, abstime=abstime@entry=0x0, private=private@entry=0) at ./nptl/futex-internal.c:139
+#5  0x00007ffff789b7ed in __pthread_cond_wait_common (abstime=0x0, clockid=0, mutex=0x5555556b7f30, cond=0x5555556b7f00) at ./nptl/pthread_cond_wait.c:503
+
+Thread 23 (Thread 0x7fffe724d6c0 (LWP 53595) ".NET Server GC"):
+#0  0x00007ffff762ffb0 in ?? () from /usr/lib/dotnet/shared/Microsoft.NETCore.App/10.0.6/libcoreclr.so
+#1  <signal handler called>
+#2  0x00007ffff7898d6f in __futex_abstimed_wait_common64 (private=0, cancel=true, abstime=0x0, op=393, expected=0, futex_word=0x5555556b3578) at ./nptl/futex-internal.c:57
+#3  __futex_abstimed_wait_common (cancel=true, private=0, abstime=0x0, clockid=0, expected=0, futex_word=0x5555556b3578) at ./nptl/futex-internal.c:87
+#4  __GI___futex_abstimed_wait_cancelable64 (futex_word=futex_word@entry=0x5555556b3578, expected=expected@entry=0, clockid=clockid@entry=0, abstime=abstime@entry=0x0, private=private@entry=0) at ./nptl/futex-internal.c:139
+#5  0x00007ffff789b7ed in __pthread_cond_wait_common (abstime=0x0, clockid=0, mutex=0x5555556b3580, cond=0x5555556b3550) at ./nptl/pthread_cond_wait.c:503
+
+Thread 22 (Thread 0x7fffe72f36c0 (LWP 53594) ".NET Server GC"):
+#0  0x00007ffff762ffb0 in ?? () from /usr/lib/dotnet/shared/Microsoft.NETCore.App/10.0.6/libcoreclr.so
+#1  <signal handler called>
+#2  0x00007ffff7898d6f in __futex_abstimed_wait_common64 (private=0, cancel=true, abstime=0x0, op=393, expected=0, futex_word=0x5555556aebc8) at ./nptl/futex-internal.c:57
+#3  __futex_abstimed_wait_common (cancel=true, private=0, abstime=0x0, clockid=0, expected=0, futex_word=0x5555556aebc8) at ./nptl/futex-internal.c:87
+#4  __GI___futex_abstimed_wait_cancelable64 (futex_word=futex_word@entry=0x5555556aebc8, expected=expected@entry=0, clockid=clockid@entry=0, abstime=abstime@entry=0x0, private=private@entry=0) at ./nptl/futex-internal.c:139
+#5  0x00007ffff789b7ed in __pthread_cond_wait_common (abstime=0x0, clockid=0, mutex=0x5555556aebd0, cond=0x5555556aeba0) at ./nptl/pthread_cond_wait.c:503
+
+Thread 21 (Thread 0x7fffe73996c0 (LWP 53593) ".NET Server GC"):
+#0  0x00007ffff762ffb0 in ?? () from /usr/lib/dotnet/shared/Microsoft.NETCore.App/10.0.6/libcoreclr.so
+#1  <signal handler called>
+#2  0x00007ffff7898d6f in __futex_abstimed_wait_common64 (private=0, cancel=true, abstime=0x0, op=393, expected=0, futex_word=0x5555556aa218) at ./nptl/futex-internal.c:57
+#3  __futex_abstimed_wait_common (cancel=true, private=0, abstime=0x0, clockid=0, expected=0, futex_word=0x5555556aa218) at ./nptl/futex-internal.c:87
+#4  __GI___futex_abstimed_wait_cancelable64 (futex_word=futex_word@entry=0x5555556aa218, expected=expected@entry=0, clockid=clockid@entry=0, abstime=abstime@entry=0x0, private=private@entry=0) at ./nptl/futex-internal.c:139
+#5  0x00007ffff789b7ed in __pthread_cond_wait_common (abstime=0x0, clockid=0, mutex=0x5555556aa220, cond=0x5555556aa1f0) at ./nptl/pthread_cond_wait.c:503
+
+Thread 20 (Thread 0x7fffe743f6c0 (LWP 53592) ".NET Server GC"):
+#0  0x00007ffff762ffb0 in ?? () from /usr/lib/dotnet/shared/Microsoft.NETCore.App/10.0.6/libcoreclr.so
+#1  <signal handler called>
+#2  0x00007ffff7898d6f in __futex_abstimed_wait_common64 (private=0, cancel=true, abstime=0x0, op=393, expected=0, futex_word=0x5555556a5868) at ./nptl/futex-internal.c:57
+#3  __futex_abstimed_wait_common (cancel=true, private=0, abstime=0x0, clockid=0, expected=0, futex_word=0x5555556a5868) at ./nptl/futex-internal.c:87
+#4  __GI___futex_abstimed_wait_cancelable64 (futex_word=futex_word@entry=0x5555556a5868, expected=expected@entry=0, clockid=clockid@entry=0, abstime=abstime@entry=0x0, private=private@entry=0) at ./nptl/futex-internal.c:139
+#5  0x00007ffff789b7ed in __pthread_cond_wait_common (abstime=0x0, clockid=0, mutex=0x5555556a5870, cond=0x5555556a5840) at ./nptl/pthread_cond_wait.c:503
+
+Thread 19 (Thread 0x7fffe74e56c0 (LWP 53591) ".NET Server GC"):
+#0  0x00007ffff762ffb0 in ?? () from /usr/lib/dotnet/shared/Microsoft.NETCore.App/10.0.6/libcoreclr.so
+#1  <signal handler called>
+#2  0x00007ffff7898d6f in __futex_abstimed_wait_common64 (private=0, cancel=true, abstime=0x0, op=393, expected=0, futex_word=0x5555556a0eb8) at ./nptl/futex-internal.c:57
+#3  __futex_abstimed_wait_common (cancel=true, private=0, abstime=0x0, clockid=0, expected=0, futex_word=0x5555556a0eb8) at ./nptl/futex-internal.c:87
+#4  __GI___futex_abstimed_wait_cancelable64 (futex_word=futex_word@entry=0x5555556a0eb8, expected=expected@entry=0, clockid=clockid@entry=0, abstime=abstime@entry=0x0, private=private@entry=0) at ./nptl/futex-internal.c:139
+#5  0x00007ffff789b7ed in __pthread_cond_wait_common (abstime=0x0, clockid=0, mutex=0x5555556a0ec0, cond=0x5555556a0e90) at ./nptl/pthread_cond_wait.c:503
+
+Thread 18 (Thread 0x7fffe758b6c0 (LWP 53590) ".NET Server GC"):
+#0  0x00007ffff762ffb0 in ?? () from /usr/lib/dotnet/shared/Microsoft.NETCore.App/10.0.6/libcoreclr.so
+#1  <signal handler called>
+#2  0x00007ffff7898d6f in __futex_abstimed_wait_common64 (private=0, cancel=true, abstime=0x0, op=393, expected=0, futex_word=0x55555569c508) at ./nptl/futex-internal.c:57
+#3  __futex_abstimed_wait_common (cancel=true, private=0, abstime=0x0, clockid=0, expected=0, futex_word=0x55555569c508) at ./nptl/futex-internal.c:87
+#4  __GI___futex_abstimed_wait_cancelable64 (futex_word=futex_word@entry=0x55555569c508, expected=expected@entry=0, clockid=clockid@entry=0, abstime=abstime@entry=0x0, private=private@entry=0) at ./nptl/futex-internal.c:139
+#5  0x00007ffff789b7ed in __pthread_cond_wait_common (abstime=0x0, clockid=0, mutex=0x55555569c510, cond=0x55555569c4e0) at ./nptl/pthread_cond_wait.c:503
+
+Thread 17 (Thread 0x7fffe76316c0 (LWP 53589) ".NET Server GC"):
+#0  0x00007ffff7898d71 in __futex_abstimed_wait_common64 (private=0, cancel=true, abstime=0x0, op=393, expected=0, futex_word=0x555555697b58) at ./nptl/futex-internal.c:57
+#1  __futex_abstimed_wait_common (cancel=true, private=0, abstime=0x0, clockid=0, expected=0, futex_word=0x555555697b58) at ./nptl/futex-internal.c:87
+#2  __GI___futex_abstimed_wait_cancelable64 (futex_word=futex_word@entry=0x555555697b58, expected=expected@entry=0, clockid=clockid@entry=0, abstime=abstime@entry=0x0, private=private@entry=0) at ./nptl/futex-internal.c:139
+#3  0x00007ffff789b7ed in __pthread_cond_wait_common (abstime=0x0, clockid=0, mutex=0x555555697b60, cond=0x555555697b30) at ./nptl/pthread_cond_wait.c:503
+#4  ___pthread_cond_wait (cond=0x555555697b30, mutex=0x555555697b60) at ./nptl/pthread_cond_wait.c:627
+#5  0x00007ffff72f2c72 in ?? () from /usr/lib/dotnet/shared/Microsoft.NETCore.App/10.0.6/libcoreclr.so
+
+Thread 16 (Thread 0x7fffe76d76c0 (LWP 53588) ".NET Server GC"):
+#0  0x00007ffff762ffb0 in ?? () from /usr/lib/dotnet/shared/Microsoft.NETCore.App/10.0.6/libcoreclr.so
+#1  <signal handler called>
+#2  0x00007ffff7898d6f in __futex_abstimed_wait_common64 (private=0, cancel=true, abstime=0x0, op=393, expected=0, futex_word=0x5555556931a8) at ./nptl/futex-internal.c:57
+#3  __futex_abstimed_wait_common (cancel=true, private=0, abstime=0x0, clockid=0, expected=0, futex_word=0x5555556931a8) at ./nptl/futex-internal.c:87
+#4  __GI___futex_abstimed_wait_cancelable64 (futex_word=futex_word@entry=0x5555556931a8, expected=expected@entry=0, clockid=clockid@entry=0, abstime=abstime@entry=0x0, private=private@entry=0) at ./nptl/futex-internal.c:139
+#5  0x00007ffff789b7ed in __pthread_cond_wait_common (abstime=0x0, clockid=0, mutex=0x5555556931b0, cond=0x555555693180) at ./nptl/pthread_cond_wait.c:503
+
+Thread 15 (Thread 0x7fffe777d6c0 (LWP 53587) ".NET Server GC"):
+#0  0x00007ffff7898d71 in __futex_abstimed_wait_common64 (private=0, cancel=true, abstime=0x0, op=393, expected=0, futex_word=0x55555568e7f8) at ./nptl/futex-internal.c:57
+#1  __futex_abstimed_wait_common (cancel=true, private=0, abstime=0x0, clockid=0, expected=0, futex_word=0x55555568e7f8) at ./nptl/futex-internal.c:87
+#2  __GI___futex_abstimed_wait_cancelable64 (futex_word=futex_word@entry=0x55555568e7f8, expected=expected@entry=0, clockid=clockid@entry=0, abstime=abstime@entry=0x0, private=private@entry=0) at ./nptl/futex-internal.c:139
+#3  0x00007ffff789b7ed in __pthread_cond_wait_common (abstime=0x0, clockid=0, mutex=0x55555568e800, cond=0x55555568e7d0) at ./nptl/pthread_cond_wait.c:503
+#4  ___pthread_cond_wait (cond=0x55555568e7d0, mutex=0x55555568e800) at ./nptl/pthread_cond_wait.c:627
+#5  0x00007ffff72f2c72 in ?? () from /usr/lib/dotnet/shared/Microsoft.NETCore.App/10.0.6/libcoreclr.so
+
+Thread 14 (Thread 0x7fffe77fe6c0 (LWP 53586) ".NET Server GC"):
+#0  0x00007ffff7898d71 in __futex_abstimed_wait_common64 (private=0, cancel=true, abstime=0x0, op=393, expected=0, futex_word=0x555555689e48) at ./nptl/futex-internal.c:57
+#1  __futex_abstimed_wait_common (cancel=true, private=0, abstime=0x0, clockid=0, expected=0, futex_word=0x555555689e48) at ./nptl/futex-internal.c:87
+#2  __GI___futex_abstimed_wait_cancelable64 (futex_word=futex_word@entry=0x555555689e48, expected=expected@entry=0, clockid=clockid@entry=0, abstime=abstime@entry=0x0, private=private@entry=0) at ./nptl/futex-internal.c:139
+#3  0x00007ffff789b7ed in __pthread_cond_wait_common (abstime=0x0, clockid=0, mutex=0x555555689e50, cond=0x555555689e20) at ./nptl/pthread_cond_wait.c:503
+#4  ___pthread_cond_wait (cond=0x555555689e20, mutex=0x555555689e50) at ./nptl/pthread_cond_wait.c:627
+#5  0x00007ffff72f2c72 in ?? () from /usr/lib/dotnet/shared/Microsoft.NETCore.App/10.0.6/libcoreclr.so
+
+Thread 13 (Thread 0x7ffff40e86c0 (LWP 53585) ".NET Server GC"):
+#0  0x00007ffff7898d71 in __futex_abstimed_wait_common64 (private=0, cancel=true, abstime=0x0, op=393, expected=0, futex_word=0x555555685498) at ./nptl/futex-internal.c:57
+#1  __futex_abstimed_wait_common (cancel=true, private=0, abstime=0x0, clockid=0, expected=0, futex_word=0x555555685498) at ./nptl/futex-internal.c:87
+#2  __GI___futex_abstimed_wait_cancelable64 (futex_word=futex_word@entry=0x555555685498, expected=expected@entry=0, clockid=clockid@entry=0, abstime=abstime@entry=0x0, private=private@entry=0) at ./nptl/futex-internal.c:139
+#3  0x00007ffff789b7ed in __pthread_cond_wait_common (abstime=0x0, clockid=0, mutex=0x5555556854a0, cond=0x555555685470) at ./nptl/pthread_cond_wait.c:503
+#4  ___pthread_cond_wait (cond=0x555555685470, mutex=0x5555556854a0) at ./nptl/pthread_cond_wait.c:627
+#5  0x00007ffff72f2c72 in ?? () from /usr/lib/dotnet/shared/Microsoft.NETCore.App/10.0.6/libcoreclr.so
+
+Thread 12 (Thread 0x7ffff418e6c0 (LWP 53584) ".NET Server GC"):
+#0  0x00007ffff7898d71 in __futex_abstimed_wait_common64 (private=0, cancel=true, abstime=0x0, op=393, expected=0, futex_word=0x555555680ae8) at ./nptl/futex-internal.c:57
+#1  __futex_abstimed_wait_common (cancel=true, private=0, abstime=0x0, clockid=0, expected=0, futex_word=0x555555680ae8) at ./nptl/futex-internal.c:87
+#2  __GI___futex_abstimed_wait_cancelable64 (futex_word=futex_word@entry=0x555555680ae8, expected=expected@entry=0, clockid=clockid@entry=0, abstime=abstime@entry=0x0, private=private@entry=0) at ./nptl/futex-internal.c:139
+#3  0x00007ffff789b7ed in __pthread_cond_wait_common (abstime=0x0, clockid=0, mutex=0x555555680af0, cond=0x555555680ac0) at ./nptl/pthread_cond_wait.c:503
+#4  ___pthread_cond_wait (cond=0x555555680ac0, mutex=0x555555680af0) at ./nptl/pthread_cond_wait.c:627
+#5  0x00007ffff72f2c72 in ?? () from /usr/lib/dotnet/shared/Microsoft.NETCore.App/10.0.6/libcoreclr.so
+
+Thread 11 (Thread 0x7ffff42346c0 (LWP 53583) ".NET Server GC"):
+#0  0x00007ffff7898d71 in __futex_abstimed_wait_common64 (private=0, cancel=true, abstime=0x0, op=393, expected=0, futex_word=0x55555567c138) at ./nptl/futex-internal.c:57
+#1  __futex_abstimed_wait_common (cancel=true, private=0, abstime=0x0, clockid=0, expected=0, futex_word=0x55555567c138) at ./nptl/futex-internal.c:87
+#2  __GI___futex_abstimed_wait_cancelable64 (futex_word=futex_word@entry=0x55555567c138, expected=expected@entry=0, clockid=clockid@entry=0, abstime=abstime@entry=0x0, private=private@entry=0) at ./nptl/futex-internal.c:139
+#3  0x00007ffff789b7ed in __pthread_cond_wait_common (abstime=0x0, clockid=0, mutex=0x55555567c140, cond=0x55555567c110) at ./nptl/pthread_cond_wait.c:503
+#4  ___pthread_cond_wait (cond=0x55555567c110, mutex=0x55555567c140) at ./nptl/pthread_cond_wait.c:627
+#5  0x00007ffff72f2c72 in ?? () from /usr/lib/dotnet/shared/Microsoft.NETCore.App/10.0.6/libcoreclr.so
+
+Thread 10 (Thread 0x7ffff42da6c0 (LWP 53582) ".NET Server GC"):
+#0  0x00007ffff7898d71 in __futex_abstimed_wait_common64 (private=0, cancel=true, abstime=0x0, op=393, expected=0, futex_word=0x555555677788) at ./nptl/futex-internal.c:57
+#1  __futex_abstimed_wait_common (cancel=true, private=0, abstime=0x0, clockid=0, expected=0, futex_word=0x555555677788) at ./nptl/futex-internal.c:87
+#2  __GI___futex_abstimed_wait_cancelable64 (futex_word=futex_word@entry=0x555555677788, expected=expected@entry=0, clockid=clockid@entry=0, abstime=abstime@entry=0x0, private=private@entry=0) at ./nptl/futex-internal.c:139
+#3  0x00007ffff789b7ed in __pthread_cond_wait_common (abstime=0x0, clockid=0, mutex=0x555555677790, cond=0x555555677760) at ./nptl/pthread_cond_wait.c:503
+#4  ___pthread_cond_wait (cond=0x555555677760, mutex=0x555555677790) at ./nptl/pthread_cond_wait.c:627
+#5  0x00007ffff72f2c72 in ?? () from /usr/lib/dotnet/shared/Microsoft.NETCore.App/10.0.6/libcoreclr.so
+
+Thread 9 (Thread 0x7ffff43806c0 (LWP 53581) ".NET Server GC"):
+#0  0x00007ffff7898d71 in __futex_abstimed_wait_common64 (private=0, cancel=true, abstime=0x0, op=393, expected=0, futex_word=0x555555672dd8) at ./nptl/futex-internal.c:57
+#1  __futex_abstimed_wait_common (cancel=true, private=0, abstime=0x0, clockid=0, expected=0, futex_word=0x555555672dd8) at ./nptl/futex-internal.c:87
+#2  __GI___futex_abstimed_wait_cancelable64 (futex_word=futex_word@entry=0x555555672dd8, expected=expected@entry=0, clockid=clockid@entry=0, abstime=abstime@entry=0x0, private=private@entry=0) at ./nptl/futex-internal.c:139
+#3  0x00007ffff789b7ed in __pthread_cond_wait_common (abstime=0x0, clockid=0, mutex=0x555555672de0, cond=0x555555672db0) at ./nptl/pthread_cond_wait.c:503
+#4  ___pthread_cond_wait (cond=0x555555672db0, mutex=0x555555672de0) at ./nptl/pthread_cond_wait.c:627
+#5  0x00007ffff72f2c72 in ?? () from /usr/lib/dotnet/shared/Microsoft.NETCore.App/10.0.6/libcoreclr.so
+
+Thread 8 (Thread 0x7ffff44266c0 (LWP 53580) ".NET Server GC"):
+#0  0x00007ffff7898d71 in __futex_abstimed_wait_common64 (private=0, cancel=true, abstime=0x0, op=393, expected=0, futex_word=0x555555668f08) at ./nptl/futex-internal.c:57
+#1  __futex_abstimed_wait_common (cancel=true, private=0, abstime=0x0, clockid=0, expected=0, futex_word=0x555555668f08) at ./nptl/futex-internal.c:87
+#2  __GI___futex_abstimed_wait_cancelable64 (futex_word=futex_word@entry=0x555555668f08, expected=expected@entry=0, clockid=clockid@entry=0, abstime=abstime@entry=0x0, private=private@entry=0) at ./nptl/futex-internal.c:139
+#3  0x00007ffff789b7ed in __pthread_cond_wait_common (abstime=0x0, clockid=0, mutex=0x555555668f10, cond=0x555555668ee0) at ./nptl/pthread_cond_wait.c:503
+#4  ___pthread_cond_wait (cond=0x555555668ee0, mutex=0x555555668f10) at ./nptl/pthread_cond_wait.c:627
+#5  0x00007ffff72f2c72 in ?? () from /usr/lib/dotnet/shared/Microsoft.NETCore.App/10.0.6/libcoreclr.so
+
+Thread 7 (Thread 0x7fffe7fff6c0 (LWP 53579) ".NET Debugger"):
+#0  0x00007ffff7898d71 in __futex_abstimed_wait_common64 (private=0, cancel=true, abstime=0x0, op=393, expected=0, futex_word=0x555555664a20) at ./nptl/futex-internal.c:57
+#1  __futex_abstimed_wait_common (cancel=true, private=0, abstime=0x0, clockid=0, expected=0, futex_word=0x555555664a20) at ./nptl/futex-internal.c:87
+#2  __GI___futex_abstimed_wait_cancelable64 (futex_word=futex_word@entry=0x555555664a20, expected=expected@entry=0, clockid=clockid@entry=0, abstime=abstime@entry=0x0, private=private@entry=0) at ./nptl/futex-internal.c:139
+#3  0x00007ffff789b7ed in __pthread_cond_wait_common (abstime=0x0, clockid=0, mutex=0x5555556649d0, cond=0x5555556649f8) at ./nptl/pthread_cond_wait.c:503
+#4  ___pthread_cond_wait (cond=0x5555556649f8, mutex=0x5555556649d0) at ./nptl/pthread_cond_wait.c:627
+#5  0x00007ffff764c6d2 in ?? () from /usr/lib/dotnet/shared/Microsoft.NETCore.App/10.0.6/libcoreclr.so
+
+Thread 6 (Thread 0x7ffff4e1f6c0 (LWP 53578) ".NET DebugPipe"):
+#0  0x00007ffff791b215 in __libc_open64 (file=0x55555565983c "/tmp/clr-debug-pipe-53568-606810-in", oflag=0) at ../sysdeps/unix/sysv/linux/open64.c:41
+#1  0x00007ffff727ee13 in ?? () from /usr/lib/dotnet/shared/Microsoft.NETCore.App/10.0.6/libcoreclr.so
+#2  0x00007ffff72797c7 in ?? () from /usr/lib/dotnet/shared/Microsoft.NETCore.App/10.0.6/libcoreclr.so
+#3  0x00007ffff72787a9 in ?? () from /usr/lib/dotnet/shared/Microsoft.NETCore.App/10.0.6/libcoreclr.so
+#4  0x00007ffff765859d in ?? () from /usr/lib/dotnet/shared/Microsoft.NETCore.App/10.0.6/libcoreclr.so
+#5  0x00007ffff789caa4 in start_thread (arg=<optimized out>) at ./nptl/pthread_create.c:447
+
+Thread 5 (Thread 0x7ffff57fc6c0 (LWP 53577) ".NET EventPipe"):
+#0  0x00007ffff791b4fd in __GI___poll (fds=0x7fff70000fb0, nfds=1, timeout=-1) at ../sysdeps/unix/sysv/linux/poll.c:29
+#1  0x00007ffff727f3cc in ?? () from /usr/lib/dotnet/shared/Microsoft.NETCore.App/10.0.6/libcoreclr.so
+#2  0x00007ffff71f4bdb in ?? () from /usr/lib/dotnet/shared/Microsoft.NETCore.App/10.0.6/libcoreclr.so
+#3  0x00007ffff71f9b96 in ?? () from /usr/lib/dotnet/shared/Microsoft.NETCore.App/10.0.6/libcoreclr.so
+#4  0x00007ffff765859d in ?? () from /usr/lib/dotnet/shared/Microsoft.NETCore.App/10.0.6/libcoreclr.so
+#5  0x00007ffff789caa4 in start_thread (arg=<optimized out>) at ./nptl/pthread_create.c:447
+
+Thread 4 (Thread 0x7ffff5ffd6c0 (LWP 53576) ".NET SynchManag"):
+#0  0x00007ffff791b4fd in __GI___poll (fds=0x7ffff5ffcd98, nfds=1, timeout=-1) at ../sysdeps/unix/sysv/linux/poll.c:29
+#1  0x00007ffff764e640 in ?? () from /usr/lib/dotnet/shared/Microsoft.NETCore.App/10.0.6/libcoreclr.so
+#2  0x00007ffff764dff3 in ?? () from /usr/lib/dotnet/shared/Microsoft.NETCore.App/10.0.6/libcoreclr.so
+#3  0x00007ffff765859d in ?? () from /usr/lib/dotnet/shared/Microsoft.NETCore.App/10.0.6/libcoreclr.so
+#4  0x00007ffff789caa4 in start_thread (arg=<optimized out>) at ./nptl/pthread_create.c:447
+#5  0x00007ffff7929c6c in clone3 () at ../sysdeps/unix/sysv/linux/x86_64/clone3.S:78
+
+Thread 3 (Thread 0x7ffff67fe6c0 (LWP 53575) "repro-dotne-ust"):
+#0  syscall () at ../sysdeps/unix/sysv/linux/x86_64/syscall.S:38
+#1  0x00007ffff77972fe in ?? () from /lib/x86_64-linux-gnu/liblttng-ust.so.1
+#2  0x00007ffff789caa4 in start_thread (arg=<optimized out>) at ./nptl/pthread_create.c:447
+#3  0x00007ffff7929c6c in clone3 () at ../sysdeps/unix/sysv/linux/x86_64/clone3.S:78
+
+Thread 2 (Thread 0x7ffff6fff6c0 (LWP 53574) "repro-dotne-ust"):
+#0  syscall () at ../sysdeps/unix/sysv/linux/x86_64/syscall.S:38
+#1  0x00007ffff77972fe in ?? () from /lib/x86_64-linux-gnu/liblttng-ust.so.1
+#2  0x00007ffff789caa4 in start_thread (arg=<optimized out>) at ./nptl/pthread_create.c:447
+#3  0x00007ffff7929c6c in clone3 () at ../sysdeps/unix/sysv/linux/x86_64/clone3.S:78
+
+Thread 1 (Thread 0x7ffff7e8e740 (LWP 53568) "repro-dotnet"):
+#0  0x00007ffff7898d71 in __futex_abstimed_wait_common64 (private=32767, cancel=true, abstime=0x0, op=393, expected=0, futex_word=0x5555555b8460) at ./nptl/futex-internal.c:57
+#1  __futex_abstimed_wait_common (cancel=true, private=32767, abstime=0x0, clockid=0, expected=0, futex_word=0x5555555b8460) at ./nptl/futex-internal.c:87
+#2  __GI___futex_abstimed_wait_cancelable64 (futex_word=futex_word@entry=0x5555555b8460, expected=expected@entry=0, clockid=clockid@entry=0, abstime=abstime@entry=0x0, private=private@entry=0) at ./nptl/futex-internal.c:139
+#3  0x00007ffff789b7ed in __pthread_cond_wait_common (abstime=0x0, clockid=0, mutex=0x5555555b8410, cond=0x5555555b8438) at ./nptl/pthread_cond_wait.c:503
+#4  ___pthread_cond_wait (cond=0x5555555b8438, mutex=0x5555555b8410) at ./nptl/pthread_cond_wait.c:627
+#5  0x00007ffff764c6d2 in ?? () from /usr/lib/dotnet/shared/Microsoft.NETCore.App/10.0.6/libcoreclr.so
+A debugging session is active.
+
+	Inferior 1 [process 53568] will be killed.
+
+Quit anyway? (y or n) [answered Y; input not from terminal]

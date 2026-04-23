@@ -1,0 +1,57 @@
+
+This GDB supports auto-downloading debuginfo from the following URLs:
+  <https://debuginfod.ubuntu.com>
+Enable debuginfod for this session? (y or [n]) [answered N; input not from terminal]
+Debuginfod has been disabled.
+To make this setting permanent, add 'set debuginfod enabled off' to .gdbinit.
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+process 16898 is executing new program: /home/egon/Code/gist/dotnet-repro/experiments/c-repro/host
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+warning: File "/snap/go/11127/src/runtime/runtime-gdb.py" auto-loading has been declined by your `auto-load safe-path' set to "$debugdir:$datadir/auto-load".
+To enable execution of this file add
+	add-auto-load-safe-path /snap/go/11127/src/runtime/runtime-gdb.py
+line to your configuration file "/home/egon/.config/gdb/gdbinit".
+To completely disable this security protection add
+	set auto-load safe-path /
+line to your configuration file "/home/egon/.config/gdb/gdbinit".
+For more information about this security protection see the
+"Auto-loading safe path" section in the GDB manual.  E.g., run from the shell:
+	info "(gdb)Auto-loading safe path"
+[New Thread 0x7ffff7bff6c0 (LWP 16904)]
+[c-repro] workers=32 iters=2000000 interval=50us rtsig=SIGRTMIN+0 (=34) pid=16898
+[New Thread 0x7ffff73fe6c0 (LWP 16905)]
+[New Thread 0x7fffabfff6c0 (LWP 16906)]
+[New Thread 0x7fffab7fe6c0 (LWP 16907)]
+[New Thread 0x7fffaaffd6c0 (LWP 16908)]
+[New Thread 0x7fffaa7fc6c0 (LWP 16909)]
+[New Thread 0x7fffa9ffb6c0 (LWP 16910)]
+[New Thread 0x7fffa97fa6c0 (LWP 16911)]
+[New Thread 0x7fffa8ff96c0 (LWP 16912)]
+[New Thread 0x7fffa3fff6c0 (LWP 16913)]
+[New Thread 0x7fffa37fe6c0 (LWP 16914)]
+[New Thread 0x7fffa2ffd6c0 (LWP 16915)]
+[New Thread 0x7fffa27fc6c0 (LWP 16916)]
+[New Thread 0x7fffa1ffb6c0 (LWP 16917)]
+[New Thread 0x7fffa17fa6c0 (LWP 16918)]
+[New Thread 0x7fffa0ff96c0 (LWP 16919)]
+[New Thread 0x7fffa07f86c0 (LWP 16920)]
+[New Thread 0x7fff9fff76c0 (LWP 16921)]
+[New Thread 0x7fff9f7f66c0 (LWP 16922)]
+[New Thread 0x7fff9eff56c0 (LWP 16923)]
+[New Thread 0x7fff9e7f46c0 (LWP 16924)]
+[New Thread 0x7fff9dff36c0 (LWP 16925)]
+[New Thread 0x7fff9d7f26c0 (LWP 16926)]
+[New Thread 0x7fff9cff16c0 (LWP 16927)]
+[New Thread 0x7fff9c7f06c0 (LWP 16928)]
+[New Thread 0x7fff9bfef6c0 (LWP 16929)]
+[New Thread 0x7fff9b7ee6c0 (LWP 16930)]
+[New Thread 0x7fff9afed6c0 (LWP 16931)]
+[New Thread 0x7fff9a7ec6c0 (LWP 16932)]
+[New Thread 0x7fff99feb6c0 (LWP 16933)]
+[New Thread 0x7fff997ea6c0 (LWP 16934)]
+[New Thread 0x7fff98fe96c0 (LWP 16935)]
+[New Thread 0x7fff987e86c0 (LWP 16936)]
+[New Thread 0x7fff97fe76c0 (LWP 16937)]
+[New Thread 0x7fff977e66c0 (LWP 16938)]

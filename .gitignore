@@ -1,5 +1,20 @@
-bin/
-obj/
-libgolib.so
-libgolib.h
-libsigstack_helper.so
+# Build artifacts in reorganized directories
+dotnet-go-reproducer/bin/
+dotnet-go-reproducer/obj/
+dotnet-go-reproducer/libgolib.so
+dotnet-go-reproducer/libgolib.h
+dotnet-go-reproducer/libsigstack_helper.so
+
+go-runtime-bug/libgolib.so
+go-runtime-bug/host
+
+coreclr-pal-bug/bin/
+coreclr-pal-bug/obj/
+coreclr-pal-bug/libstack_probe.so
+
+investigation-tools/ld-preload-tracer/trace_sigaltstack.so
+
+# Large crash artifacts — keep only summaries (gdb.log), never binary cores or handler logs
+**/crash/core
+**/crash/core.*
+**/crash/handler.log
