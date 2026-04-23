@@ -55,24 +55,15 @@ internal static class Program
         var workers    = GetIntEnv("REPRO_WORKERS",    64);
         var iters      = GetIntEnv("REPRO_ITERATIONS", 5_000_000);
         var intervalUs = GetIntEnv("REPRO_INTERVAL_US", 1);  // Very aggressive
-        var mode       = Environment.GetEnvironmentVariable("REPRO_MODE") ?? "signal";
 
         Console.Error.WriteLine(
             $"[dotnet-c] workers={workers} iters={iters} "
-          + $"interval={intervalUs}µs mode={mode} gc={GCSettings.IsServerGC} "
+          + $"interval={intervalUs}µs gc={GCSettings.IsServerGC} "
           + $"pid={Environment.ProcessId}");
         Console.Error.WriteLine("[dotnet-c] C Library complexity + SIGRTMIN");
 
-        // Start signal sender or GC driver
-        Thread? driver = null;
-        if (mode == "signal") {
-            driver = StartSignalSender(intervalUs);
-        } else if (mode == "gc") {
-            driver = StartGcDriver(intervalUs);
-        } else {
-            Console.Error.WriteLine($"[dotnet-c] Unknown mode: {mode}");
-            return 1;
-        }
+        // Start signal sender
+        Thread driver = StartSignalSender(intervalUs);
 
         try
         {
@@ -88,7 +79,7 @@ internal static class Program
         finally
         {
             s_running = false;
-            driver?.Join(1000);
+            driver.Join(1000);
         }
     }
 
@@ -176,29 +167,6 @@ internal static class Program
         return t;
     }
 
-    // GC driver - forces CoreCLR GCs at high rate
-    private static Thread StartGcDriver(int intervalUs)
-    {
-        var t = new Thread(() =>
-        {
-            Console.Error.WriteLine($"[gc-driver] Forcing GC every {intervalUs}µs");
-
-            while (s_running)
-            {
-                try
-                {
-                    GC.Collect();
-                    GC.WaitForPendingFinalizers();
-                    GC.Collect();
-                }
-                catch { /* ignore GC errors */ }
-
-                Thread.Sleep(TimeSpan.FromMicroseconds(intervalUs));
-            }
-        }) { IsBackground = true, Name = "gc-driver" };
-        t.Start();
-        return t;
-    }
 
     private static int GetIntEnv(string name, int defaultValue)
     {
