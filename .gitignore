@@ -2,3 +2,4 @@ bin/
 obj/
 libgolib.so
 libgolib.h
+libsigstack_helper.so

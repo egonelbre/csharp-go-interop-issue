@@ -113,3 +113,117 @@ void ensure_large_sigaltstack(void) {
     large_sigstack_base = base;
     large_sigstack_installed = 1;
 }
+
+/*
+ * E2 in-process probe — read the current thread's sigaltstack state
+ * and append a single line to the file given by REPRO_PROBE_LOG.
+ *
+ * Call from C# right before and right after every ping():
+ *
+ *   [DllImport("sigstack_helper")] static extern void dump_sigaltstack(string tag);
+ *   SigStackProbe.Dump("before");
+ *   ping();
+ *   SigStackProbe.Dump("after");
+ *
+ * Lets us see exactly what alt stack a TP worker is on before/after
+ * Go runs. If 'before' shows ss_size=16384 on a fresh worker, we know
+ * CoreCLR pre-installed it (no Go involvement). If 'after' shows the
+ * same, Go didn't change anything (record-only branch).
+ */
+#include <fcntl.h>
+#include <stdint.h>
+#include <sys/syscall.h>
+#include <sys/types.h>
+
+static int probe_fd = -1;
+static __thread int probe_thread_init;
+
+void dump_sigaltstack(const char *tag) {
+    if (probe_fd == -2) return; /* disabled */
+    if (probe_fd == -1) {
+        const char *p = getenv("REPRO_PROBE_LOG");
+        if (!p || !*p) { probe_fd = -2; return; }
+        int fd = open(p, O_WRONLY | O_CREAT | O_APPEND, 0644);
+        probe_fd = fd >= 0 ? fd : -2;
+        if (probe_fd == -2) return;
+    }
+    stack_t ss;
+    if (sigaltstack(NULL, &ss) != 0) return;
+    char buf[256];
+    int n = snprintf(buf, sizeof(buf),
+        "tid=%ld tag=%s ss_sp=%p ss_size=%zu ss_flags=%d shim=%d\n",
+        (long)syscall(SYS_gettid),
+        tag ? tag : "?",
+        ss.ss_sp, ss.ss_size, ss.ss_flags,
+        large_sigstack_installed);
+    if (n > 0) { ssize_t w = write(probe_fd, buf, (size_t)n); (void)w; }
+    (void)probe_thread_init;
+}
+
+/*
+ * E4 crash-snapshot SIGSEGV chain — the FIRST handler to run when
+ * SIGSEGV fires. Captures (tid, ucontext rip/rsp, kernel-sigaltstack
+ * view) to a pre-opened fd, then chains to the previous handler if
+ * any (otherwise re-raises with default action so we still get a
+ * core).
+ *
+ * Activated by setting REPRO_CRASH_LOG=/path/to/file BEFORE the
+ * process starts. We arm it from a constructor priority 101 so it
+ * runs before normal constructors and certainly before Go's
+ * c-shared module init.
+ */
+#include <ucontext.h>
+
+static int crash_fd = -1;
+static struct sigaction prev_segv;
+
+static void crash_handler(int sig, siginfo_t *si, void *ctx)
+{
+    if (crash_fd >= 0) {
+        ucontext_t *uc = (ucontext_t *)ctx;
+        stack_t ss; sigaltstack(NULL, &ss);
+        char buf[512];
+        uintptr_t rip = (uintptr_t)uc->uc_mcontext.gregs[REG_RIP];
+        uintptr_t rsp = (uintptr_t)uc->uc_mcontext.gregs[REG_RSP];
+        int n = snprintf(buf, sizeof(buf),
+            "CRASH tid=%ld sig=%d code=%d addr=%p rip=0x%lx rsp=0x%lx "
+            "ss_sp=%p ss_size=%zu ss_flags=%d "
+            "rsp_in_alt=%d rsp_offset_from_base=%ld\n",
+            (long)syscall(SYS_gettid), sig, si->si_code, si->si_addr,
+            (unsigned long)rip, (unsigned long)rsp,
+            ss.ss_sp, ss.ss_size, ss.ss_flags,
+            (ss.ss_sp != NULL && rsp >= (uintptr_t)ss.ss_sp && rsp < (uintptr_t)ss.ss_sp + ss.ss_size) ? 1 : 0,
+            ss.ss_sp != NULL ? (long)(rsp - (uintptr_t)ss.ss_sp) : -1);
+        if (n > 0) { ssize_t w = write(crash_fd, buf, (size_t)n); (void)w; }
+        fsync(crash_fd);
+    }
+    /* Chain or default. */
+    if (prev_segv.sa_flags & SA_SIGINFO && prev_segv.sa_sigaction) {
+        prev_segv.sa_sigaction(sig, si, ctx);
+        return;
+    }
+    if (prev_segv.sa_handler && prev_segv.sa_handler != SIG_DFL && prev_segv.sa_handler != SIG_IGN) {
+        prev_segv.sa_handler(sig);
+        return;
+    }
+    /* Default: restore SIG_DFL and re-raise so we get a core/exit. */
+    struct sigaction dfl = {0};
+    dfl.sa_handler = SIG_DFL;
+    sigaction(sig, &dfl, NULL);
+    raise(sig);
+}
+
+__attribute__((constructor(101)))
+static void install_crash_handler(void)
+{
+    const char *p = getenv("REPRO_CRASH_LOG");
+    if (!p || !*p) return;
+    int fd = open(p, O_WRONLY | O_CREAT | O_APPEND, 0644);
+    if (fd < 0) return;
+    crash_fd = fd;
+    struct sigaction sa = {0};
+    sa.sa_sigaction = crash_handler;
+    sa.sa_flags = SA_SIGINFO | SA_ONSTACK;
+    sigemptyset(&sa.sa_mask);
+    sigaction(SIGSEGV, &sa, &prev_segv);
+}

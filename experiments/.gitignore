@@ -1,0 +1,11 @@
+# Build outputs
+c-repro/host
+ld-trace/*.so
+
+# Runtime artefacts (cores, binary logs, captured maps)
+**/crash/
+**/runs/
+**/*.log
+**/*.bin
+**/*.core
+**/*.maps

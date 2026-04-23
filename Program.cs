@@ -66,6 +66,9 @@ internal static class Native
 
     [DllImport("sigstack_helper", EntryPoint = "ensure_large_sigaltstack")]
     public static extern void EnsureLargeSigaltstack();
+
+    [DllImport("sigstack_helper", EntryPoint = "dump_sigaltstack", CharSet = CharSet.Ansi)]
+    public static extern void DumpSigaltstack(string tag);
 }
 
 internal static class Program
@@ -88,6 +91,7 @@ internal static class Program
         var allocBytes = GetIntEnv("REPRO_ALLOC_BYTES", 16 * 1024);
 
         var useFix = Environment.GetEnvironmentVariable("REPRO_FIX") == "1";
+        var probeMode = Environment.GetEnvironmentVariable("REPRO_PROBE") == "1";
 
         Console.Error.WriteLine(
             $"[dotnet-repro] mode={mode} workers={workers} iters={iters} "
@@ -113,10 +117,16 @@ internal static class Program
                 // this threadpool thread. Go's minitSignalStack will see it
                 // on needm and not install its own 32 KB stack.
                 if (useFix) Native.EnsureLargeSigaltstack();
+                // E2: probe before any Go has touched this thread.
+                if (probeMode) Native.DumpSigaltstack("before-first");
                 for (int k = 0; k < iters; k++)
                 {
+                    // Probe both sides of a small subset of pings to keep the
+                    // log size manageable while still capturing churn.
+                    if (probeMode && k < 10) Native.DumpSigaltstack("before");
                     if (Native.Ping() != 42)
                         throw new Exception("ping returned unexpected value");
+                    if (probeMode && k < 10) Native.DumpSigaltstack("after");
                     if (mode == "gc")
                         GenerateGarbage(allocBytes);
                 }
