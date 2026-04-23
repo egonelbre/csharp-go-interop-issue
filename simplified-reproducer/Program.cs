@@ -16,7 +16,7 @@ using System.Threading.Tasks;
 
 internal static class Native
 {
-    // Our C library functions - replicate Go's complexity
+    // Our C library functions - create atypical calling convention patterns
     [DllImport("complex_c_lib", EntryPoint = "create_go_like_complexity")]
     public static extern int CreateGoLikeComplexity();
 
@@ -92,7 +92,7 @@ internal static class Program
         }
     }
 
-    // Worker thread - calls C library functions that create Go-like complexity
+    // Worker thread - calls C library functions with atypical calling conventions
     private static void WorkerThread(int workerId, int iterations)
     {
         Console.Error.WriteLine($"[worker-{workerId}] Starting with {iterations} iterations");
@@ -101,7 +101,7 @@ internal static class Program
         {
             for (int i = 0; i < iterations && s_running; i++)
             {
-                // Call our C functions that replicate Go's complexity
+                // Call our C functions with atypical calling conventions
                 int result1 = Native.CreateGoLikeComplexity();
 
                 // Alternate between different complexity patterns to stress CoreCLR's signal analysis
@@ -120,7 +120,7 @@ internal static class Program
                         throw new Exception("Extreme complexity function failed");
                 }
 
-                // Add atypical calling conventions (the key Go characteristic!)
+                // Add atypical calling conventions (the key triggering factor!)
                 if (i % 25 == 0)
                 {
                     int result4 = Native.CreateAtypicalCallingConventionStress(3);

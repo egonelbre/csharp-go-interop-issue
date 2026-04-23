@@ -32,7 +32,7 @@ void clear_thread_vulnerable(void* ctx) {
 
 __attribute__((visibility("default")))
 int create_go_like_complexity() {
-    // Basic complexity using simplified atypical patterns
+    // Basic atypical calling convention complexity
     return create_simplified_atypical_stress(8);
 }
 

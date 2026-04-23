@@ -12,7 +12,7 @@ This reproducer demonstrates a CoreCLR bug where atypical calling conventions ca
 - **Assembly trampolines** with non-standard prologues/epilogues (`simplified_atypical.c`)
 - **Atypical register usage** that confuses IP boundary analysis
 - **Controlled complexity** stressing analysis to overflow 16KB limit
-- **Alternate stack signal handling** (CoreCLR's 16KB sigaltstack with SA_ONSTACK)
+- **Signal handler on alternate stack** (CoreCLR's 16KB sigaltstack with SA_ONSTACK)
 
 ### Architecture
 - **.NET host program** (`Program.cs`) - Creates CoreCLR runtime environment
@@ -74,10 +74,10 @@ make debug          # Run with GDB
 ## Technical Background
 
 This bug occurs when:
-1. CoreCLR sets up signal handlers with SA_ONSTACK (16KB limit)
+1. CoreCLR sets up signal handlers with SA_ONSTACK flag (using 16KB alternate stack)
 2. SIGRTMIN signals trigger during P/Invoke calls  
 3. Signal handler performs IP boundary analysis (IsIPInProlog/IsIPInEpilog)
 4. Atypical calling conventions cause analysis to consume excessive stack
 5. Stack overflow in signal handler → Internal CLR error
 
-The simplified version proves that basic C complexity patterns are insufficient - specific assembly trampolines with non-standard calling conventions are required to trigger the overflow.
+The simplified version proves that standard C patterns are insufficient - specific assembly trampolines with atypical calling conventions are required to trigger the overflow.
