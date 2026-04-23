@@ -19,6 +19,9 @@ Choose the reproducer that matches your scenario:
 # Pure CoreCLR bug (most common production case)
 cd coreclr-pal-bug && ./run.sh
 
+# Pure CoreCLR bug using C instead of synthetic handler (proves Go is incidental)  
+cd c-pal-bug && ./run.sh
+
 # Pure Go runtime bug (C apps using Go libraries) 
 cd go-runtime-bug && make && LD_LIBRARY_PATH=. REPRO_PROBE_BYTES=65536 ./host
 
@@ -34,6 +37,7 @@ All should crash within seconds with `SIGSEGV (exit 139)`.
 
 - **[`go-runtime-bug/`](go-runtime-bug/)** — Pure C + Go reproducer demonstrating Go's 32KB gsignal stack overflow
 - **[`coreclr-pal-bug/`](coreclr-pal-bug/)** — Pure C# + C reproducer demonstrating CoreCLR's 16KB PAL stack overflow  
+- **[`c-pal-bug/`](c-pal-bug/)** — Pure C + .NET reproducer proving CoreCLR bug is not Go-specific
 - **[`dotnet-go-reproducer/`](dotnet-go-reproducer/)** — Combined .NET + Go reproducer (original) with workaround
 
 ### Analysis & Tools
@@ -98,6 +102,7 @@ If you're experiencing crashes in production:
 | Reproducer | .NET | Go | GCC | Platform |
 |-----------|------|----|----|----------|
 | `coreclr-pal-bug/` | 10+ | — | ✓ | Linux x86_64 |
+| `c-pal-bug/` | 10+ | — | ✓ | Linux x86_64 |
 | `go-runtime-bug/` | — | 1.20+ | ✓ | Linux x86_64 |
 | `dotnet-go-reproducer/` | 10+ | 1.20+ | ✓ | Linux x86_64 |
 
