@@ -12,7 +12,7 @@ This reproducer demonstrates a CoreCLR bug where atypical calling conventions ca
 - **Assembly trampolines** with non-standard prologues/epilogues (`simplified_atypical.c`)
 - **Atypical register usage** that confuses IP boundary analysis
 - **Controlled complexity** stressing analysis to overflow 16KB limit
-- **SA_ONSTACK signal mechanism** (provided by CoreCLR)
+- **Alternate stack signal handling** (CoreCLR's 16KB sigaltstack with SA_ONSTACK)
 
 ### Architecture
 - **.NET host program** (`Program.cs`) - Creates CoreCLR runtime environment

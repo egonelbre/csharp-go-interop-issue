@@ -2,7 +2,7 @@
 // Triggers CoreCLR sigaltstack overflow by calling C functions with atypical
 // calling conventions via P/Invoke during SIGRTMIN signal bombardment.
 //
-// CoreCLR provides SA_ONSTACK signal handlers with 16KB sigaltstack limit.
+// CoreCLR sets up signal handlers with SA_ONSTACK flag using 16KB sigaltstack.
 // The C library creates atypical assembly patterns that cause CoreCLR's IP
 // boundary analysis (IsIPInProlog/IsIPInEpilog) to consume excessive stack.
 
