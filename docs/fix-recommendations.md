@@ -82,16 +82,35 @@ int altStackSize = SIGSTKSZ + (SIGSTKSZ * 4)
 - **Third-party compatibility**: Allows coexistence with native libraries using SA_ONSTACK handlers
 
 ### Testing
-The fix can be validated with the reproducer in `/coreclr-pal-bug/`:
-```bash
-cd coreclr-pal-bug
-# Test current (should fail)
-./run.sh
 
-# Test with patched CoreCLR runtime (should pass)
-# After applying fix and rebuilding .NET runtime:
-./run.sh
+**Validated locally** against `dotnet/runtime` main at commit
+`b6421ec9f4f` (.NET 11.0.0-dev preview). Under aggressive stress
+(64 workers, 10 µs signal interval, 5 M iterations per worker):
+
+| Build | Alt stack | Result over 20 runs |
+|---|---:|---|
+| Main, unpatched | 16 KB | **19 SIGSEGV** |
+| Main, patched   | 49 KB | **0 SIGSEGV** |
+
+Build procedure (one-time, ~11 min; incremental rebuilds ~11 s):
+
+```bash
+cd path/to/dotnet/runtime
+./build.sh -s clr+libs -c Release -rc Release -lc Release  # full first build
+# edit src/coreclr/pal/src/thread/thread.cpp:2184 per diff above
+./build.sh -s clr.runtime -c Release -rc Release           # incremental
+cp artifacts/bin/coreclr/linux.x64.Release/libcoreclr.so \
+   artifacts/bin/testhost/net11.0-linux-Release-x64/shared/Microsoft.NETCore.App/11.0.0/
+
+# Run the reproducer against the patched runtime
+TH=path/to/dotnet/runtime/artifacts/bin/testhost/net11.0-linux-Release-x64
+DOTNET_ROOT="$TH" DOTNET_ROLL_FORWARD=Major LD_LIBRARY_PATH=. \
+    ./dotnet-go-reproducer/bin/Release/net10.0/repro-dotnet
 ```
+
+`LD_PRELOAD` tracer confirms installed `sigaltstack` size shifts from
+16384 bytes to 49152 bytes after the patch. See `INVESTIGATION.md` §2
+for the full mechanism writeup.
 
 ### Alternative Fix (Architectural)
 Instead of expanding the alt stack, modify `inject_activation_handler` to use `SwitchStackAndExecuteHandler` like `sigsegv_handler` already does:

@@ -4,19 +4,42 @@ This directory contains the combined reproducer that demonstrates the sigaltstac
 
 ## The Bug
 
-When .NET applications P/Invoke into Go c-shared libraries, a race condition occurs between:
-1. **CoreCLR's PAL**: Installs 16KB sigaltstack on ThreadPool workers
-2. **Go's needm**: Records (but doesn't replace) existing sigaltstacks on non-Go threads
-3. **Signal handlers**: Can overflow the inadequate 16KB stack when chained
+When .NET applications P/Invoke into Go c-shared libraries, CoreCLR's
+own activation signal (`SIGRTMIN`, fired by GC suspension / tiered JIT)
+can land on a ThreadPool worker that is currently parked inside an
+unmanaged Go call. The signal runs on the 16 KB sigaltstack that
+CoreCLR's PAL installed at thread creation. CoreCLR's
+`inject_activation_handler` does *not* switch off the alt stack —
+it calls `g_activationFunction(pWinContext)` directly on it — and
+that VM-installed activation function can do GC-suspend bookkeeping,
+hijack retargeting, and tiered-JIT redispatch, easily exceeding the
+~12 KB usable area. The chkstk prologue walks off the bottom of the
+alt stack and SIGSEGVs.
 
-This reproducer demonstrates the actual crash scenario that affects real-world applications.
+Go's role is purely incidental. Go's `needm` takes the record-only
+branch on these threads (bounds tracking only; kernel-registered
+alt stack is unchanged). No Go signal handler is in the fault chain.
+What Go contributes is an unmanaged PC at signal time, so
+CoreCLR's `g_safeActivationCheckFunction` returns true and
+`inject_activation_handler` takes the full work path. A pure-managed
+build can hit the same overflow if its call chain happens to be deep
+enough at a safe-point interrupt — this repro just makes it reliable.
 
-## Two Bug Classes Demonstrated
+## What it demonstrates
 
-This reproducer can hit either of two distinct bugs depending on threading:
+- **CoreCLR PAL bug**: The 16 KB per-thread alt stack in
+  `EnsureSignalAlternateStack` (`src/coreclr/pal/src/thread/thread.cpp:2184`)
+  is too small for `inject_activation_handler`'s chain. Fix belongs in
+  CoreCLR (see `INVESTIGATION.md` §2 and `DOTNET_ISSUE.md`).
 
-1. **CoreCLR PAL bug** (primary): ThreadPool workers have CoreCLR's 16KB alt stack → overflow
-2. **Go runtime bug** (secondary): Fresh threads without pre-existing alt stack get Go's 32KB → still overflow with deep handlers
+- **Workaround mechanism**: The `REPRO_FIX=1` shim overwrites
+  CoreCLR's 16 KB install with a 1 MiB alt stack per thread before
+  the first cgo call. CoreCLR's PAL never re-installs, so the swap
+  is durable.
+
+The separate Go-runtime-side bug (32 KB gsignal overflow when Go
+*does* take the install branch, i.e. no pre-existing alt stack) is
+demonstrated by `go-runtime-bug/`, not this reproducer.
 
 ## Reproduction
 
@@ -86,11 +109,17 @@ Segmentation fault (core dumped)
 
 ### Signal Chain
 
-1. SIGRTMIN fired at ThreadPool worker
-2. Worker currently executing Go code via P/Invoke
-3. Signal delivered on CoreCLR's 16KB alt stack
-4. Go's signal handler + CoreCLR's signal chain exceeds 16KB
-5. Stack overflow → SIGSEGV
+1. SIGRTMIN (glibc `SIGRTMIN` = CoreCLR's `INJECT_ACTIVATION_SIGNAL`) fired at a ThreadPool worker
+2. Worker is currently in unmanaged code via P/Invoke to Go
+3. Kernel delivers the signal on CoreCLR's 16 KB alt stack (registered at thread creation by `EnsureSignalAlternateStack`)
+4. `inject_activation_handler` runs on that alt stack, saves a `CONTEXT` (~2.7 KB), and calls `g_activationFunction(pWinContext)` — the VM-installed activation hook — **without switching off the alt stack**
+5. `g_activationFunction` (GC suspend / hijack retargeting / tiered-JIT redispatch) pushes a call chain whose chkstk prologues overflow the ~12 KB usable area → SIGSEGV
+
+No Go signal handler participates; the crash is inside libcoreclr's
+own signal-handling chain. Confirmed by gdb: faulting `rip` in
+libcoreclr, faulting instruction is the chkstk pattern
+`movq $0,(%rsp); sub $0x1000,%rsp`, `rsp` below the kernel-registered
+`ss_sp`.
 
 ## The Workaround
 

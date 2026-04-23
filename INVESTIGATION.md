@@ -441,7 +441,7 @@ What we have:
 | Go runtime, every Unix `osXXX.go` | **`malg(32 * 1024)`** | Universal across Linux, AIX, Darwin, Solaris, NetBSD, FreeBSD, Dragonfly, WASM, Plan9. **Comments document only the platform minimum**, never the 32 KB rationale. No git log entry explains the choice. |
 | libcoreclr.so 10.0.6 disassembly (this box) | **24 KB** max single-function chkstk prologue | 218 probe prologues total: 96×4 KB, 7×8 KB, 3×12 KB, 16×16 KB, 1×20 KB, 5×24 KB. Multiple of these can stack in a single signal-handling chain. |
 | README §"Underlying cause" | 8-page (32 KB) overshoot below alt stack | The post-mortem observation. Implies CoreCLR's *cumulative* chain reaches at least 32 KB past where it landed. |
-| **Direct measurement** | — | We have **not** measured CoreCLR's actual signal-handler chain depth. We measured only "16 KB is insufficient" (the .NET crash) and "32 KB is insufficient under our synthetic 64 KB probe" (the C-only repro). |
+| **Direct measurement (validated)** | **~49 KB sufficient**, 16 KB insufficient | `SIGSTKSZ*4` bump survives 20/20 aggressive-stress runs (64 workers, 10 µs signal interval) of the .NET repro on a locally-built `dotnet/runtime` main. Unpatched main at 16 KB crashes 19/20 under the same stress. Lower bound for "sufficient"; true maximum chain depth is still unmeasured. |
 
 **No public source we found documents a specific minimum for hosting
 CoreCLR's signal-handler chain on a foreign sigaltstack.** The
@@ -602,6 +602,43 @@ With glibc on x86-64 this raises the alt stack from 16 384 to
 **~49 152 bytes** (12 KB usable → ~44 KB usable), comparable to
 the existing 9-page stack-overflow stack. ~32 KB additional pinned
 VA per managed thread.
+
+#### Validation — this patch, built and tested end-to-end
+
+We applied this exact one-line change to `dotnet/runtime` main at
+commit `b6421ec9f4f`, built the `clr+libs` subset in Release
+(`./build.sh -s clr+libs -c Release -rc Release -lc Release`, ~11 min
+on 32 cores), swapped the resulting `libcoreclr.so` into the built
+testhost layout, and re-ran the reproducer with `DOTNET_ROOT`
+redirected to the testhost and `DOTNET_ROLL_FORWARD=Major` to let the
+`net10.0` repro target the `net11.0` runtime.
+
+| Variant | Default stress (5 runs × 60 s, 32 workers, 50 µs) | Aggressive stress (20 runs × 30 s, 64 workers, 10 µs) |
+|---|---|---|
+| System .NET 10.0.6 (16 KB)           | **5 SIGSEGV** | — |
+| Main, unpatched (16 KB alt stack)    | 5 pass        | **19 SIGSEGV** |
+| Main, patched (49 KB alt stack)      | 5 pass        | **0 SIGSEGV**  |
+
+The `LD_PRELOAD` tracer confirms the installed `sigaltstack` size
+moved from 16384 bytes (73/73 installs) on unpatched main to 49152
+bytes (73/73 installs) on patched main.
+
+Two observations from the table worth keeping:
+
+1. **Default-stress 5/5 pass on unpatched main is not evidence the
+   bug is fixed in main.** Something between 10.0.6 and main narrowed
+   the race window (likely JIT/suspension changes in
+   `src/coreclr/vm/` — that diff is 681 lines in `threadsuspend.cpp`
+   alone, no changes to `EnsureSignalAlternateStack` itself). Under
+   aggressive stress the 16 KB overflow fires reliably.
+2. **The size fix is load-bearing, not a coincidence.** Toggling only
+   the `altStackSize` line between the two values (incremental rebuild
+   is ~11 s) flips the aggressive-stress result cleanly between 19/20
+   and 0/20.
+
+Incremental rebuilds (`./build.sh -s clr.runtime`) take ~11 s, so
+iterating on size or on the architectural variant below is cheap from
+a working tree.
 
 #### Alternative — architectural fix
 

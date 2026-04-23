@@ -146,10 +146,12 @@ REPRO_MODE=gc ./run.sh
 
 #### What's Happening
 1. .NET host P/Invokes into Go c-shared library
-2. Go's `needm` sees CoreCLR's existing 16KB alt stack → records it
-3. Signal pressure from GC or synthetic signals
-4. Signal delivered while worker is in Go code
-5. Go's signal handler + CoreCLR's chained handling exceeds 16KB → overflow
+2. Go's `needm` sees CoreCLR's existing 16KB alt stack → records it (bounds only; kernel registration unchanged)
+3. `SIGRTMIN` fires (synthetic sender, or CoreCLR's own GC/tiered-JIT)
+4. Signal delivered while worker is in unmanaged code → CoreCLR treats the PC as a "safe point"
+5. `inject_activation_handler` runs on CoreCLR's 16KB alt stack and calls `g_activationFunction` (GC suspend / hijack / tiered JIT) **without switching off the alt stack** — chain overflows ~12KB usable → SIGSEGV
+
+No Go signal handler is in the fault chain; the crash is inside libcoreclr. Go's role is to supply an unmanaged PC at signal time.
 
 ## Advanced Investigation
 

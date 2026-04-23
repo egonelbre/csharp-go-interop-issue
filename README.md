@@ -60,6 +60,7 @@ The investigation proved these are **two separate bugs**:
 | Go takes "record-only" path on .NET threads | `investigation-tools/` in-process probes |
 | 32KB threshold for Go runtime bug | `go-runtime-bug/FINDINGS.md` systematic testing |
 | Workaround mechanism validation | `dotnet-go-reproducer/` with/without `REPRO_FIX=1` |
+| **CoreCLR-side fix works end-to-end** | **Built `dotnet/runtime` main with `SIGSTKSZ*4` bump at `thread.cpp:2184`: unpatched 19/20 SIGSEGV, patched 0/20 under aggressive stress. See `INVESTIGATION.md` §2.** |
 
 ## For Immediate Production Use
 
@@ -72,9 +73,11 @@ If you're experiencing crashes in production:
 ## For Upstream Maintainers
 
 ### .NET Team (dotnet/runtime)
-- **Reproducer**: [`coreclr-pal-bug/`](coreclr-pal-bug/) 
+- **Reproducer**: [`coreclr-pal-bug/`](coreclr-pal-bug/) and [`dotnet-go-reproducer/`](dotnet-go-reproducer/)
 - **Fix location**: `src/coreclr/pal/src/thread/thread.cpp:2184`
-- **Proposed fix**: [`docs/fix-recommendations.md`](docs/fix-recommendations.md#coreclr-pal-fix)
+- **Proposed fix**: [`docs/fix-recommendations.md`](docs/fix-recommendations.md#coreclr-pal-fix) — single-line `+ (SIGSTKSZ * 4)`, mirrors the ASAN branch
+- **Issue draft**: [`DOTNET_ISSUE.md`](DOTNET_ISSUE.md) — one-page writeup ready to post
+- **Validation**: fix built and tested end-to-end against main (`b6421ec9f4f`). 19/20→0/20 under aggressive stress.
 
 ### Go Team (golang/go)  
 - **Reproducer**: [`go-runtime-bug/`](go-runtime-bug/)

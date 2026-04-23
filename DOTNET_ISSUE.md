@@ -30,7 +30,7 @@ worker, reliably crashes:
   alt-stack size bug is unchanged.
 
 Full reproducer, tracer, and investigation notes:
-<https://github.com/...> (link to repo)
+<https://github.com/egonelbre/csharp-go-interop-issue>
 
 Minimal shape:
 

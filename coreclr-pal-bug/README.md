@@ -120,6 +120,13 @@ This raises the alt stack from 16KB to ~49KB (usable: 12KB → ~44KB).
 ### Cost
 ~32KB additional virtual address space per managed thread.
 
+### Validation
+End-to-end tested on `dotnet/runtime` main at `b6421ec9f4f`
+(Release build, `clr+libs` subset): unpatched **19/20 SIGSEGV** under
+aggressive stress, patched **0/20** same stress. See
+`../INVESTIGATION.md` §2 "Recommended CoreCLR fix" for build procedure
+and measurements.
+
 ### Alternative: Architectural Fix
 Have `inject_activation_handler` use `SwitchStackAndExecuteHandler` like `sigsegv_handler` already does, dropping back to the interrupted thread's normal stack before calling `g_activationFunction`.
 
