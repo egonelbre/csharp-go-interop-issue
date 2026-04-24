@@ -1,0 +1,17 @@
+[pattern-test] Pattern Isolation Framework
+[pattern-test] Pattern: tier1-combined
+[pattern-test] Description: Combines fake PC manipulation + UNDEF instruction deception (both Tier 1 critical patterns)
+[pattern-test] Expected impact: 18KB stack consumption
+[pattern-test] Go equivalent: gosave_systemstack_switch + systemstack_switch: fake PCs + UNDEF instructions combined
+
+[pattern-test] workers=8 iters=1000 interval=50µs mode=signal gc=False pid=160879
+[pattern-test] ISOLATION test - expected 18KB overflow crash
+[signal-sender] Firing SIGRTMIN every 50µs to pid 160879
+[worker-0] Starting with 1000 iterations
+[worker-2] Starting with 1000 iterations
+[worker-3] Starting with 1000 iterations
+[worker-1] Starting with 1000 iterations
+[worker-4] Starting with 1000 iterations
+[worker-5] Starting with 1000 iterations
+[worker-6] Starting with 1000 iterations
+[worker-7] Starting with 1000 iterations

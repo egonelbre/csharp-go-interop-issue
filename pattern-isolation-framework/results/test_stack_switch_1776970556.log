@@ -1,0 +1,28 @@
+[pattern-test] Pattern Isolation Framework
+[pattern-test] Pattern: stack-switching
+[pattern-test] Description: Simulates Go's mid-function stack switching like asmcgocall
+[pattern-test] Expected impact: 3KB stack consumption
+[pattern-test] Go equivalent: asmcgocall: mid-function stack pointer manipulation
+
+[pattern-test] workers=8 iters=1000 interval=50µs mode=signal gc=False pid=160604
+[pattern-test] ISOLATION test - expected 3KB overflow crash
+[signal-sender] Firing SIGRTMIN every 50µs to pid 160604
+[worker-0] Starting with 1000 iterations
+[worker-2] Starting with 1000 iterations
+[worker-3] Starting with 1000 iterations
+[worker-1] Starting with 1000 iterations
+[worker-4] Starting with 1000 iterations
+[worker-5] Starting with 1000 iterations
+[worker-7] Starting with 1000 iterations
+[worker-6] Starting with 1000 iterations
+[worker-3] Completed successfully
+[worker-7] Completed successfully
+[worker-6] Completed successfully
+[worker-2] Completed successfully
+[worker-4] Completed successfully
+[worker-1] Completed successfully
+[worker-5] Completed successfully
+[worker-0] Completed successfully
+[pattern-test] All workers completed without crash in 0.2s
+[pattern-test] UNEXPECTED: Pattern 'stack-switching' did not cause expected crash
+[pattern-test] This suggests 3KB impact was overestimated

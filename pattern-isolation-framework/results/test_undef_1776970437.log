@@ -1,0 +1,17 @@
+[pattern-test] Pattern Isolation Framework
+[pattern-test] Pattern: undef-instruction-trap
+[pattern-test] Description: Creates problematic address contexts that trap IP boundary analysis like Go's UNDEF instructions
+[pattern-test] Expected impact: 6KB stack consumption
+[pattern-test] Go equivalent: systemstack_switch: PCALIGN $8; UNDEF; - creates analysis traps
+
+[pattern-test] workers=8 iters=1000 interval=50µs mode=signal gc=False pid=160316
+[pattern-test] ISOLATION test - expected 6KB overflow crash
+[signal-sender] Firing SIGRTMIN every 50µs to pid 160316
+[worker-0] Starting with 1000 iterations
+[worker-1] Starting with 1000 iterations
+[worker-2] Starting with 1000 iterations
+[worker-3] Starting with 1000 iterations
+[worker-4] Starting with 1000 iterations
+[worker-5] Starting with 1000 iterations
+[worker-6] Starting with 1000 iterations
+[worker-7] Starting with 1000 iterations

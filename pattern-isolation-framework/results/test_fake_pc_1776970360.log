@@ -1,0 +1,17 @@
+[pattern-test] Pattern Isolation Framework
+[pattern-test] Pattern: fake-pc-manipulation
+[pattern-test] Description: Creates artificial instruction pointer contexts like Go's gosave_systemstack_switch
+[pattern-test] Expected impact: 12KB stack consumption
+[pattern-test] Go equivalent: gosave_systemstack_switch: stores fake PC addresses that confuse IP boundary analysis
+
+[pattern-test] workers=8 iters=1000 interval=50µs mode=signal gc=False pid=160178
+[pattern-test] ISOLATION test - expected 12KB overflow crash
+[signal-sender] Firing SIGRTMIN every 50µs to pid 160178
+[worker-0] Starting with 1000 iterations
+[worker-2] Starting with 1000 iterations
+[worker-1] Starting with 1000 iterations
+[worker-3] Starting with 1000 iterations
+[worker-4] Starting with 1000 iterations
+[worker-5] Starting with 1000 iterations
+[worker-6] Starting with 1000 iterations
+[worker-7] Starting with 1000 iterations

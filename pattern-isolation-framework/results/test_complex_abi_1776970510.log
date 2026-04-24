@@ -1,0 +1,28 @@
+[pattern-test] Pattern Isolation Framework
+[pattern-test] Pattern: complex-abi-transitions
+[pattern-test] Description: Simulates Go's 28-register preservation patterns from PUSH_REGS_HOST_TO_ABI0
+[pattern-test] Expected impact: 4KB stack consumption
+[pattern-test] Go equivalent: PUSH_REGS_HOST_TO_ABI0: saves 28 registers in non-standard sequence
+
+[pattern-test] workers=8 iters=1000 interval=50µs mode=signal gc=False pid=160462
+[pattern-test] ISOLATION test - expected 4KB overflow crash
+[signal-sender] Firing SIGRTMIN every 50µs to pid 160462
+[worker-0] Starting with 1000 iterations
+[worker-1] Starting with 1000 iterations
+[worker-3] Starting with 1000 iterations
+[worker-2] Starting with 1000 iterations
+[worker-4] Starting with 1000 iterations
+[worker-5] Starting with 1000 iterations
+[worker-6] Starting with 1000 iterations
+[worker-7] Starting with 1000 iterations
+[worker-3] Completed successfully
+[worker-6] Completed successfully
+[worker-1] Completed successfully
+[worker-7] Completed successfully
+[worker-2] Completed successfully
+[worker-5] Completed successfully
+[worker-4] Completed successfully
+[worker-0] Completed successfully
+[pattern-test] All workers completed without crash in 12.0s
+[pattern-test] UNEXPECTED: Pattern 'complex-abi-transitions' did not cause expected crash
+[pattern-test] This suggests 4KB impact was overestimated

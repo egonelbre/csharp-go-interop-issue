@@ -1,0 +1,26 @@
+[pattern-test] Pattern Isolation Framework
+[pattern-test] Pattern: baseline-simple
+[pattern-test] Description: Standard C code with conventional calling patterns (control test)
+[pattern-test] Expected impact: 1KB stack consumption
+[pattern-test] Go equivalent: N/A - standard C baseline
+
+[pattern-test] workers=8 iters=1000 interval=50µs mode=signal gc=False pid=159957
+[pattern-test] BASELINE test - should NOT crash
+[signal-sender] Firing SIGRTMIN every 50µs to pid 159957
+[worker-0] Starting with 1000 iterations
+[worker-2] Starting with 1000 iterations
+[worker-3] Starting with 1000 iterations
+[worker-1] Starting with 1000 iterations
+[worker-4] Starting with 1000 iterations
+[worker-5] Starting with 1000 iterations
+[worker-6] Starting with 1000 iterations
+[worker-7] Starting with 1000 iterations
+[worker-2] Completed successfully
+[worker-1] Completed successfully
+[worker-4] Completed successfully
+[worker-0] Completed successfully
+[worker-6] Completed successfully
+[worker-3] Completed successfully
+[worker-5] Completed successfully
+[worker-7] Completed successfully
+[pattern-test] All workers completed without crash in 0.0s
